@@ -3,7 +3,7 @@
 define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define('APP', ROOT . 'app' . DIRECTORY_SEPARATOR);
 define('VIEW', ROOT . 'app' . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR);
-define('GamesService', ROOT . 'app' . DIRECTORY_SEPARATOR . 'GamesService' . DIRECTORY_SEPARATOR);
+define('GameService', ROOT . 'app' . DIRECTORY_SEPARATOR . 'GameService' . DIRECTORY_SEPARATOR);
 define('DATA', ROOT . 'app' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR);
 define('CORE', ROOT . 'app' . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR);
 define('CONTROLLER', ROOT . 'app' . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR);

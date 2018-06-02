@@ -1,16 +1,16 @@
 <?php
 
-class DBConnectionController {
+class PDODao {
 
-    protected $conn;
+    /** @var PDO */
+    private $conn;
 
     public function getConnection() {
-        if(self::$conn === null) {
+        if($this->conn === null) {
             $this->openConnection();
         }
-        return self::$conn;
+        return $this->conn;
     }
-
     private function openConnection() {
         $servername = "localhost";
         $username = "root";
@@ -19,14 +19,26 @@ class DBConnectionController {
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $conn->
-            self::$conn = $conn;
+            $this->conn = $conn;
             echo "Connected successfully";
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
     }
 
-    public function closeConnection() {
-        self::$conn = null;
+    protected function query($query) {
+        if($this->conn === null) {
+            $this->openConnection();
+        }
+
+        $result = $this->conn->prepare($query);
+        $result->execute();
+
+        $this->closeConnection();
+        return $result;
+    }
+
+    private function closeConnection() {
+        $this->conn = null;
     }
 }
