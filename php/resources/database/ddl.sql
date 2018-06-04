@@ -1,9 +1,10 @@
-CREATE DATABASE test;
+CREATE DATABASE GameParadise;
 
-CREATE TABLE TestTable (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-firstname VARCHAR(30) NOT NULL,
-lastname VARCHAR(30) NOT NULL,
-email VARCHAR(50),
-reg_date TIMESTAMP
+CREATE TABLE Games (
+title VARCHAR(25) PRIMARY KEY,
+category VARCHAR(25),
+minage INT(25),
+releasedate DATE,
+publisher VARCHAR(25),
+platform VARCHAR(25)
 );

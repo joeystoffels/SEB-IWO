@@ -12,8 +12,8 @@ class GameDao extends PDODao {
             $game = new Game();
             $game->setTitle($row['title']);
             $game->setCategory($row['category']);
-            $game->setMinAge($row['minAge']);
-            $game->setReleaseDate($row['releaseDate']);
+            $game->setMinAge($row['minage']);
+            $game->setReleaseDate($row['releasedate']);
             $game->setPrice($row['price']);
             $game->setPublisher($row['publisher']);
             $game->setPlatform($row['platform']);

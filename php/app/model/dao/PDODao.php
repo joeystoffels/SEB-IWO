@@ -15,12 +15,11 @@ class PDODao {
         $servername = "localhost";
         $username = "root";
         try {
-            $conn = new PDO("mysql:host=$servername;dbname=test", $username);
+            $conn = new PDO("mysql:host=$servername;dbname=GameParadise", $username);
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $conn->
             $this->conn = $conn;
-            echo "Connected successfully";
+            echo "Connected successfully <br>";
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
