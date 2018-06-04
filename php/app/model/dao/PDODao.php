@@ -19,7 +19,7 @@ class PDODao {
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conn = $conn;
-            echo "Connected successfully <br>";
+            echo "PDODao connected successfully! <br>";
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }

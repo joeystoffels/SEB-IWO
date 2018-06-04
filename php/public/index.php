@@ -20,5 +20,5 @@ new Application;
 $gamecontroller = new GameController();
 $data = $gamecontroller->getAllGames();
 
-echo "Select all Games: <br>";
+echo "SELECT * FROM Games: <br>";
 var_dump($data);
