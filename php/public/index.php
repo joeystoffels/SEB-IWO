@@ -10,7 +10,8 @@ define('CONTROLLER', ROOT . 'app' . DIRECTORY_SEPARATOR . 'controller' . DIRECTO
 define('MODEL', ROOT . 'app' . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR);
 define('DAO', ROOT . 'app' . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'dao');
 define('ENTITY', MODEL . 'entity' . DIRECTORY_SEPARATOR);
-$modules  = [ROOT,APP,CORE,CONTROLLER,DATA, MODEL, DAO, ENTITY];
+define('HELPER', ROOT . 'app' . DIRECTORY_SEPARATOR . 'helper' . DIRECTORY_SEPARATOR);
+$modules  = [ROOT,APP,CORE,CONTROLLER,DATA, MODEL, DAO, ENTITY, HELPER];
 
 set_include_path(get_include_path() . PATH_SEPARATOR . implode(PATH_SEPARATOR,$modules));
 spl_autoload_register('spl_autoload', false);
@@ -21,4 +22,6 @@ $gamecontroller = new GameController();
 $data = $gamecontroller->getAllGames();
 
 echo "SELECT * FROM Games: <br>";
-var_dump($data);
+echo"<!-- <pre>";
+    var_dump($data);
+echo "</pre> -->";

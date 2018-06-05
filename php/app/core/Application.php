@@ -19,7 +19,7 @@ class Application
     protected function prepareURL() {
         $request = trim($_SERVER['REQUEST_URI'], '/');
         if(!empty($request)) {
-            $url = explode('/', $request); //bla
+            $url = explode('/', $request);
             //var_dump($url);
             $this->controller = isset($url[0]) ? $url[0].'Controller' : 'WebshopController';
             $this->action = isset($url[3]) ? $url[3] : 'index';

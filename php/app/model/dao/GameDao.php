@@ -1,11 +1,11 @@
 <?php
 
-class GameDao extends PDODao {
+class GameDao {
 
     public function selectAllGames() {
         $sql = "SELECT * FROM Games;";
 
-        $result = $this->query($sql)->fetchAll();
+        $result = Database::getConnection()->query($sql)->fetchAll();
         $resultList = [];
 
         foreach($result as $row) {
