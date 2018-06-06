@@ -10,8 +10,8 @@
 
     <link rel="apple-touch-icon" href="icon.png">
 
-    <link href="//fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Bangers">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Sunflower:300">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="//cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 </head>
@@ -24,17 +24,38 @@
 </p>
 <![endif]-->
 <header>
-    <div class="container">
+ 
+        <div class="header-top container">
+            <ul>
+                <li>
+                    <a class="logo" href="#"><img src="http://via.placeholder.com/500x150" alt="logo"></a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="lnr lnr-heart"></span>
+                        <p>Wishlist</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="lnr lnr-user"></span>
+                        <p>Account</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="lnr lnr-cart"></span>
+                        <p>Cart</p>
+                        <span class="cart-items">2</span>
+                    </a>
+                </li>
+              </ul>
+        </div>
 
-        <!-- Start Logo -->
-        <a class="logo" href="#"><img src="http://via.placeholder.com/500x150" alt="logo"></a>
-        <!-- End Logo -->
-
-        <span class="lnr lnr-heart"></span>
-        <span class="lnr lnr-cart"></span>
 
         <!-- Start navigation menu -->
-        <nav class="main-content">
+        <nav>
+            <div class="container">
             <ul>
                 <li>
                     <a href="#" class="active">Home</a>
@@ -52,6 +73,7 @@
                     <a href="#">Contact</a>
                 </li>
             </ul>
+            </div>
         </nav>
         <!-- End navigation menu -->
     </div>
@@ -67,8 +89,6 @@
 </div>
 
 <div class="main-container container">
-
-
     <aside>
         <h3>Brands</h3>
         <ul class="aside-category">
@@ -116,12 +136,10 @@
     </aside>
 
     <main>
-
         <section>
             <h2>New collection</h2>
             <div class="article-collection">
                 <article>
-
                     <div class="product-thumb">
                         <a href="#">
                             <img class="product-back-img" src="http://via.placeholder.com/480x480/666666/898989"
@@ -141,7 +159,7 @@
                             <div class="price-box">
                                 <span class="price">$75.00</span>
                             </div>
-  
+
                         </div>
                         <div class="product-action">
                             <a href="#" class="pro-btn add-to-cart">Add to Cart</a>
@@ -176,7 +194,7 @@
                             <div class="price-box">
                                 <span class="price">$75.00</span>
                             </div>
-        
+
                         </div>
                         <div class="product-action">
                             <a href="#" class="pro-btn add-to-cart">Add to Cart</a>
@@ -210,7 +228,7 @@
                             <div class="price-box">
                                 <span class="price">$75.00</span>
                             </div>
-  
+
                         </div>
                         <div class="product-action">
                             <a href="#" class="pro-btn add-to-cart">Add to Cart</a>
@@ -278,7 +296,7 @@
                             <div class="price-box">
                                 <span class="price">$75.00</span>
                             </div>
-                           
+
                         </div>
                         <div class="product-action">
                             <a href="#" class="pro-btn add-to-cart">Add to Cart</a>
@@ -405,20 +423,20 @@
 
     <section class="footer-copyright container">
         <h3>&copy; 2018 JoNi</h3>
-        <a target="_blank" href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fgameparadise.han.nickhartjes.nl%2Fhtml%2F">
-          <img src="img/vhtml-blue.gif" alt="W3C Validated" />
+        <a target="_blank"
+           href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fgameparadise.han.nickhartjes.nl%2Fhtml%2F">
+            <img src="img/vhtml-blue.gif" alt="W3C Validated"/>
         </a>
 
         <a target="_blank" href="https://jigsaw.w3.org/css-validator/check/referer">
-          <img src="img/vcss-blue.gif" alt="Valid CSS!" />
-      </a>
+            <img src="img/vcss-blue.gif" alt="Valid CSS!"/>
+        </a>
 
-      <a target="_blank" href="http://wave.webaim.org/report#/https://gameparadise.han.nickhartjes.nl/html/">
-        <img src="img/vcss-blue.gif" alt="Valid CSS!" />
-      </a>
+        <a target="_blank" href="http://wave.webaim.org/report#/https://gameparadise.han.nickhartjes.nl/html/">
+            <img src="img/vcss-blue.gif" alt="Valid CSS!"/>
+        </a>
 
-      
-        
+
     </section>
 
 </footer>

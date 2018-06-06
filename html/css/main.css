@@ -1,5 +1,26 @@
+/* ====================================================================================================**
+
+    Project Name: GameParadise Webshop - HAN SEB-IWO  
+    Project URI: https://gameparadise.han.nickhartjes.nl
+    Description: This is a fictional webshop in php, html and css.
+    Author: Nick Hartjes && Joey Stoffels
+    Author URI: https://nickhartjes.nl && https://joeystoffels.nl
+    Version: 1.0
+
+==================================================================================================== */
+
 /* ====================================================================================================
-	MINIMAL CSS RESET
+                                START INDEX
+====================================================================================================
+    
+    01. MINIMAL CSS RESET
+
+====================================================================================================
+                                END INDEX
+====================================================================================================/
+
+/* ====================================================================================================
+	01. MINIMAL CSS RESET
 ==================================================================================================== */
 
 html {
@@ -56,24 +77,77 @@ h6 {
 }
 
 .container {
-    /* padding-right: 15px;
-    padding-left: 15px; */
     margin-right: auto;
     margin-left: auto;
 }
+a {
+  text-decoration: none;
+  color: #717171;
+}
+a:visited {
+  color: #717171;
+}
+a:hover{
+  color: black;
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
 
+}
 /* ====================================================================================================
 	HEADER
 ==================================================================================================== */
 
-header {
-    background-color: aqua;
+.header-top {
+  margin: 0 0 1vh 0;
+}
+
+.header-top ul {
+  align-items: center;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+
+.header-top ul li {
+  position: relative;
+  flex-basis:33.3%;
+}
+.header-top ul li:first-child{
+  flex-basis: 100%;
+}
+
+.header-top ul li a span {
+  font-size: 40px;
+}
+
+.header-top ul li a span.cart-items {
+  background: #ff4136 none repeat scroll 0 0;
+  border-radius: 100%;
+  color: #fff;
+  height: 24px;
+  line-height: 24px;
+  position: absolute;
+  text-align: center;
+  top: -15px;
+  transform: translateX(12px);
+  width: 24px;
+  font-size: 16px;
 }
 
 header .logo img {
     margin: 0 0 1vh 0;
 }
 
+nav {
+  background-color: #f1f1f1;
+}
 nav ul {
     display: flex;
     flex-direction: column;
@@ -81,8 +155,36 @@ nav ul {
 }
 
 nav ul li {
-    margin-right: 2vh;
+    font-weight: bold;
+    text-transform: capitalize;
+    padding: 0.5vh 0 0.5vh 1vh;
+    border-top: 1px solid darkgray;
+    
 }
+nav ul li:last-child {
+  border-bottom: 1px solid darkgray;
+}
+nav ul li:hover {
+  background-color: #d4d4d4;
+}
+
+/* ====================================================================================================
+	ASIDE
+==================================================================================================== */
+
+aside {
+  margin: 1vh 0 1vh 0;
+}
+
+aside h3 {
+  margin: 1vh 0 1vh 1vh;
+  font-size: 1.5em;
+  border-bottom: 1px solid #e0e0e0;
+}
+aside ul li {
+  padding: 0.5vh 0 0.5vh 1vh;
+}
+
 
 /* ====================================================================================================
 	MAIN
@@ -135,21 +237,6 @@ main article .product-thumb .product-back-img {
 
 main article .product-thumb .product-front-img:hover {
     opacity: 0.5;
-}
-
-/* ====================================================================================================
-	ASIDE
-==================================================================================================== */
-.main-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    box-sizing: border-box;
-
-}
-
-aside {
-    background-color: pink;
 }
 
 /* ====================================================================================================
@@ -209,10 +296,23 @@ footer section {
     main article {
         flex-basis: 50%;
     }
+
+    nav ul li {
+      border: none;
+      padding: 1vh 1.5vh 1vh 1.5vh;
+    }
+    nav ul li:last-child {
+      border: none;
+    }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
+  /* Add a black border to the top */
+  html { background-color: black; }
+  body { margin-top:15px; background-color: white; }
+
+  /* Set container width */
     .container {
         width: 750px;
     }
@@ -282,6 +382,14 @@ footer section {
         font-size: 0;
         animation: 30s slidy infinite;
     }
+
+    .header-top ul li {
+      flex-basis:10%;
+    }
+    .header-top ul li:first-child{
+      flex-basis: 70%;
+    }
+    
 }
 
 /* Medium Devices, Desktops */
