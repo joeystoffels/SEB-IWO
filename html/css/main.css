@@ -42,7 +42,6 @@ img {
 	DEFAULT STYLE
 ==================================================================================================== */
 
-@import url('https://fonts.googleapis.com/css?family=Bangers|Sunflower:300');
 body {
     font-family: 'Sunflower', sans-serif;
 }
@@ -172,6 +171,9 @@ footer section {
     flex-basis: 100%;
 }
 
+.footer-copyright img {
+  width: 4vh;
+}
 /* ====================================================================================================
 	SLIDER
 ==================================================================================================== */
@@ -264,8 +266,6 @@ footer section {
     .slider {
         display: block;
         overflow: hidden;
-        padding-left: -10px;
-        padding-right: 0px;
     }
 
     .slider figure img {
