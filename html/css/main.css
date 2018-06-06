@@ -1,6 +1,6 @@
 /* ====================================================================================================**
 
-    Project Name: GameParadise Webshop - HAN SEB-IWO  
+    Project Name: GameParadise Webshop - HAN SEB-IWO
     Project URI: https://gameparadise.han.nickhartjes.nl
     Description: This is a fictional webshop in php, html and css.
     Author: Nick Hartjes && Joey Stoffels
@@ -12,8 +12,16 @@
 /* ====================================================================================================
                                 START INDEX
 ====================================================================================================
-    
+
     01. MINIMAL CSS RESET
+    02. DEFAULT STYLE
+    03. HEADER
+    04. ASIDE
+    05. MAIN
+    06. MAIN ARTICLE
+    07. FOOTER
+    08. SLIDER
+    09. MEDIA QUERIES
 
 ====================================================================================================
                                 END INDEX
@@ -60,7 +68,7 @@ img {
 }
 
 /* ====================================================================================================
-	DEFAULT STYLE
+	02. DEFAULT STYLE
 ==================================================================================================== */
 
 body {
@@ -80,65 +88,73 @@ h6 {
     margin-right: auto;
     margin-left: auto;
 }
+
 a {
-  text-decoration: none;
-  color: #717171;
+    text-decoration: none;
+    color: #717171;
 }
+
 a:visited {
-  color: #717171;
+    color: #717171;
 }
-a:hover{
-  color: black;
+
+a:hover {
+    color: #000;
 }
+
 .main-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
 
 }
+
 /* ====================================================================================================
-	HEADER
+	03. HEADER
 ==================================================================================================== */
 
 .header-top {
-  margin: 0 0 1vh 0;
+    padding: 0 0 1vh 0;
 }
 
 .header-top ul {
-  align-items: center;
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  text-align: center;
+    align-items: center;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
 }
-
 
 .header-top ul li {
-  position: relative;
-  flex-basis:33.3%;
+    position: relative;
+    flex-basis: 33.3%;
 }
-.header-top ul li:first-child{
-  flex-basis: 100%;
+
+.header-top ul li:first-child {
+    flex-basis: 100%;
 }
 
 .header-top ul li a span {
-  font-size: 40px;
+    font-size: 40px;
 }
 
 .header-top ul li a span.cart-items {
-  background: #ff4136 none repeat scroll 0 0;
-  border-radius: 100%;
-  color: #fff;
-  height: 24px;
-  line-height: 24px;
-  position: absolute;
-  text-align: center;
-  top: -15px;
-  transform: translateX(12px);
-  width: 24px;
-  font-size: 16px;
+    background: #ff4136 none repeat scroll 0 0;
+    border-radius: 100%;
+    color: #fff;
+    height: 24px;
+    line-height: 24px;
+    position: absolute;
+    text-align: center;
+    top: -15px;
+    transform: translateX(12px);
+    width: 24px;
+    font-size: 16px;
+}
+header .logo {
+  text-align: left;
 }
 
 header .logo img {
@@ -146,8 +162,9 @@ header .logo img {
 }
 
 nav {
-  background-color: #f1f1f1;
+    background-color: #f1f1f1;
 }
+
 nav ul {
     display: flex;
     flex-direction: column;
@@ -159,40 +176,48 @@ nav ul li {
     text-transform: capitalize;
     padding: 0.5vh 0 0.5vh 1vh;
     border-top: 1px solid darkgray;
-    
+
 }
+nav ul li a {
+  color: #000;
+}
+nav ul li a:visited {
+  color: #000;
+}
+
 nav ul li:last-child {
-  border-bottom: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
 }
+
 nav ul li:hover {
-  background-color: #d4d4d4;
+    background-color: #d4d4d4;
 }
 
 /* ====================================================================================================
-	ASIDE
+	04. ASIDE
 ==================================================================================================== */
 
 aside {
-  margin: 1vh 0 1vh 0;
+    margin: 1vh 0 1vh 0;
 }
 
 aside h3 {
-  margin: 1vh 0 1vh 1vh;
-  font-size: 1.5em;
-  border-bottom: 1px solid #e0e0e0;
-}
-aside ul li {
-  padding: 0.5vh 0 0.5vh 1vh;
+    margin: 1vh 0 1vh 1vh;
+    font-size: 1.5em;
+    border-bottom: 1px solid #e0e0e0;
 }
 
+aside ul li {
+    padding: 0.5vh 0 0.5vh 1vh;
+}
 
 /* ====================================================================================================
-	MAIN
+	05. MAIN
 ==================================================================================================== */
 
-main {
+/* main {
     background-color: purple;
-}
+} */
 
 main .article-collection {
     display: flex;
@@ -202,12 +227,12 @@ main .article-collection {
 }
 
 /* ====================================================================================================
-	MAIN ARTICLE
+	06. MAIN ARTICLE
 ==================================================================================================== */
 
 main article {
     background-color: darkgreen;
-    border: 1px solid black;
+    border: 1px solid #000;
 }
 
 main article .product-thumb {
@@ -240,11 +265,11 @@ main article .product-thumb .product-front-img:hover {
 }
 
 /* ====================================================================================================
-	FOOTER
+	07. FOOTER
 ==================================================================================================== */
 
 footer {
-    background-color: blue;
+    background-color: #f1f1f1;
 }
 
 footer section {
@@ -256,20 +281,34 @@ footer section {
 
 .footer-main div {
     flex-basis: 100%;
+    padding: 3vh 1vh 3vh 1vh;
+}
+
+.footer-copyright {
+  padding: 1vh 1vh 1vh 1vh;
+  background-color: #e6e6e6; 
+  
+}
+.footer-copyright h3 {
+  font-family: 'Sunflower', sans-serif;
+  font-size: 0.8em;
+  display: inline;
 }
 
 .footer-copyright img {
-  width: 4vh;
+    width: 3vh;
+    float: rigth;
 }
+
 /* ====================================================================================================
-	SLIDER
+	08. SLIDER
 ==================================================================================================== */
 .slider {
     display: none;
 }
 
 /* ====================================================================================================
-	MEDIA QUERIES -  Mobile First Method
+	09. MEDIA QUERIES -  Mobile First Method
 ==================================================================================================== */
 
 /* Custom, iPhone Retina */
@@ -298,21 +337,28 @@ footer section {
     }
 
     nav ul li {
-      border: none;
-      padding: 1vh 1.5vh 1vh 1.5vh;
+        border: none;
+        padding: 1vh 1.5vh 1vh 1.5vh;
     }
+
     nav ul li:last-child {
-      border: none;
+        border: none;
     }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
-  /* Add a black border to the top */
-  html { background-color: black; }
-  body { margin-top:15px; background-color: white; }
+    /* Add a #000 border to the top */
+    html {
+        background-color: #000;
+    }
 
-  /* Set container width */
+    body {
+        margin-top: 15px;
+        background-color: #fff;
+    }
+
+    /* Set container width */
     .container {
         width: 750px;
     }
@@ -384,12 +430,21 @@ footer section {
     }
 
     .header-top ul li {
-      flex-basis:10%;
+        flex-basis: 10%;
     }
-    .header-top ul li:first-child{
-      flex-basis: 70%;
+
+    .header-top ul li:first-child {
+        flex-basis: 70%;
     }
-    
+
+    .footer-main div {
+      padding: 5vh 1vh 5vh 1vh;
+    }
+    .main-container {
+      padding: 1vh 0 1vh 0;
+    }
+
+
 }
 
 /* Medium Devices, Desktops */
@@ -404,6 +459,15 @@ footer section {
 
     main article {
         flex-basis: 33.33%;
+    }
+    .footer-main div {
+      padding: 10vh 1vh 10vh 1vh;
+    }
+    .slider {
+      padding-top: 3vh;
+    }
+    .main-container {
+      padding: 3vh 0 3vh 0;
     }
 
 }
