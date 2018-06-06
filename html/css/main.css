@@ -3,14 +3,14 @@
 ==================================================================================================== */
 
 html {
-  box-sizing: border-box;
-  font-size: 16px;
+    box-sizing: border-box;
+    font-size: 16px;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 body,
@@ -23,19 +23,19 @@ h6,
 p,
 ol,
 ul {
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
 }
 
 ol,
 ul {
-  list-style: none;
+    list-style: none;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 /* ====================================================================================================
@@ -44,7 +44,7 @@ img {
 
 @import url('https://fonts.googleapis.com/css?family=Bangers|Sunflower:300');
 body {
-  font-family: 'Sunflower', sans-serif;
+    font-family: 'Sunflower', sans-serif;
 }
 
 h1,
@@ -53,14 +53,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Bangers', cursive;
+    font-family: 'Bangers', cursive;
 }
 
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 /* ====================================================================================================
@@ -68,22 +68,21 @@ h6 {
 ==================================================================================================== */
 
 header {
-  background-color: aqua;
-  /* margin: 2vh 0 2vh 0; */
+    background-color: aqua;
 }
 
 header .logo img {
-  margin: 0 0 1vh 0;
+    margin: 0 0 1vh 0;
 }
 
 nav ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 nav ul li {
-  margin-right: 2vh;
+    margin-right: 2vh;
 }
 
 /* ====================================================================================================
@@ -91,49 +90,65 @@ nav ul li {
 ==================================================================================================== */
 
 main {
-  background-color: purple;
-  width: 75%;
+    background-color: purple;
 }
 
-main .section-new-collection {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+main .article-collection {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+/* ====================================================================================================
+	MAIN ARTICLE
+==================================================================================================== */
+
+main article {
+    background-color: darkgreen;
+    border: 1px solid black;
 }
 
 main article .product-thumb {
-    display: block;
     position: relative;
-  }
-  main article .product-info {
-    display: block;
-  }
-
-main article .product-thumb img {
-  position: absolute;
-  left: 0px;
-  top: 0px;
+    left: 0px;
+    top: 0px;  
 }
 
+main article .product-thumb img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+}
+
+main article .product-info {
+    display: block;
+}
+
+main article .product-thumb .product-front-img {
+  position: relative;
+}
+main article .product-thumb .product-back-img {
+  position: absolute;
+  
+}
 main article .product-thumb .product-front-img:hover {
   opacity: 0.5;
-  filter: alpha(opacity=50);
-  /* For IE8 and earlier */
 }
 
 /* ====================================================================================================
 	ASIDE
 ==================================================================================================== */
 .main-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+
 }
+
 aside {
-  background-color: pink;
-  width: 25%;
+    background-color: pink;
 }
 
 /* ====================================================================================================
@@ -141,46 +156,94 @@ aside {
 ==================================================================================================== */
 
 footer {
-  background-color: blue;
+    background-color: blue;
 }
+
 footer section {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-  }
+    flex-wrap: wrap;
+}
 
 /* ====================================================================================================
-	MEDIA QUERY MAX 480PX
+	MEDIA QUERIES -  Mobile First Method
 ==================================================================================================== */
 
-@media (max-width: 480px) {
+/* Custom, iPhone Retina */
+@media only screen and (min-width: 320px) {
+  .footer-main div  {
+    flex-basis: 100%;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+  .footer-main div  {
+    flex-basis: 50%;
+  }
+
+  /* Change menu from column to row */
   nav ul {
-    flex-direction: column;
-  }
+        flex-direction: row;
+    }
+
+    /* Change articles from column to row */
+    main .article-collection {
+      flex-direction: row;
+    }
+    main article {
+      flex-basis: 50%;
+    }
 }
 
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-  article {
-      width: 250px;
-  }
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
 
-  main article .product-thumb {
-      width: 250px;
-      height: 250px;
+    /* Show aside besides main */
+    .main-container {
+      flex-direction: row;
   }
+    aside {
+      width: 25%;
+    }
+    main {
+      width: 75%;
+    }
+
+
+    /* main article .product-thumb {
+        width: 250px;
+        height: 250px;
+    } */
+
 }
 
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  .footer-main div  {
+    flex-basis: 25%;
   }
+    .container {
+        width: 970px;
+    }
+
+    main article {
+      flex-basis: 33%;
+    }
+
 }
 
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+    main article {
+      flex-basis: 25%;
+    }
+
 }
