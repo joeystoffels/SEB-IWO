@@ -215,10 +215,6 @@ aside ul li {
 	05. MAIN
 ==================================================================================================== */
 
-/* main {
-    background-color: purple;
-} */
-
 main .article-collection {
     display: flex;
     flex-direction: column;
@@ -231,8 +227,12 @@ main .article-collection {
 ==================================================================================================== */
 
 main article {
-    background-color: darkgreen;
-    border: 1px solid #000;
+    /* background-color: darkgreen;
+    border: 1px solid #000; */
+    padding: 0.3vh 0.3vh 1.5vh 0.3vh;
+}
+main h2 {
+  margin: 1vh 0 1vh 0.5vh;
 }
 
 main article .product-thumb {
@@ -250,6 +250,14 @@ main article .product-thumb img {
 main article .product-info {
     display: block;
 }
+main article .product-info h3 {
+  padding: 1em 0;
+}
+main article .product-info .price {
+  display: block;
+  padding: 1em 0;
+  font-weight: bold;
+}
 
 main article .product-thumb .product-front-img {
     position: relative;
@@ -262,6 +270,32 @@ main article .product-thumb .product-back-img {
 
 main article .product-thumb .product-front-img:hover {
     opacity: 0.5;
+}
+
+main article .button {
+  border: 1px solid #e0e0e0;
+    color: #666666;
+    display: inline-block;
+    font-size: 18px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 11px;
+    transition: all 0.3s ease 0s;
+}
+main article .button:hover {
+  background-color: #000;
+    border-color: #000;
+    color: #fff;
+}
+main article .add-to-cart {
+  position: relative;
+  top: -1px;
+    color: #666666;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 38px;
+    padding: 0 10px;
+    text-transform: uppercase;
 }
 
 /* ====================================================================================================
