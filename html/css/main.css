@@ -1,0 +1,186 @@
+/* ====================================================================================================
+	MINIMAL CSS RESET
+==================================================================================================== */
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ====================================================================================================
+	DEFAULT STYLE
+==================================================================================================== */
+
+@import url('https://fonts.googleapis.com/css?family=Bangers|Sunflower:300');
+body {
+  font-family: 'Sunflower', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Bangers', cursive;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* ====================================================================================================
+	HEADER
+==================================================================================================== */
+
+header {
+  background-color: aqua;
+  /* margin: 2vh 0 2vh 0; */
+}
+
+header .logo img {
+  margin: 0 0 1vh 0;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+nav ul li {
+  margin-right: 2vh;
+}
+
+/* ====================================================================================================
+	MAIN
+==================================================================================================== */
+
+main {
+  background-color: purple;
+  width: 75%;
+}
+
+main .section-new-collection {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+main article .product-thumb {
+    display: block;
+    position: relative;
+  }
+  main article .product-info {
+    display: block;
+  }
+
+main article .product-thumb img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+main article .product-thumb .product-front-img:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  /* For IE8 and earlier */
+}
+
+/* ====================================================================================================
+	ASIDE
+==================================================================================================== */
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  
+}
+aside {
+  background-color: pink;
+  width: 25%;
+}
+
+/* ====================================================================================================
+	FOOTER
+==================================================================================================== */
+
+footer {
+  background-color: blue;
+}
+footer section {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+/* ====================================================================================================
+	MEDIA QUERY MAX 480PX
+==================================================================================================== */
+
+@media (max-width: 480px) {
+  nav ul {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+  article {
+      width: 250px;
+  }
+
+  main article .product-thumb {
+      width: 250px;
+      height: 250px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
