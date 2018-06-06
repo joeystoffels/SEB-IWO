@@ -331,7 +331,8 @@ footer section {
 
 .footer-copyright img {
     width: 3vh;
-    float: rigth;
+    float: right;
+    margin-left: 2vh;
 }
 
 /* ====================================================================================================
