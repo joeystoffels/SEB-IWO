@@ -57,8 +57,8 @@ h6 {
 }
 
 .container {
-    padding-right: 15px;
-    padding-left: 15px;
+    /* padding-right: 15px;
+    padding-left: 15px; */
     margin-right: auto;
     margin-left: auto;
 }
@@ -112,13 +112,13 @@ main article {
 main article .product-thumb {
     position: relative;
     left: 0px;
-    top: 0px;  
+    top: 0px;
 }
 
 main article .product-thumb img {
-  display: block;
-  width: auto;
-  max-width: 100%;
+    display: block;
+    width: auto;
+    max-width: 100%;
 }
 
 main article .product-info {
@@ -126,14 +126,16 @@ main article .product-info {
 }
 
 main article .product-thumb .product-front-img {
-  position: relative;
+    position: relative;
 }
+
 main article .product-thumb .product-back-img {
-  position: absolute;
-  
+    position: absolute;
+
 }
+
 main article .product-thumb .product-front-img:hover {
-  opacity: 0.5;
+    opacity: 0.5;
 }
 
 /* ====================================================================================================
@@ -166,34 +168,44 @@ footer section {
     flex-wrap: wrap;
 }
 
+.footer-main div {
+    flex-basis: 100%;
+}
+
+/* ====================================================================================================
+	SLIDER
+==================================================================================================== */
+.slider {
+    display: none;
+}
+
 /* ====================================================================================================
 	MEDIA QUERIES -  Mobile First Method
 ==================================================================================================== */
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
-  .footer-main div  {
-    flex-basis: 100%;
-  }
+    /* We don't really need this query because everything was build mobile first */
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
-  .footer-main div  {
-    flex-basis: 50%;
-  }
+    .footer-main div {
+        flex-basis: 50%;
+    }
 
-  /* Change menu from column to row */
-  nav ul {
+    /* Change menu from column to row */
+    nav ul {
         flex-direction: row;
     }
 
     /* Change articles from column to row */
     main .article-collection {
-      flex-direction: row;
+        flex-direction: row;
     }
+
     main article {
-      flex-basis: 50%;
+        flex-basis: 50%;
     }
 }
 
@@ -205,34 +217,85 @@ footer section {
 
     /* Show aside besides main */
     .main-container {
-      flex-direction: row;
-  }
+        flex-direction: row;
+    }
+
     aside {
-      width: 25%;
+        width: 25%;
     }
+
     main {
-      width: 75%;
+        width: 75%;
     }
 
+    /* ====================================================================================================
+	  SLIDER
+    ==================================================================================================== */
+    @keyframes slidy {
+        0% {
+            left: 0%;
+        }
+        20% {
+            left: 0%;
+        }
+        25% {
+            left: -100%;
+        }
+        45% {
+            left: -100%;
+        }
+        50% {
+            left: -200%;
+        }
+        70% {
+            left: -200%;
+        }
+        75% {
+            left: -300%;
+        }
+        95% {
+            left: -300%;
+        }
+        100% {
+            left: -400%;
+        }
+    }
 
-    /* main article .product-thumb {
-        width: 250px;
-        height: 250px;
-    } */
+    .slider {
+        display: block;
+        overflow: hidden;
+        padding-left: -10px;
+        padding-right: 0px;
+    }
 
+    .slider figure img {
+        width: 20%;
+        float: left;
+    }
+
+    .slider figure {
+        position: relative;
+        width: 500%;
+        margin: 0;
+        left: 0;
+        text-align: left;
+        font-size: 0;
+        animation: 30s slidy infinite;
+    }
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
-  .footer-main div  {
-    flex-basis: 25%;
-  }
+    .footer-main div {
+        flex-basis: 25%;
+    }
+
     .container {
         width: 970px;
     }
 
     main article {
-      flex-basis: 33%;
+        flex-basis: 33%;
     }
 
 }
@@ -242,8 +305,9 @@ footer section {
     .container {
         width: 1170px;
     }
+
     main article {
-      flex-basis: 25%;
+        flex-basis: 25%;
     }
 
 }
