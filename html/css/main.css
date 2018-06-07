@@ -486,6 +486,7 @@ footer section {
 
     .header-top ul li:first-child {
         flex-basis: 70%;
+        text-align: left;
     }
 
     .footer-main div {
