@@ -10,11 +10,7 @@ import java.io.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import java.util.Date;
 
 //<article>
 // <a class="wrap" href="/games/psp/119002_crash-tag-team-racing--platinum?type=New">
@@ -42,9 +38,9 @@ import org.jsoup.select.Elements;
 //  </figure> </a>
 //</article>
 
-public class crawler {
+public class Crawler {
 
-  public static void main(String[] args) throws IOException {
+  public void crawl() throws IOException {
     ClassLoader classloader = Thread.currentThread().getContextClassLoader();
     File file = new File(classloader.getResource("gamemania.html").getFile());
 
@@ -57,17 +53,19 @@ public class crawler {
     Integer counter = 1;
 
     for (Element article : articles) {
-      log("***********************");
 
-      ArrayList<String> specList = new ArrayList<String>();
+      Game game = new Game();
+
+      log("***********************");
+      log("Timestamp: " + new Date());
 
       // Get title
       String gameTitle = article.select("span").first().attr("title");
-      specList.add(gameTitle);
+      game.titel = gameTitle;
 
       // Get price
       String price = article.getElementsByClass("price--new").first().attr("data-productpricenew");
-      specList.add(price);
+      game.prijs = price;
 
       // Get product detail specs
       String productSpecsHref = article.select("a").first().attr("href");
@@ -77,13 +75,31 @@ public class crawler {
       Elements tdElements = tempDoc.getElementsByClass("productItem-specifications").select("td");
 
       for (Element element : tdElements) {
-        if (tdElements.indexOf(element) % 2 == 1)
-          specList.add(element.text());
+        String elementTitle = element.wholeText();
+
+        if (elementTitle.equals("Releasedatum"))
+          game.releaseDatum = tdElements.get(tdElements.indexOf(element) + 1).text();
+        if (elementTitle.equals("Aantal spelers"))
+          game.aantalSpelers = tdElements.get(tdElements.indexOf(element) + 1).text();
+        if (elementTitle.equals("Genre"))
+          game.genre = tdElements.get(tdElements.indexOf(element) + 1).text();
+        if (elementTitle.equals("PEGI leeftijd"))
+          game.pegiLeeftijd = tdElements.get(tdElements.indexOf(element) + 1).text();
+        if (elementTitle.equals("PEGI inhoud"))
+          game.pegiInhoud = tdElements.get(tdElements.indexOf(element) + 1).text();
+        if (elementTitle.equals("Publisher"))
+          game.publisher = tdElements.get(tdElements.indexOf(element) + 1).text();
+        if (elementTitle.equals("Ontwikkelaar"))
+          game.ontwikkelaar = tdElements.get(tdElements.indexOf(element) + 1).text();
+        if (elementTitle.equals("Gesproken taal"))
+          game.gesprokenTaal = tdElements.get(tdElements.indexOf(element) + 1).text();
+        if (elementTitle.equals("Geschreven taal"))
+          game.geschrevenTaal = tdElements.get(tdElements.indexOf(element) + 1).text();
       }
 
       // Get platform
       String platform = urlProductSpecs.split("/")[4];
-      specList.add(platform);
+      game.platform = platform;
 
       // Get product specs background url
       Element bannerElement = tempDoc.getElementsByClass("banner").first();
@@ -106,8 +122,8 @@ public class crawler {
       String localImgUrl = "" + platform + "/" + gameName + ".jpg";
       String localBgImgUrl = "" + platform + "/" + gameName + "_background" + ".jpg";
 
-      specList.add(localImgUrl);
-      specList.add(localBgImgUrl);
+      game.localImgUrl = localImgUrl;
+      game.localBgImgUrl = localBgImgUrl;
 
       // Get textBlock product detail in html
       Elements textBlockElement = tempDoc.getElementsByClass("textblock");
@@ -120,25 +136,29 @@ public class crawler {
         htmlString = htmlString.append(item);
       }
 
-      specList.add(htmlString.toString());
+      game.htmlDetailTekst = htmlString.toString();
 
       // Write data to .csv
-      log("Saving data for "+ specList.get(0));
+      log("Saving data for " + game);
       log("Product counter: " + counter);
-      writeToCsv(specList);
+      writeToCsv(game);
 
       // Download images
-      downloadImage(imgUrl, platform, false);
-      downloadImage(bannerImgUrl, platform, true);
+      try {
+        downloadImage(imgUrl, platform, false);
+        downloadImage(bannerImgUrl, platform, true);
+      } catch (ArrayIndexOutOfBoundsException e) {
+        log("Error while downloading an image... continue.");
+      }
 
       // Product counter
       counter++;
     }
 
-    log("Total products: " + counter.toString());
+    log("" + new Date() + "Total products: " + counter.toString());
   }
 
-  private static void writeToCsv(ArrayList<String> array) throws IOException {
+  private static void writeToCsv(Game game) throws IOException {
     StringBuilder sb = new StringBuilder();
 
     if (!new File("gameslist.csv").exists()) {
@@ -146,7 +166,7 @@ public class crawler {
       sb.append("|");
       sb.append("Prijs");
       sb.append("|");
-      sb.append("Releasedatum");
+      sb.append("ReleaseDatum");
       sb.append("|");
       sb.append("AantalSpelers");
       sb.append("|");
@@ -170,21 +190,17 @@ public class crawler {
       sb.append("|");
       sb.append("LocalBgImgUrl");
       sb.append("|");
-      sb.append("htmlDetailsTekst");
+      sb.append("HtmlDetailTekst");
       sb.append('\n');
     }
 
     FileWriter fileWriter = new FileWriter(new File("gameslist.csv"), true);
 
-    for(String item : array) {
-      sb.append(array.get(array.indexOf(item)));
-
-      if (!(array.indexOf(item) == array.size() - 1)) {
-        sb.append("|");
-      } else {
-        sb.append('\n');
-      }
-    }
+    sb = sb.append(game.titel).append("|").append(game.prijs).append("|").append(game.releaseDatum).append("|")
+      .append(game.aantalSpelers).append("|").append(game.genre).append("|").append(game.pegiLeeftijd).append("|")
+      .append(game.pegiInhoud).append("|").append(game.publisher).append("|").append(game.ontwikkelaar).append("|")
+      .append(game.gesprokenTaal).append("|").append(game.geschrevenTaal).append("|").append(game.platform).append("|")
+      .append(game.localImgUrl).append("|").append(game.localBgImgUrl).append("|").append(game.htmlDetailTekst).append("\n");
 
     fileWriter.write(sb.toString());
     fileWriter.close();
@@ -193,7 +209,7 @@ public class crawler {
 
   private static void downloadImage(String strImageURL, String platform, boolean isBackgroundImg){
 
-    String IMAGE_DESTINATION_FOLDER = "C:\\Users\\Joey\\Desktop\\HAN\\seb-iwo\\images";
+    String IMAGE_DESTINATION_FOLDER = "C:/Users/Joey/Desktop/HAN/seb-iwo/images";
     String[] array = strImageURL.split("/");
 
     int productNameIndexPos = isBackgroundImg ? 3 : 2;
@@ -242,5 +258,4 @@ public class crawler {
   private static void log(String msg, String... vals) {
     System.out.println(String.format(msg, vals));
   }
-
 }
