@@ -147,3 +147,4 @@ local.properties
 /_old/
 .idea/inspectionProfiles/
 .idea/sonarlint/
+.idea/
