@@ -64,7 +64,7 @@ spl_autoload_register(function ($class) {
 });
 
 
-$application =  new \Webshop\Core\Application;
+$application =  new \Webshop\Core\Application();
 
 $gamecontroller = new \Webshop\Controller\GameController;
 $data = $gamecontroller->getAllGames();
