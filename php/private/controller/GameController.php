@@ -1,11 +1,13 @@
 <?php
 
+namespace Webshop\Controller;
+
 class GameController {
 
     private $gameService;
 
     public function __construct() {
-        $this->gameService = new GameService();
+        $this->gameService = new \Webshop\Model\GameService();
     }
 
     public function getAllGames() {

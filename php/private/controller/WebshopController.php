@@ -1,4 +1,7 @@
 <?php
+
+namespace Webshop\Controller;
+
 class webshopController {
 
     //http://localhost/webshop/php/public/index

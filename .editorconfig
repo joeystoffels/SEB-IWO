@@ -12,6 +12,6 @@ trim_trailing_whitespace = true
 [*.md]
 trim_trailing_whitespace = false
 
-[*.{html,css}]
+[*.{html,css,php}]
 indent_size = 4
 indent_style = space

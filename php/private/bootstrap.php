@@ -1,4 +1,8 @@
 <?php
+
+namespace Webshop;
+use  Webshop\Core\Application;
+
 session_start();
 ob_start();
 
@@ -34,21 +38,34 @@ if (DEBUG) {
   ini_set('display_errors', 0);
 }
 
-define('APPLICATION', ABSPATH . 'private' . DIRECTORY_SEPARATOR);
-define('GAME_SERVICE', APPLICATION . DIRECTORY_SEPARATOR . 'GameService' . DIRECTORY_SEPARATOR);
-define('DATA', APPLICATION . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR);
-define('CORE', APPLICATION . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR);
-define('CONTROLLER', APPLICATION . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR);
-define('HELPER', APPLICATION . DIRECTORY_SEPARATOR . 'helper' . DIRECTORY_SEPARATOR);
-define('MODEL', APPLICATION . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR);
-define('DAO', MODEL . DIRECTORY_SEPARATOR . 'dao' . DIRECTORY_SEPARATOR);
-define('ENTITY', MODEL . DIRECTORY_SEPARATOR . 'entity' . DIRECTORY_SEPARATOR);
-$modules = [ABSPATH, CORE, CONTROLLER, DATA, MODEL, DAO, ENTITY, HELPER];
+spl_autoload_register(function ($class) {
+    // project-specific namespace prefix
+    $prefix = 'Webshop\\';
+    // base directory for the namespace prefix
+    $base_dir = ABSPATH . 'private/';
+    // does the class use the namespace prefix?
+    $len = strlen($prefix);
+    if (strncmp($prefix, $class, $len) !== 0) {
+        // no, move to the next registered autoloader
+        return;
+    }
+    // get the relative class name
+    $relative_class = substr($class, $len);
 
-set_include_path(get_include_path() . PATH_SEPARATOR . implode(PATH_SEPARATOR, $modules));
-spl_autoload_register('spl_autoload', false);
+    // replace the namespace prefix with the base directory, replace namespace
+    // separators with directory separators in the relative class name, append
+    // with .php
+    $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
 
-new Application();
+    // if the file exists, require it
+    if (file_exists($file)) {
+        require $file;
+    }
+});
 
-$gamecontroller = new GameController();
+
+$application =  new \Webshop\Core\Application;
+
+$gamecontroller = new \Webshop\Controller\GameController;
 $data = $gamecontroller->getAllGames();
+var_dump($data);

@@ -1,5 +1,7 @@
 <?php
 
+namespace Webshop\Core;
+
 class Application
 {
     protected $controller = 'WebshopController';
@@ -8,7 +10,7 @@ class Application
 
     public function __construct(){
         $this->prepareURL();
-        if(file_exists(CONTROLLER . $this->controller . '.php')){
+        if(file_exists(ABSPATH."controller/" . $this->controller . '.php')){
             $this->controller = new $this->controller;
             if(method_exists($this->controller,$this->action)) {
                 call_user_func_array([$this->controller, $this->action], $this->params);

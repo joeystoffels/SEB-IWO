@@ -1,5 +1,7 @@
 <?php
 
+namespace Webshop\Helper;
+
 class Database
 {
 
@@ -18,12 +20,12 @@ class Database
   {
 
     try {
-      self::$conn = new PDO("mysql:host=" . DB_HOST . ";dbname=". DB_NAME, DB_USER, DB_PASSWORD);
+      self::$conn = new \PDO("mysql:host=" . DB_HOST . ";dbname=". DB_NAME, DB_USER, DB_PASSWORD);
       // set the PDO error mode to exception
-      self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      self::$conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
       echo "PDO connected successfully! <br>";
-    } catch (PDOException $e) {
+    } catch (\PDOException $e) {
       echo "Connection failed: " . $e->getMessage();
     }
   }

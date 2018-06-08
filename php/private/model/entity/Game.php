@@ -1,27 +1,34 @@
 <?php
 
-class Game {
+namespace Webshop\Model\Entity;
 
+class Game
+{
     private $title;
     private $price;
-    private $category;
     private $minAge;
     private $publisher;
-    private $releaseDate;
+    private $developer;
+    private $languageText;
+    private $languageSpoken;
     private $platform;
+    private $details;
+    private $image;
+    private $imageBackground;
+    private $releaseDate;
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getTitle()
+    public function getTitle() : string
     {
         return $this->title;
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
-    public function setTitle($title): void
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -37,25 +44,9 @@ class Game {
     /**
      * @param mixed $price
      */
-    public function setPrice($price): void
+    public function setPrice($price)
     {
         $this->price = $price;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param mixed $category
-     */
-    public function setCategory($category): void
-    {
-        $this->category = $category;
     }
 
     /**
@@ -69,7 +60,7 @@ class Game {
     /**
      * @param mixed $minAge
      */
-    public function setMinAge($minAge): void
+    public function setMinAge($minAge)
     {
         $this->minAge = $minAge;
     }
@@ -85,7 +76,7 @@ class Game {
     /**
      * @param mixed $publisher
      */
-    public function setPublisher($publisher): void
+    public function setPublisher($publisher)
     {
         $this->publisher = $publisher;
     }
@@ -93,17 +84,49 @@ class Game {
     /**
      * @return mixed
      */
-    public function getReleaseDate()
+    public function getDeveloper()
     {
-        return $this->releaseDate;
+        return $this->developer;
     }
 
     /**
-     * @param mixed $releaseDate
+     * @param mixed $developer
      */
-    public function setReleaseDate($releaseDate): void
+    public function setDeveloper($developer)
     {
-        $this->releaseDate = $releaseDate;
+        $this->developer = $developer;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguageText()
+    {
+        return $this->languageText;
+    }
+
+    /**
+     * @param mixed $languageText
+     */
+    public function setLanguageText($languageText)
+    {
+        $this->languageText = $languageText;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguageSpoken()
+    {
+        return $this->languageSpoken;
+    }
+
+    /**
+     * @param mixed $languageSpoken
+     */
+    public function setLanguageSpoken($languageSpoken)
+    {
+        $this->languageSpoken = $languageSpoken;
     }
 
     /**
@@ -117,8 +140,74 @@ class Game {
     /**
      * @param mixed $platform
      */
-    public function setPlatform($platform): void
+    public function setPlatform($platform)
     {
         $this->platform = $platform;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * @param mixed $details
+     */
+    public function setDetails($details)
+    {
+        $this->details = $details;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageBackground()
+    {
+        return $this->imageBackground;
+    }
+
+    /**
+     * @param mixed $imageBackground
+     */
+    public function setImageBackground($imageBackground)
+    {
+        $this->imageBackground = $imageBackground;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReleaseDate()
+    {
+        return $this->releaseDate;
+    }
+
+    /**
+     * @param mixed $releaseDate
+     */
+    public function setReleaseDate($releaseDate)
+    {
+        $this->releaseDate = $releaseDate;
+    }
+
+
 }

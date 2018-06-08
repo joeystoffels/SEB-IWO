@@ -1,11 +1,13 @@
 <?php
 
+namespace Webshop\Model;
+
 class GameService {
 
     private $gameDao;
 
     public function __construct() {
-        $this->gameDao = new GameDao();
+        $this->gameDao = new \Webshop\Model\Dao\GameDao();
     }
 
     public function selectAllGames() {
