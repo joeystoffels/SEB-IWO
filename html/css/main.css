@@ -112,26 +112,25 @@ a:hover {
 }
 
 input[type="checkbox"] {
-    display: none;
+    display:none;
 }
-
 input[type="checkbox"] + label {
-    color: #000;
+    color:#000;
 }
 
 input[type="checkbox"] + label span {
-    display: inline-block;
-    width: 22px;
-    height: 22px;
-    margin: -3px 10px 0 0;
-    vertical-align: middle;
-    background: url("../img/checkbox.svg") left top no-repeat;
+    display:inline-block;
+    width:22px;
+    height:22px;
+    margin:-3px 10px 0 0;
+    vertical-align:middle;
+    background:url("../img/checkbox.svg") left top no-repeat;
     background-size: 22px 22px;
-    cursor: pointer;
+    cursor:pointer;
 }
 
 input[type="checkbox"]:checked + label span {
-    background: url("../img/checkbox-checked.svg") left top no-repeat;
+    background:url("../img/checkbox-checked.svg") left top no-repeat;
     background-size: 22px 22px;
 }
 
@@ -139,7 +138,7 @@ input[type="checkbox"]:checked + label span {
 	03. HEADER
 ==================================================================================================== */
 header h1 {
-    display: none;
+  display: none;
 }
 
 .header-top {
@@ -244,11 +243,11 @@ aside legend {
     font-size: 1.5em;
     border-bottom: 1px solid #e0e0e0;
 }
-
 aside label {
     display: block;
     padding: 0.3vh 0 0.3vh 1vh;
 }
+
 
 /* ====================================================================================================
 	05. MAIN
@@ -391,27 +390,24 @@ footer section {
     display: none;
 }
 
+
 /* ====================================================================================================
 	09. FORMULIEREN
 ==================================================================================================== */
 .formulieren input, .formulieren label {
     width: 100%;
 }
-
 .formulieren form {
     margin-top: 1.5vh;
 }
-
 .formulieren label {
     display: block;
     margin: 1vh 0 0.3vh 0;
     font-weight: bold;
 }
-
 .formulieren fieldset {
     border: #d3d3d3 1px solid;
 }
-
 .formulieren legend {
     font-size: 1.5em;
 }
@@ -423,28 +419,27 @@ footer section {
     outline: none;
     box-shadow: none;
 }
-
 .formulieren .verzonden input:invalid, .verzonden input.invalid {
     border: 3px solid #FF0000;
-}
+  }
 
-.formulieren .inputError {
+  .formulieren .inputError{
     display: none;
-}
-
-.formulieren .verzonden .inputError {
-    margin: 0.3vh 0.3vh 0;
-    display: block;
+  }
+  .formulieren .verzonden .inputError{
+    margin: 0.3vh  0.3vh 0;
+      display: block;
     color: #FF0000;
-}
+  }
 
-.formulieren input[type=submit] {
-    margin: 1vh 0 1vh 0;
-    border-color: #39b54a;
-    background-color: #39b54a;
-    color: #fff;
-    font-weight: bold;
-}
+  .formulieren input[type=submit]{
+      margin: 1vh 0 1vh 0;
+      border-color: #39b54a;
+      background-color: #39b54a;
+      color: #fff;
+      font-weight: bold;
+  }
+
 
 /* ====================================================================================================
 	09. MEDIA QUERIES -  Mobile First Method
