@@ -178,11 +178,17 @@ public class crawler {
 
   private static void downloadImage(String strImageURL, String platform, boolean isBackgroundImg){
 
-    String IMAGE_DESTINATION_FOLDER = "C:/Users/Joey/Desktop/HAN/seb-iwo/images";
+    String IMAGE_DESTINATION_FOLDER = "C:\\Users\\Joey\\Desktop\\HAN\\seb-iwo\\images";
     String[] array = strImageURL.split("/");
 
     int productNameIndexPos = isBackgroundImg ? 3 : 2;
     String gameName = array[array.length - productNameIndexPos];
+
+    File directory = new File(IMAGE_DESTINATION_FOLDER + "/" + platform);
+
+    if (directory.mkdir()) {
+      log("Img folder created: " + platform);
+    }
 
     if (isBackgroundImg) {
       gameName += "_background" ;
@@ -191,31 +197,31 @@ public class crawler {
     String imgUrl = "/" + platform + "/" + gameName + ".jpg";
     log("Saving image to: " + IMAGE_DESTINATION_FOLDER + imgUrl);
 
-//      try {
-//
-//        //open the stream from URL
-//        URL urlImage = new URL(strImageURL);
-//        InputStream in = urlImage.openStream();
-//
-//        byte[] buffer = new byte[4096];
-//        int n = -1;
-//
-//        OutputStream os =
-//          new FileOutputStream( IMAGE_DESTINATION_FOLDER + imgUrl);
-//
-//        //write bytes to the output stream
-//        while ( (n = in.read(buffer)) != -1 ){
-//          os.write(buffer, 0, n);
-//        }
-//
-//        //close the stream
-//        os.close();
-//
-//        System.out.println("Image saved");
-//
-//      } catch (IOException e) {
-//        e.printStackTrace();
-//      }
+      try {
+
+        //open the stream from URL
+        URL urlImage = new URL(strImageURL);
+        InputStream in = urlImage.openStream();
+
+        byte[] buffer = new byte[4096];
+        int n = -1;
+
+        OutputStream os =
+          new FileOutputStream( IMAGE_DESTINATION_FOLDER + imgUrl);
+
+        //write bytes to the output stream
+        while ( (n = in.read(buffer)) != -1 ){
+          os.write(buffer, 0, n);
+        }
+
+        //close the stream
+        os.close();
+
+        System.out.println("Image saved");
+
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
   }
 
   private static void log(String msg, String... vals) {
