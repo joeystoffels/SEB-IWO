@@ -109,6 +109,19 @@ public class crawler {
       specList.add(localImgUrl);
       specList.add(localBgImgUrl);
 
+      // Get textBlock product detail in html
+      Elements textBlockElement = tempDoc.getElementsByClass("textblock");
+      Element textBlock = textBlockElement.get(textBlockElement.size() - 2);
+
+      String[] splitHtml = textBlock.html().split("\n");
+      StringBuilder htmlString = new StringBuilder();
+
+      for (String item : splitHtml) {
+        htmlString = htmlString.append(item);
+      }
+
+      specList.add(htmlString.toString());
+
       // Write data to .csv
       log("Saving data for "+ specList.get(0));
       log("Product counter: " + counter);
@@ -128,44 +141,46 @@ public class crawler {
   private static void writeToCsv(ArrayList<String> array) throws IOException {
     StringBuilder sb = new StringBuilder();
 
-    if (!new File("test.csv").exists()) {
+    if (!new File("gameslist.csv").exists()) {
       sb.append("Titel");
-      sb.append(',');
+      sb.append("|");
       sb.append("Prijs");
-      sb.append(',');
+      sb.append("|");
       sb.append("Releasedatum");
-      sb.append(',');
+      sb.append("|");
       sb.append("AantalSpelers");
-      sb.append(',');
+      sb.append("|");
       sb.append("Genre");
-      sb.append(',');
+      sb.append("|");
       sb.append("PegiLeeftijd");
-      sb.append(',');
+      sb.append("|");
       sb.append("PegiInhoud");
-      sb.append(',');
+      sb.append("|");
       sb.append("Publisher");
-      sb.append(',');
+      sb.append("|");
       sb.append("Ontwikkelaar");
-      sb.append(',');
+      sb.append("|");
       sb.append("GesprokenTaal");
-      sb.append(',');
+      sb.append("|");
       sb.append("GeschrevenTaal");
-      sb.append(',');
+      sb.append("|");
       sb.append("Platform");
-      sb.append(',');
+      sb.append("|");
       sb.append("LocalImgUrl");
-      sb.append(',');
+      sb.append("|");
       sb.append("LocalBgImgUrl");
+      sb.append("|");
+      sb.append("htmlDetailsTekst");
       sb.append('\n');
     }
 
-    FileWriter fileWriter = new FileWriter(new File("test.csv"), true);
+    FileWriter fileWriter = new FileWriter(new File("gameslist.csv"), true);
 
     for(String item : array) {
       sb.append(array.get(array.indexOf(item)));
 
       if (!(array.indexOf(item) == array.size() - 1)) {
-        sb.append(',');
+        sb.append("|");
       } else {
         sb.append('\n');
       }
