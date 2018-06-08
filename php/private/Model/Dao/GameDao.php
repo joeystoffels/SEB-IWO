@@ -5,7 +5,7 @@ namespace Webshop\Model\Dao;
 class GameDao {
 
     public function selectAllGames() {
-        $sql = "SELECT * FROM Games;";
+        $sql = "SELECT * FROM `games`";
 
         $result = \Webshop\Helper\Database::getConnection()->query($sql)->fetchAll();
         $resultList = [];
