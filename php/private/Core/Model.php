@@ -3,28 +3,21 @@
 namespace Webshop\Core;
 
 
-abstract class Model
+class Model
 {
-    private static $connection;
-
-    public static function getConnection()
+    // Magic setter. Silently ignore invalid fields
+    public function __set($key, $value)
     {
-        if (self::$connection === null) {
-            self::openConnection();
+        if (isset($this->$key)) {
+            $this->$key = $value;
         }
-        return self::$connection;
     }
 
-    private static function openConnection()
+    // Magic getter
+    public function __get($key)
     {
-        try {
-            self::$connection = new \PDO("mysql:host=" . DB_HOST . ";dbname=". DB_NAME, DB_USER, DB_PASSWORD);
-            // set the PDO error mode to exception
-            self::$connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-
-            echo "PDO connected successfully! <br>";
-        } catch (\PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
+        if (isset($this->$key)) {
+            return $this->$key;
         }
     }
 }
