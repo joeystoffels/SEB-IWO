@@ -9,8 +9,6 @@
 namespace Webshop\Core;
 
 
-use Throwable;
-
 class CoreException extends \Exception
 {
 

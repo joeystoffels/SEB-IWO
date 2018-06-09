@@ -6,11 +6,6 @@ use Webshop\Core\Model;
 
 class Game extends Model
 {
-    public function __construct()
-    {
-        parent::__construct('games');
-    }
-
     private $title;
     private $price;
     private $minAge;
@@ -23,5 +18,10 @@ class Game extends Model
     private $image;
     private $imageBackground;
     private $releaseDate;
+
+    public function __construct()
+    {
+        parent::__construct('games');
+    }
 
 }

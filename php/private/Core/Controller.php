@@ -2,14 +2,16 @@
 
 namespace Webshop\Core;
 
-Abstract Class Controller {
+Abstract Class Controller
+{
 
     /*
      * @registry object
      */
     protected $registry;
 
-    function __construct($registry) {
+    function __construct($registry)
+    {
         $this->registry = $registry;
     }
 

@@ -12,6 +12,7 @@ namespace Webshop\Model;
 class Publisher
 {
     private $publisher;
+
     public function __construct()
     {
         parent::__construct('publishers');

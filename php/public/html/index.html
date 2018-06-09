@@ -13,256 +13,336 @@
     <link href="//cdn.linearicons.com/free/1.0.0/icon-font.min.css" rel="stylesheet">
 </head>
 <body>
-    <!--[if lte IE 9]>
+<!--[if lte IE 9]>
 <p class="browserupgrade">
     You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
     your browser</a> to improve your experience and security.
 </p>
 <![endif]-->
-    <header>
-        <div class="header-top container">
+<header>
+    <div class="header-top container">
+        <ul>
+            <li>
+                <h1>Game Paradise Webshop</h1>
+                <a class="logo" href="#"><img alt="Logo GameParadise Webshop" src="http://via.placeholder.com/500x150"></a>
+            </li>
+            <li>
+                <a href="#"><span class="lnr lnr-heart"></span>
+                    <p>Wishlist</p></a>
+            </li>
+            <li>
+                <a href="#"><span class="lnr lnr-user"></span>
+                    <p>Account</p></a>
+            </li>
+            <li>
+                <a href="#"><span class="lnr lnr-cart"></span>
+                    <p>Cart</p><span class="cart-items">2</span></a>
+            </li>
+        </ul>
+    </div><!-- Start navigation menu -->
+    <nav>
+        <div class="container">
             <ul>
                 <li>
-                  <h1>Game Paradise Webshop</h1>
-                    <a class="logo" href="#"><img alt="Logo GameParadise Webshop" src="http://via.placeholder.com/500x150"></a>
+                    <a class="active" href="#">Home</a>
                 </li>
                 <li>
-                    <a href="#"><span class="lnr lnr-heart"></span>
-                    <p>Wishlist</p></a>
+                    <a href="#">About</a>
                 </li>
                 <li>
-                    <a href="#"><span class="lnr lnr-user"></span>
-                    <p>Account</p></a>
+                    <a href="#">Products</a>
                 </li>
                 <li>
-                    <a href="#"><span class="lnr lnr-cart"></span>
-                    <p>Cart</p><span class="cart-items">2</span></a>
+                    <a href="#">Vacancies</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
                 </li>
             </ul>
-        </div><!-- Start navigation menu -->
-        <nav>
-            <div class="container">
-                <ul>
-                    <li>
-                        <a class="active" href="#">Home</a>
-                    </li>
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Products</a>
-                    </li>
-                    <li>
-                        <a href="#">Vacancies</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </nav><!-- End navigation menu -->
-    </header>
-    <div class="slider container">
-        <figure>
-            <a href="index.html">
-                <img alt="Aanbieding Nintendo Switch" src="../images/slide_1200x500_Switch.jpg">
-            </a>
-            <a href="index.html">
-                <img alt="Aanbieding days of play" src="../images/slide_1200x500_daysofplay.jpg">
-            </a>
-            <a href="index.html">
-                <img alt="Pre order Red dead redemption 2" src="../images/slide_1200x500_RDR2.jpg">
-            </a>
-            <a href="index.html">
-                <img alt="Aanbieding Nintendo Switch" src="../images/slide_1200x500_Switch.jpg">
-            </a>
-            <a href="index.html">
-                <img alt="Aanbieding days of play" src="../images/slide_1200x500_daysofplay.jpg">
-            </a>
-        </figure>
-    </div>
-    <div class="main-container container">
-        <aside>
-            <form method="GET">
+        </div>
+    </nav><!-- End navigation menu -->
+</header>
+<div class="slider container">
+    <figure>
+        <a href="index.html">
+            <img alt="Aanbieding Nintendo Switch" src="../images/slide_1200x500_Switch.jpg">
+        </a>
+        <a href="index.html">
+            <img alt="Aanbieding days of play" src="../images/slide_1200x500_daysofplay.jpg">
+        </a>
+        <a href="index.html">
+            <img alt="Pre order Red dead redemption 2" src="../images/slide_1200x500_RDR2.jpg">
+        </a>
+        <a href="index.html">
+            <img alt="Aanbieding Nintendo Switch" src="../images/slide_1200x500_Switch.jpg">
+        </a>
+        <a href="index.html">
+            <img alt="Aanbieding days of play" src="../images/slide_1200x500_daysofplay.jpg">
+        </a>
+    </figure>
+</div>
+<div class="main-container container">
+    <aside>
+        <form method="GET">
 
             <fieldset>
-                    <legend>Platform</legend>
-                    <input type="checkbox" id="platformPs2" name="platform[ps2]" />
-                    <label for="platformPs2"><span>checkbox</span>Playstation 2</label>
+                <legend>Platform</legend>
+                <input type="checkbox" id="platformPs2" name="platform[ps2]"/>
+                <label for="platformPs2"><span>checkbox</span>Playstation 2</label>
 
-                    <input type="checkbox" id="platformPs3" name="platform[ps3]" />
-                    <label for="platformPs3"><span></span>Playstation 3</label>
+                <input type="checkbox" id="platformPs3" name="platform[ps3]"/>
+                <label for="platformPs3"><span></span>Playstation 3</label>
 
-                    <input type="checkbox" id="platformPs4" name="platform[ps4]" />
-                    <label for="platformPs4"><span></span>Playstation 4</label>
+                <input type="checkbox" id="platformPs4" name="platform[ps4]"/>
+                <label for="platformPs4"><span></span>Playstation 4</label>
             </fieldset>
             <fieldset>
-                    <legend>Genre</legend>
-                    <input type="checkbox" id="platformPs2" name="genre[action]" />
-                    <label for="platformPs2"><span></span>Playstation 2</label>
+                <legend>Genre</legend>
+                <input type="checkbox" id="platformPs2" name="genre[action]"/>
+                <label for="platformPs2"><span></span>Playstation 2</label>
 
-                    <input type="checkbox" id="platformPs3" name="platform[ps3]" />
-                    <label for="platformPs3"><span></span>Playstation 3</label>
+                <input type="checkbox" id="platformPs3" name="platform[ps3]"/>
+                <label for="platformPs3"><span></span>Playstation 3</label>
 
-                    <input type="checkbox" id="platformPs4" name="platform[ps4]" />
-                    <label for="platformPs4"><span></span>Playstation 4</label>
+                <input type="checkbox" id="platformPs4" name="platform[ps4]"/>
+                <label for="platformPs4"><span></span>Playstation 4</label>
             </fieldset>
         </form>
 
-        </aside>
-        <main>
-            <section>
-                <h2>New collection</h2>
-                <div class="article-collection">
-                    <article>
-                        <div class="product-thumb">
-                            <a href="#"><img alt="Secondary image of the article" class="product-back-img" src="http://via.placeholder.com/480x480/666666/898989"> <img alt="Primary image of the article" class="product-front-img" src="http://via.placeholder.com/480x480/000000/232323"></a>
-                        </div>
-                        <div class="product-info">
-                            <h3><a href="#">Super Mario Bro's</a></h3>
-                            <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
-                        </div>
-                        <div class="product-action">
-                            <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="product-thumb">
-                            <a href="#"><img alt="Secondary image of the article" class="product-back-img" src="http://via.placeholder.com/480x480/666666/898989"> <img alt="Primary image of the article" class="product-front-img" src="http://via.placeholder.com/480x480/000000/232323"></a>
-                        </div>
-                        <div class="product-info">
-                            <h3><a href="#">Super Mario Bro's</a></h3>
-                            <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
-                        </div>
-                        <div class="product-action">
-                            <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="product-thumb">
-                            <a href="#"><img alt="Secondary image of the article" class="product-back-img" src="http://via.placeholder.com/480x480/666666/898989"> <img alt="Primary image of the article" class="product-front-img" src="http://via.placeholder.com/480x480/000000/232323"></a>
-                        </div>
-                        <div class="product-info">
-                            <h3><a href="#">Super Mario Bro's</a></h3>
-                            <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
-                        </div>
-                        <div class="product-action">
-                            <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="product-thumb">
-                            <a href="#"><img alt="Secondary image of the article" class="product-back-img" src="http://via.placeholder.com/480x480/666666/898989"> <img alt="Primary image of the article" class="product-front-img" src="http://via.placeholder.com/480x480/000000/232323"></a>
-                        </div>
-                        <div class="product-info">
-                            <h3><a href="#">Super Mario Bro's</a></h3>
-                            <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
-                        </div>
-                        <div class="product-action">
-                            <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="product-thumb">
-                            <a href="#"><img alt="Secondary image of the article" class="product-back-img" src="http://via.placeholder.com/480x480/666666/898989"> <img alt="Primary image of the article" class="product-front-img" src="http://via.placeholder.com/480x480/000000/232323"></a>
-                        </div>
-                        <div class="product-info">
-                            <h3><a href="#">Super Mario Bro's</a></h3>
-                            <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
-                        </div>
-                        <div class="product-action">
-                            <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
-                        </div>
-                    </article>
-                </div>
-            </section>
-            <section>
-                <h2>Old collection</h2>
-                <div class="article-collection">
-                    <article>
-                        <div class="product-thumb">
-                            <a href="#"><img alt="Secondary image of the article" class="product-back-img" src="http://via.placeholder.com/480x480/666666/898989"> <img alt="Primary image of the article" class="product-front-img" src="http://via.placeholder.com/480x480/000000/232323"></a>
-                        </div>
-                        <div class="product-info">
-                            <h3><a href="#">Super Mario Bro's</a></h3>
-                            <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
-                        </div>
-                        <div class="product-action">
-                            <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="product-thumb">
-                            <a href="#"><img alt="Secondary image of the article" class="product-back-img" src="http://via.placeholder.com/480x480/666666/898989"> <img alt="Primary image of the article" class="product-front-img" src="http://via.placeholder.com/480x480/000000/232323"></a>
-                        </div>
-                        <div class="product-info">
-                            <h3><a href="#">Super Mario Bro's</a></h3>
-                            <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
-                        </div>
-                        <div class="product-action">
-                            <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="product-thumb">
-                            <a href="#"><img alt="Secondary image of the article" class="product-back-img" src="http://via.placeholder.com/480x480/666666/898989"> <img alt="Primary image of the article" class="product-front-img" src="http://via.placeholder.com/480x480/000000/232323"></a>
-                        </div>
-                        <div class="product-info">
-                            <h3><a href="#">Super Mario Bro's</a></h3>
-                            <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
-                        </div>
-                        <div class="product-action">
-                            <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="product-thumb">
-                            <a href="#"><img alt="Secondary image of the article" class="product-back-img" src="http://via.placeholder.com/480x480/666666/898989"> <img alt="Primary image of the article" class="product-front-img" src="http://via.placeholder.com/480x480/000000/232323"></a>
-                        </div>
-                        <div class="product-info">
-                            <h3><a href="#">Super Mario Bro's</a></h3>
-                            <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
-                        </div>
-                        <div class="product-action">
-                            <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
-                        </div>
-                    </article>
-                    <article>
-                        <div class="product-thumb">
-                            <a href="#"><img alt="Secondary image of the article" class="product-back-img" src="http://via.placeholder.com/480x480/666666/898989"> <img alt="Primary image of the article" class="product-front-img" src="http://via.placeholder.com/480x480/000000/232323"></a>
-                        </div>
-                        <div class="product-info">
-                            <h3><a href="#">Super Mario Bro's</a></h3>
-                            <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
-                        </div>
-                        <div class="product-action">
-                            <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
-                        </div>
-                    </article>
-                </div>
-            </section>
-        </main>
-    </div>
-    <footer>
-        <section class="footer-main container">
-            <div>
-                <h3>Blok 1</h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae.
-            </div>
-            <div>
-                <h3>Blok 2</h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae.
-            </div>
-            <div>
-                <h3>Blok 3</h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae.
-            </div>
-            <div>
-                <h3>Blok 4</h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae.
+    </aside>
+    <main>
+        <section>
+            <h2>New collection</h2>
+            <div class="article-collection">
+                <article>
+                    <div class="product-thumb">
+                        <a href="#"><img alt="Secondary image of the article" class="product-back-img"
+                                         src="http://via.placeholder.com/480x480/666666/898989"> <img
+                            alt="Primary image of the article" class="product-front-img"
+                            src="http://via.placeholder.com/480x480/000000/232323"></a>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="#">Super Mario Bro's</a></h3>
+                        <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia
+                            fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa
+                            stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
+                    </div>
+                    <div class="product-action">
+                        <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span
+                        class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a
+                        class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
+                    </div>
+                </article>
+                <article>
+                    <div class="product-thumb">
+                        <a href="#"><img alt="Secondary image of the article" class="product-back-img"
+                                         src="http://via.placeholder.com/480x480/666666/898989"> <img
+                            alt="Primary image of the article" class="product-front-img"
+                            src="http://via.placeholder.com/480x480/000000/232323"></a>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="#">Super Mario Bro's</a></h3>
+                        <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia
+                            fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa
+                            stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
+                    </div>
+                    <div class="product-action">
+                        <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span
+                        class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a
+                        class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
+                    </div>
+                </article>
+                <article>
+                    <div class="product-thumb">
+                        <a href="#"><img alt="Secondary image of the article" class="product-back-img"
+                                         src="http://via.placeholder.com/480x480/666666/898989"> <img
+                            alt="Primary image of the article" class="product-front-img"
+                            src="http://via.placeholder.com/480x480/000000/232323"></a>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="#">Super Mario Bro's</a></h3>
+                        <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia
+                            fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa
+                            stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
+                    </div>
+                    <div class="product-action">
+                        <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span
+                        class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a
+                        class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
+                    </div>
+                </article>
+                <article>
+                    <div class="product-thumb">
+                        <a href="#"><img alt="Secondary image of the article" class="product-back-img"
+                                         src="http://via.placeholder.com/480x480/666666/898989"> <img
+                            alt="Primary image of the article" class="product-front-img"
+                            src="http://via.placeholder.com/480x480/000000/232323"></a>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="#">Super Mario Bro's</a></h3>
+                        <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia
+                            fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa
+                            stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
+                    </div>
+                    <div class="product-action">
+                        <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span
+                        class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a
+                        class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
+                    </div>
+                </article>
+                <article>
+                    <div class="product-thumb">
+                        <a href="#"><img alt="Secondary image of the article" class="product-back-img"
+                                         src="http://via.placeholder.com/480x480/666666/898989"> <img
+                            alt="Primary image of the article" class="product-front-img"
+                            src="http://via.placeholder.com/480x480/000000/232323"></a>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="#">Super Mario Bro's</a></h3>
+                        <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia
+                            fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa
+                            stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
+                    </div>
+                    <div class="product-action">
+                        <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span
+                        class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a
+                        class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
+                    </div>
+                </article>
             </div>
         </section>
-        <section class="footer-copyright">
-            <div class="container">
-                <h3>&copy; 2018 JoNi</h3><a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fgameparadise.han.nickhartjes.nl%2Fhtml%2F" target="_blank"><img alt="W3C Validated" src="../images/vhtml-blue.gif"></a> <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img alt="Valid CSS!" src="../images/vcss-blue.gif"></a> <a href="http://wave.webaim.org/report#/https://gameparadise.han.nickhartjes.nl/html/" target="_blank"><img alt="Valid CSS!" src="../images/vcss-blue.gif"></a>
+        <section>
+            <h2>Old collection</h2>
+            <div class="article-collection">
+                <article>
+                    <div class="product-thumb">
+                        <a href="#"><img alt="Secondary image of the article" class="product-back-img"
+                                         src="http://via.placeholder.com/480x480/666666/898989"> <img
+                            alt="Primary image of the article" class="product-front-img"
+                            src="http://via.placeholder.com/480x480/000000/232323"></a>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="#">Super Mario Bro's</a></h3>
+                        <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia
+                            fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa
+                            stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
+                    </div>
+                    <div class="product-action">
+                        <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span
+                        class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a
+                        class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
+                    </div>
+                </article>
+                <article>
+                    <div class="product-thumb">
+                        <a href="#"><img alt="Secondary image of the article" class="product-back-img"
+                                         src="http://via.placeholder.com/480x480/666666/898989"> <img
+                            alt="Primary image of the article" class="product-front-img"
+                            src="http://via.placeholder.com/480x480/000000/232323"></a>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="#">Super Mario Bro's</a></h3>
+                        <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia
+                            fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa
+                            stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
+                    </div>
+                    <div class="product-action">
+                        <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span
+                        class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a
+                        class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
+                    </div>
+                </article>
+                <article>
+                    <div class="product-thumb">
+                        <a href="#"><img alt="Secondary image of the article" class="product-back-img"
+                                         src="http://via.placeholder.com/480x480/666666/898989"> <img
+                            alt="Primary image of the article" class="product-front-img"
+                            src="http://via.placeholder.com/480x480/000000/232323"></a>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="#">Super Mario Bro's</a></h3>
+                        <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia
+                            fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa
+                            stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
+                    </div>
+                    <div class="product-action">
+                        <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span
+                        class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a
+                        class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
+                    </div>
+                </article>
+                <article>
+                    <div class="product-thumb">
+                        <a href="#"><img alt="Secondary image of the article" class="product-back-img"
+                                         src="http://via.placeholder.com/480x480/666666/898989"> <img
+                            alt="Primary image of the article" class="product-front-img"
+                            src="http://via.placeholder.com/480x480/000000/232323"></a>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="#">Super Mario Bro's</a></h3>
+                        <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia
+                            fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa
+                            stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
+                    </div>
+                    <div class="product-action">
+                        <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span
+                        class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a
+                        class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
+                    </div>
+                </article>
+                <article>
+                    <div class="product-thumb">
+                        <a href="#"><img alt="Secondary image of the article" class="product-back-img"
+                                         src="http://via.placeholder.com/480x480/666666/898989"> <img
+                            alt="Primary image of the article" class="product-front-img"
+                            src="http://via.placeholder.com/480x480/000000/232323"></a>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="#">Super Mario Bro's</a></h3>
+                        <p>Asymmetrical waistcoat umami iPhone. Cold-pressed try-hard butcher prism. Intelligentsia
+                            fixie af, marfa vexillologist skateboard 90's cornhole twee viral gentrify kinfolk. Quinoa
+                            stumptown readymade woke chambray gentrify</p><span class="price">&euro; 75,00</span>
+                    </div>
+                    <div class="product-action">
+                        <a class="button add-to-cart" href="#">Add to Cart</a> <a class="button" href="#"><span
+                        class="lnr lnr-heart"></span><span class="button-text">Add to Wishlist</span></a> <a
+                        class="button" href="#"><span class="lnr lnr-magnifier"></span><span class="button-text">Go to Article</span></a>
+                    </div>
+                </article>
             </div>
         </section>
-    </footer>
+    </main>
+</div>
+<footer>
+    <section class="footer-main container">
+        <div>
+            <h3>Blok 1</h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+            laudantium, totam rem aperiam eaque ipsa quae.
+        </div>
+        <div>
+            <h3>Blok 2</h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+            laudantium, totam rem aperiam eaque ipsa quae.
+        </div>
+        <div>
+            <h3>Blok 3</h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+            laudantium, totam rem aperiam eaque ipsa quae.
+        </div>
+        <div>
+            <h3>Blok 4</h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+            laudantium, totam rem aperiam eaque ipsa quae.
+        </div>
+    </section>
+    <section class="footer-copyright">
+        <div class="container">
+            <h3>&copy; 2018 JoNi</h3><a
+            href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fgameparadise.han.nickhartjes.nl%2Fhtml%2F"
+            target="_blank"><img alt="W3C Validated" src="../images/vhtml-blue.gif"></a> <a
+            href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img alt="Valid CSS!"
+                                                                                          src="../images/vcss-blue.gif"></a>
+            <a href="http://wave.webaim.org/report#/https://gameparadise.han.nickhartjes.nl/html/" target="_blank"><img
+                alt="Valid CSS!" src="../images/vcss-blue.gif"></a>
+        </div>
+    </section>
+</footer>
 </body>
 </html>

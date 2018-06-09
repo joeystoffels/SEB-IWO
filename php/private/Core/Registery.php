@@ -17,6 +17,19 @@ class Registery
       */
     private $vars = array();
 
+    /**
+     *
+     * @get variables
+     *
+     * @param mixed $index
+     *
+     * @return mixed
+     *
+     */
+    public function __get($index)
+    {
+        return $this->vars[$index];
+    }
 
     /**
      *
@@ -32,20 +45,6 @@ class Registery
     public function __set($index, $value)
     {
         $this->vars[$index] = $value;
-    }
-
-    /**
-     *
-     * @get variables
-     *
-     * @param mixed $index
-     *
-     * @return mixed
-     *
-     */
-    public function __get($index)
-    {
-        return $this->vars[$index];
     }
 
 }

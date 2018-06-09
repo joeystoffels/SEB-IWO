@@ -22,7 +22,8 @@ class ErrorController extends Controller
         $this->error(404, "Default error");
     }
 
-    function error(int $errorNumber, string $errorMessage){
+    function error(int $errorNumber, string $errorMessage)
+    {
         http_response_code($errorNumber);
         $this->registry->template->title = "Nick";
         $this->registry->template->description = "Fout";

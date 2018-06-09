@@ -9,7 +9,8 @@ Abstract class Model
 {
 
 
-  protected $tableName;
+    protected $tableName;
+
     /**
      * Model constructor.
      */
@@ -19,14 +20,7 @@ Abstract class Model
     }
 
     // Magic setter. Silently ignore invalid fields
-    public function __set($key, $value)
-    {
-        if (isset($this->$key)) {
-            $this->$key = $value;
-        }
-    }
 
-    // Magic getter
     public function __get($key)
     {
         if (isset($this->$key)) {
@@ -34,9 +28,19 @@ Abstract class Model
         }
     }
 
-    public function getAll(){
-        $result = Database::getConnection()->query('SELECT * FROM '. $this->tableName);
-        $result->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, get_class($this));
+    // Magic getter
+
+    public function __set($key, $value)
+    {
+        if (isset($this->$key)) {
+            $this->$key = $value;
+        }
+    }
+
+    public function getAll()
+    {
+        $result = Database::getConnection()->query('SELECT * FROM ' . $this->tableName);
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, get_class($this));
         var_dump($result->fetch());
     }
 

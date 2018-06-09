@@ -3,12 +3,12 @@
 namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
-use Webshop\Core\Database;
-use PDO;
 
-class ProductsController extends Controller {
+class ProductsController extends Controller
+{
 
-    public function index() {
+    public function index()
+    {
 
         $games = new \Webshop\Model\Game();
         var_dump($games->getAll());
@@ -20,7 +20,8 @@ class ProductsController extends Controller {
         $this->registry->template->show('landingspage');
     }
 
-    public function game(){
+    public function game()
+    {
 
         $this->registry->template->title = "Nick";
         $this->registry->template->description = "Fout";

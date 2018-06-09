@@ -1,7 +1,6 @@
 <?php
 
 namespace Webshop;
-use  Webshop\Core\Application;
 
 session_start();
 ob_start();
@@ -9,33 +8,33 @@ ob_start();
 
 /** Absolute path for the environment. */
 if (!defined('ABSPATH')) {
-  define('ABSPATH', dirname(__FILE__));
+    define('ABSPATH', dirname(__FILE__));
 }
 
 
 function loadConfiguration()
 {
-  $fileName = ABSPATH . "/Config/config-prd.php";
-  if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '::1') {
-    $fileName = ABSPATH . "/Config/config-dev.php";
-  }
+    $fileName = ABSPATH . "/Config/config-prd.php";
+    if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '::1') {
+        $fileName = ABSPATH . "/Config/config-dev.php";
+    }
 
-  if (file_exists($fileName)) {
-    require $fileName;
-  } else {
-    die("Configuration file not found");
-  }
+    if (file_exists($fileName)) {
+        require $fileName;
+    } else {
+        die("Configuration file not found");
+    }
 }
 
 loadConfiguration();
 
 if (DEBUG) {
-  ini_set('display_errors', 1);
-  ini_set('display_startup_errors', 1);
-  error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 } else {
-  error_reporting(0);
-  ini_set('display_errors', 0);
+    error_reporting(0);
+    ini_set('display_errors', 0);
 }
 
 spl_autoload_register(function ($class) {
@@ -54,7 +53,7 @@ spl_autoload_register(function ($class) {
     // replace the namespace prefix with the base directory, replace namespace
     // separators with directory separators in the relative class name, append
     // with .php
-    $file = ABSPATH."/" . str_replace('\\', '/', $relative_class) . '.php';
+    $file = ABSPATH . "/" . str_replace('\\', '/', $relative_class) . '.php';
 
     // if the file exists, require it
     if (file_exists($file)) {
@@ -63,4 +62,4 @@ spl_autoload_register(function ($class) {
 });
 
 
-$application =  new \Webshop\Core\Application();
+$application = new \Webshop\Core\Application();
