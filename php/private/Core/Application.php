@@ -19,24 +19,19 @@ class Application
 
         $this->prepareURL();
 
-//        print_r(ABSPATH."/Controller/" . $this->controller . '.php');
-
         if(file_exists(ABSPATH."/Controller/" . $this->controller . '.php')){
             $classString = "\\Webshop\\Controller\\". $this->controller;
             $this->controller = new $classString($this->registery);
             if(method_exists($this->controller,$this->action)) {
-                echo "bestaat";
                 call_user_func_array([$this->controller, $this->action], $this->params);
             } else {
                 // There is no action in the controller with the right name
-//                header('Location: /404.html');
+                header('Location: /404.html');
             }
         } else {
             // There is no controller with the correct name
-//            header('Location: /404.html');
+            header('Location: /404.html');
         }
-
-        var_dump($this);
     }
 
     protected function prepareURL() {
