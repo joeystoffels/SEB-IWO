@@ -28,11 +28,11 @@ class Application
                 call_user_func_array([$this->registery->controller, $this->registery->action], $this->registery->params);
             } else {
                 // There is no action in the controller with the right name
-                header('Location: /404.html');
+//                header('Location: /404.html');
             }
         } else {
             // There is no controller with the correct name
-            header('Location: /404.html');
+//            header('Location: /404.html');
         }
     }
 
