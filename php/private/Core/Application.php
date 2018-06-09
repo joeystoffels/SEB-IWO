@@ -6,7 +6,7 @@ class Application
 {
 
     protected $registery;
-    protected $controller = 'WebshopController';
+    protected $controller = 'ProductsController';
     protected $action = 'index';
     protected $params = [];
 
@@ -18,6 +18,12 @@ class Application
         $this->registery->template = new \Webshop\Core\Template($this->registery);
 
         $this->prepareURL();
+
+        if(DEBUG){
+            echo"<!--";
+            var_dump($this);
+            echo"-->";
+        }
 
         if(file_exists(ABSPATH."/Controller/" . $this->controller . '.php')){
             $classString = "\\Webshop\\Controller\\". $this->controller;
@@ -35,12 +41,11 @@ class Application
     }
 
     protected function prepareURL() {
-        $request = trim($_SERVER['REQUEST_URI'], '/');
+        $request = trim(strtok($_SERVER["REQUEST_URI"],'?'), '/');
         if(!empty($request)) {
             $url = explode('/', $request);
-            $this->controller = isset($url[0]) ? $url[0] . 'Controller' : 'WebshopController';
+            $this->controller = isset($url[0]) ? $url[0] . 'Controller' : 'ProductsController';
             $this->action = isset($url[1]) ? $url[1] : 'index';
-            var_dump($url);
             unset($url[0], $url[1]);
             $this->params = !empty($url) ? array_values($url) : [];
         }
