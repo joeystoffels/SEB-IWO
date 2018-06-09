@@ -2,19 +2,21 @@
 
 namespace Webshop\Controller;
 
-class webshopController {
+use Webshop\Core\Controller;
 
-    //http://localhost/webshop/php/public/index
-    public function index() { //$id='',$name=''
-        //echo 'I am in ' . __CLASS__ . ' method ' . __METHOD__;
+class WebshopController extends Controller {
 
-        require('../private/view/home.php');
+    public function index() {
+        $this->registry->template->title = "Nick";
+        $this->registry->template->fout = "Fout";
+
+        $this->registry->template->show('404');
     }
 
-    //http://localhost/webshop/php/public/about
     public function about() {
-        //echo 'I am in ' . __CLASS__ . ' method ' . __METHOD__;
+        $this->registry->template->title = "Nick";
+        $this->registry->template->fout = "Fout";
 
-        require('../private/view/about.php');
+        $this->registry->template->show('404');
     }
 }

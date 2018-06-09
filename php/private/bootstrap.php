@@ -9,15 +9,15 @@ ob_start();
 
 /** Absolute path for the environment. */
 if (!defined('ABSPATH')) {
-  define('ABSPATH', dirname(dirname(__FILE__)) . '/');
+  define('ABSPATH', dirname(__FILE__));
 }
 
 
 function loadConfiguration()
 {
-  $fileName = ABSPATH . "private/Config/config-prd.php";
+  $fileName = ABSPATH . "/Config/config-prd.php";
   if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '::1') {
-    $fileName = ABSPATH . "private/Config/config-dev.php";
+    $fileName = ABSPATH . "/Config/config-dev.php";
   }
 
   if (file_exists($fileName)) {
@@ -41,8 +41,7 @@ if (DEBUG) {
 spl_autoload_register(function ($class) {
     // project-specific namespace prefix
     $prefix = 'Webshop\\';
-    // base directory for the namespace prefix
-    $base_dir = ABSPATH . 'private/';
+
     // does the class use the namespace prefix?
     $len = strlen($prefix);
     if (strncmp($prefix, $class, $len) !== 0) {
@@ -55,7 +54,7 @@ spl_autoload_register(function ($class) {
     // replace the namespace prefix with the base directory, replace namespace
     // separators with directory separators in the relative class name, append
     // with .php
-    $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
+    $file = ABSPATH."/" . str_replace('\\', '/', $relative_class) . '.php';
 
     // if the file exists, require it
     if (file_exists($file)) {
@@ -65,7 +64,7 @@ spl_autoload_register(function ($class) {
 
 
 $application =  new \Webshop\Core\Application();
-
-$gamecontroller = new \Webshop\Controller\GameController;
-$data = $gamecontroller->getAllGames();
-var_dump($data);
+//
+//$gamecontroller = new \Webshop\Controller\GameController;
+//$data = $gamecontroller->getAllGames();
+//var_dump($data);
