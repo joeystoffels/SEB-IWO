@@ -31,7 +31,6 @@ class Template
         foreach ($this->vars as $key => $value) {
             $$key = $value;
         }
-
         include($path);
     }
 

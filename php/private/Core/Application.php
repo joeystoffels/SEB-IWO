@@ -28,18 +28,21 @@ class Application
                 call_user_func_array([$this->registery->controller, $this->registery->action], $this->registery->params);
             } else {
                 // There is no action in the controller with the right name
-//                header('Location: /404.html');
+                $error = new \Webshop\Controller\ErrorController($this->registery);
+            $error->error(404, "Can't find the correct path");
             }
         } else {
             // There is no controller with the correct name
 //            header('Location: /404.html');
+            $error = new \Webshop\Controller\ErrorController($this->registery);
+            $error->error(404, "Can't find the correct path");
         }
     }
 
     protected function prepareURL() {
         $request = trim(strtok($_SERVER["REQUEST_URI"],'?'), '/');
         $url = explode('/', $request);
-        $this->registery->controller = (!empty($url[0])) ? $url[0] . 'Controller' : 'ProductsController';
+        $this->registery->controller = ucfirst((!empty($url[0])) ? $url[0] . 'Controller' : 'ProductsController');
         $this->registery->action = isset($url[1]) ? $url[1] : 'index';
         unset($url[0], $url[1]);
         $this->registery->params = !empty($url) ? array_values($url) : [];
