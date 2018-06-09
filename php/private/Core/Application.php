@@ -4,11 +4,7 @@ namespace Webshop\Core;
 
 class Application
 {
-
     protected $registery;
-    protected $controller = 'ProductsController';
-    protected $action = 'index';
-    protected $params = [];
 
     public function __construct(){
         // Create the registery
@@ -25,11 +21,11 @@ class Application
             echo"-->";
         }
 
-        if(file_exists(ABSPATH."/Controller/" . $this->controller . '.php')){
-            $classString = "\\Webshop\\Controller\\". $this->controller;
-            $this->controller = new $classString($this->registery);
-            if(method_exists($this->controller,$this->action)) {
-                call_user_func_array([$this->controller, $this->action], $this->params);
+        if(file_exists(ABSPATH."/Controller/" . $this->registery->controller . '.php')){
+            $classString = "\\Webshop\\Controller\\". $this->registery->controller;
+            $this->registery->controller = new $classString($this->registery);
+            if(method_exists($this->registery->controller,$this->registery->action)) {
+                call_user_func_array([$this->registery->controller, $this->registery->action], $this->registery->params);
             } else {
                 // There is no action in the controller with the right name
                 header('Location: /404.html');
@@ -42,12 +38,10 @@ class Application
 
     protected function prepareURL() {
         $request = trim(strtok($_SERVER["REQUEST_URI"],'?'), '/');
-        if(!empty($request)) {
-            $url = explode('/', $request);
-            $this->controller = isset($url[0]) ? $url[0] . 'Controller' : 'ProductsController';
-            $this->action = isset($url[1]) ? $url[1] : 'index';
-            unset($url[0], $url[1]);
-            $this->params = !empty($url) ? array_values($url) : [];
-        }
+        $url = explode('/', $request);
+        $this->registery->controller = (!empty($url[0])) ? $url[0] . 'Controller' : 'ProductsController';
+        $this->registery->action = isset($url[1]) ? $url[1] : 'index';
+        unset($url[0], $url[1]);
+        $this->registery->params = !empty($url) ? array_values($url) : [];
     }
 }

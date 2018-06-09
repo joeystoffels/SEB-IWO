@@ -22,4 +22,14 @@ class ProductsController extends Controller {
 
         $this->registry->template->show('landingspage');
     }
+
+    public function game(){
+
+        $this->registry->template->title = "Nick";
+        $this->registry->template->description = "Fout";
+        $this->registry->template->gameId = $this->registry->params[0];
+
+        $this->registry->template->show('game');
+
+    }
 }
