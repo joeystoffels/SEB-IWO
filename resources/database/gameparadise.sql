@@ -115,6 +115,7 @@ DROP TABLE IF EXISTS `platforms`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `platforms` (
   `platform` varchar(40) NOT NULL,
+  `name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`platform`),
   UNIQUE KEY `platforms_platform_uindex` (`platform`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -126,7 +127,7 @@ CREATE TABLE `platforms` (
 
 LOCK TABLES `platforms` WRITE;
 /*!40000 ALTER TABLE `platforms` DISABLE KEYS */;
-INSERT INTO `platforms` VALUES ('nintendo-3ds'),('nintendo-ds'),('nintendo-switch'),('pc'),('playstation-2'),('playstation-3'),('playstation-4'),('ps-vita'),('psp'),('wii'),('wii-u'),('xbox'),('xbox-360'),('xbox-one');
+INSERT INTO `platforms` VALUES ('nintendo-3ds','Nintendo 3DS'),('nintendo-ds','Nintendo DS'),('nintendo-switch','Nintendo Switch'),('pc','PC'),('playstation-2','Playstation 2'),('playstation-3','Playstation 3'),('playstation-4','Playstation 4'),('ps-vita','PS Vita'),('psp','PSP'),('wii','WII'),('wii-u','WII U'),('xbox','XBox'),('xbox-360','XBox 360'),('xbox-one','XBox One');
 /*!40000 ALTER TABLE `platforms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,4 +196,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-08 20:30:18
+-- Dump completed on 2018-06-09 11:54:28
