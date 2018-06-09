@@ -1,11 +1,16 @@
 <?php
 
-namespace Webshop\Model\Entity;
+namespace Webshop\Model;
 
 use Webshop\Core\Model;
 
 class Game extends Model
 {
+    public function __construct()
+    {
+        parent::__construct('games');
+    }
+
     private $title;
     private $price;
     private $minAge;

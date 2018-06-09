@@ -13,4 +13,8 @@ class Genre
 {
     private $genre;
 
+    public function __construct()
+    {
+        parent::__construct('genre');
+    }
 }

@@ -12,4 +12,9 @@ namespace Webshop\Model;
 class Playertype
 {
     private $playertype;
+
+    public function __construct()
+    {
+        parent::__construct('playertype');
+    }
 }

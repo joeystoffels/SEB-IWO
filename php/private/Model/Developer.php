@@ -1,9 +1,16 @@
 <?php
 
-namespace Webshop\Model\Entity;
+namespace Webshop\Model;
 
 
-class Developer
+use Webshop\Core\Model;
+
+class Developer extends Model
 {
-  private $developer;
+    private $developers;
+
+    public function __construct()
+    {
+        parent::__construct('developers');
+    }
 }
