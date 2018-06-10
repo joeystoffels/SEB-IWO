@@ -11,13 +11,14 @@ class ProductsController extends Controller
     {
 
         $games = new \Webshop\Model\Game();
-        var_dump($games->getAll());
+//        var_dump($games->getAll());
+        var_dump($games->getPage(1, 5 ));
 
 
-        $this->registry->template->title = "Nick";
-        $this->registry->template->description = "Fout";
-
-        $this->registry->template->show('landingspage');
+//        $this->registry->template->title = "Nick";
+//        $this->registry->template->description = "Fout";
+//
+//        $this->registry->template->show('landingspage');
     }
 
     public function game()
