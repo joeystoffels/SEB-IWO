@@ -24,4 +24,12 @@ class Game extends Model
         parent::__construct('games');
     }
 
+    // Magic setter. Silently ignore invalid fields
+    public function __get($key)
+    {
+        if (isset($this->$key)) {
+            return $this->$key;
+        }
+    }
+
 }

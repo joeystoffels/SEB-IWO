@@ -7,8 +7,6 @@ use PDO;
 
 Abstract class Model
 {
-
-
     protected $tableName;
     private $pageAmountLimit = 100;
 
@@ -21,7 +19,6 @@ Abstract class Model
     }
 
     // Magic setter. Silently ignore invalid fields
-
     public function __get($key)
     {
         if (isset($this->$key)) {
