@@ -11,32 +11,6 @@ if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(__FILE__));
 }
 
-
-function loadConfiguration()
-{
-    $fileName = ABSPATH . "/Config/config-prd.php";
-    if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '::1') {
-        $fileName = ABSPATH . "/Config/config-dev.php";
-    }
-
-    if (file_exists($fileName)) {
-        require $fileName;
-    } else {
-        die("Configuration file not found");
-    }
-}
-
-loadConfiguration();
-
-if (DEBUG) {
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-} else {
-    error_reporting(0);
-    ini_set('display_errors', 0);
-}
-
 spl_autoload_register(function ($class) {
     // project-specific namespace prefix
     $prefix = 'Webshop\\';
@@ -61,5 +35,5 @@ spl_autoload_register(function ($class) {
     }
 });
 
-
 $application = new \Webshop\Core\Application();
+$application->init();

@@ -1,52 +1,63 @@
 <?php
 
+
 namespace Webshop\Core;
 
 class Application
 {
-    protected $registery;
+    private $registery;
 
     public function __construct()
     {
+        // Absolute path for the environment.
+        if (!defined('ABSPATH')) {
+            define('ABSPATH', dirname(dirname(__FILE__)));
+        }
+
         // Create the registery
         $this->registery = new \Webshop\Core\Registery();
 
         // Register the template engine
         $this->registery->template = new \Webshop\Core\Template($this->registery);
 
-        $this->prepareURL();
+
+    }
+
+    public function init()
+    {
+        $this->loadConfiguration();
 
         if (DEBUG) {
-            echo "<!--";
-            var_dump($this);
-            echo "-->";
-        }
-
-        if (file_exists(ABSPATH . "/Controller/" . $this->registery->controller . '.php')) {
-            $classString = "\\Webshop\\Controller\\" . $this->registery->controller;
-            $this->registery->controller = new $classString($this->registery);
-            if (method_exists($this->registery->controller, $this->registery->action)) {
-                call_user_func_array([$this->registery->controller, $this->registery->action], $this->registery->params);
-            } else {
-                // There is no action in the controller with the right name
-                $error = new \Webshop\Controller\ErrorController($this->registery);
-                $error->error(404, "Can't find the correct path");
-            }
+            ini_set('display_errors', 1);
+            ini_set('display_startup_errors', 1);
+            error_reporting(E_ALL);
         } else {
-            // There is no controller with the correct name
-//            header('Location: /404.html');
-            $error = new \Webshop\Controller\ErrorController($this->registery);
-            $error->error(404, "Can't find the correct path");
+            error_reporting(0);
+            ini_set('display_errors', 0);
+        }
+
+        $router = new \Webshop\Core\Router($this->registery);
+        $router->route();
+    }
+
+    private function loadConfiguration()
+    {
+        $fileName = ABSPATH . "/Config/config-prd.php";
+        if ($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '::1') {
+            $fileName = ABSPATH . "/Config/config-dev.php";
+        }
+
+        if (file_exists($fileName)) {
+            require $fileName;
+        } else {
+            die("Configuration file not found");
         }
     }
 
-    protected function prepareURL()
+    public function classLoader()
     {
-        $request = trim(strtok($_SERVER["REQUEST_URI"], '?'), '/');
-        $url = explode('/', $request);
-        $this->registery->controller = ucfirst((!empty($url[0])) ? $url[0] . 'Controller' : 'ProductsController');
-        $this->registery->action = isset($url[1]) ? $url[1] : 'index';
-        unset($url[0], $url[1]);
-        $this->registery->params = !empty($url) ? array_values($url) : [];
+
     }
+
+
 }
