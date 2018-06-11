@@ -1,20 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: NickHartjes
- * Date: 09/06/2018
- * Time: 11:09
- */
 
 namespace Webshop\Model;
 
 
-class Genre
+use Webshop\Core\Model;
+
+class Genre extends Model
 {
-    private $genre;
+    private $name;
 
     public function __construct()
     {
         parent::__construct('genre');
+    }
+    // Magic setter. Silently ignore invalid fields
+    public function __get($key)
+    {
+        if (isset($this->$key)) {
+            return $this->$key;
+        }
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Webshop\Model;
 
-
 use Webshop\Core\Model;
 
 class Developer extends Model

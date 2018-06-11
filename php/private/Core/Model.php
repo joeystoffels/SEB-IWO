@@ -42,9 +42,16 @@ Abstract class Model
         return $result->fetchAll();
     }
 
-    public function getPage($currentPage, $perPage): array
+    public function getPage($currentPage, $perPage, $whereFilters = null): array
     {
-        ($perPage > $this->pageAmountLimit) ? $perPage = $this->pageAmountLimit :
+        ($perPage > $this->pageAmountLimit) ? $perPage = $this->pageAmountLimit : '';
+
+        if (is_array($whereFilters)){
+            echo 'test';
+            var_dump($whereFilters);
+        } else {
+            echo 'no';
+        }
 
         $query = "SELECT * FROM $this->tableName LIMIT :limit OFFSET :offset";
         $queryResult = Database::getConnection()->prepare($query);

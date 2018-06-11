@@ -19,11 +19,17 @@ class ProductsController extends Controller
     public function index()
     {
 
-        var_dump($_GET);
+//        var_dump($_GET);
         // Initialize the models we need
         $platform = new \Webshop\Model\Platform();
         $developers = new \Webshop\Model\Developer();
         $games = new \Webshop\Model\Game();
+
+        var_dump($_GET['Platform']);
+        var_dump($_GET['']);
+
+        (isset($_GET['Platform'])) ? $whereStatement[] = $_GET['Platform']: '';
+        (isset($_GET['Developers'])) ? $whereStatement[] = $_GET['Developers']: '';
 
 
         // Get the categories
@@ -42,10 +48,9 @@ class ProductsController extends Controller
         }
         $this->registry->template->categories =  $categoriesHtml;
 
-        $gamesData = $games->getPage(1, 25 );
+        $gamesData = $games->getPage(1, 25, (isset($whereStatement))? $whereStatement: null );
         $gamesHtml = '';
         foreach ($gamesData['data'] as  $game) {
-
             $truncated = (strlen($game->details) > 150) ? substr($game->details, 0, 200) . '...' : $game->details;
             // Remove all headings and text
             $truncated = preg_replace('#<h([1-6])>(.*?)<\/h[1-6]>#si', '', $truncated);
@@ -72,6 +77,7 @@ class ProductsController extends Controller
                     </div >
                 </article >
 GAME;
+
         }
 
         $this->registry->template->games = $gamesHtml;

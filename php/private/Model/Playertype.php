@@ -1,20 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: NickHartjes
- * Date: 09/06/2018
- * Time: 11:08
- */
 
 namespace Webshop\Model;
 
 
-class Playertype
+use Webshop\Core\Model;
+
+class Playertype extends Model
 {
-    private $playertype;
+    private $name;
 
     public function __construct()
     {
         parent::__construct('playertype');
+    }
+    // Magic setter. Silently ignore invalid fields
+    public function __get($key)
+    {
+        if (isset($this->$key)) {
+            return $this->$key;
+        }
     }
 }

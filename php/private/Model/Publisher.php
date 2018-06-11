@@ -1,20 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: NickHartjes
- * Date: 09/06/2018
- * Time: 11:07
- */
 
 namespace Webshop\Model;
 
 
-class Publisher
+use Webshop\Core\Model;
+
+class Publisher extends Model
 {
-    private $publisher;
+    private $name;
 
     public function __construct()
     {
         parent::__construct('publishers');
+    }
+    // Magic setter. Silently ignore invalid fields
+    public function __get($key)
+    {
+        if (isset($this->$key)) {
+            return $this->$key;
+        }
     }
 }
