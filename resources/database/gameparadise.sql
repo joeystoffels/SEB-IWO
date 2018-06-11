@@ -25,9 +25,9 @@ DROP TABLE IF EXISTS `developers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `developers` (
-  `developer` varchar(40) NOT NULL,
-  PRIMARY KEY (`developer`),
-  UNIQUE KEY `developers_developer_uindex` (`developer`)
+  `name` varchar(40) NOT NULL,
+  PRIMARY KEY (`name`),
+  UNIQUE KEY `developers_developer_uindex` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -64,9 +64,9 @@ CREATE TABLE `games` (
   KEY `games_publishers_publisher_fk` (`publisher`),
   KEY `games_developers_developer_fk` (`developer`),
   KEY `games_platforms_platform_fk` (`platform`),
-  CONSTRAINT `games_developers_developer_fk` FOREIGN KEY (`developer`) REFERENCES `developers` (`developer`),
-  CONSTRAINT `games_platforms_platform_fk` FOREIGN KEY (`platform`) REFERENCES `platforms` (`platform`),
-  CONSTRAINT `games_publishers_publisher_fk` FOREIGN KEY (`publisher`) REFERENCES `publishers` (`publisher`)
+  CONSTRAINT `games_developers_developer_fk` FOREIGN KEY (`developer`) REFERENCES `developers` (`name`),
+  CONSTRAINT `games_platforms_platform_fk` FOREIGN KEY (`platform`) REFERENCES `platforms` (`value`),
+  CONSTRAINT `games_publishers_publisher_fk` FOREIGN KEY (`publisher`) REFERENCES `publishers` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,9 +90,9 @@ DROP TABLE IF EXISTS `genres`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `genres` (
-  `genre` varchar(30) NOT NULL,
-  PRIMARY KEY (`genre`),
-  UNIQUE KEY `genre_naam_uindex` (`genre`)
+  `name` varchar(30) NOT NULL,
+  PRIMARY KEY (`name`),
+  UNIQUE KEY `genre_naam_uindex` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -114,10 +114,10 @@ DROP TABLE IF EXISTS `platforms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `platforms` (
-  `platform` varchar(40) NOT NULL,
+  `value` varchar(40) NOT NULL,
   `name` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`platform`),
-  UNIQUE KEY `platforms_platform_uindex` (`platform`)
+  PRIMARY KEY (`value`),
+  UNIQUE KEY `platforms_platform_uindex` (`value`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -139,9 +139,9 @@ DROP TABLE IF EXISTS `playertype`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `playertype` (
-  `playertype` varchar(40) NOT NULL,
-  PRIMARY KEY (`playertype`),
-  UNIQUE KEY `playerType_name_uindex` (`playertype`)
+  `name` varchar(40) NOT NULL,
+  PRIMARY KEY (`name`),
+  UNIQUE KEY `playerType_name_uindex` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -163,9 +163,9 @@ DROP TABLE IF EXISTS `publishers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `publishers` (
-  `publisher` varchar(40) NOT NULL,
-  PRIMARY KEY (`publisher`),
-  UNIQUE KEY `publishers_publisher_uindex` (`publisher`)
+  `name` varchar(40) NOT NULL,
+  PRIMARY KEY (`name`),
+  UNIQUE KEY `publishers_publisher_uindex` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -196,4 +196,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-09 11:54:28
+-- Dump completed on 2018-06-11  8:44:22
