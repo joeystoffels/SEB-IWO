@@ -23,11 +23,22 @@ class CartController extends Controller
         $cartHtml = '';
 
         foreach ($cartList as $item) {
-
             $cartHtml .= <<< CART
-            <article>
-                <p>$item</p>
-            </article>
+        <article>
+            <div class="product-info" >
+                <h3><a href = "#" >$item</a></h3>
+            </div>
+            <div class="product-thumb">
+                <a href = "#" >
+                    <!--<img alt = "Secondary image of the article" class="product-back-img" src = "http://via.placeholder.com/480x480/666666/898989">-->
+                </a>
+            </div>
+            <div class="product-action">
+                <a class="button add-to-cart" href = "#"> Add to Cart </a> 
+                <a class="button" href = "#"><span class="lnr lnr-heart"></span><span class="button-text" > Add to Wishlist </span></a>
+                <a class="button" href = "#"><span class="lnr lnr-magnifier" ></span><span class="button-text"> Go to Article </span></a>
+            </div>
+        </article>
 CART;
         }
 
