@@ -66,7 +66,7 @@ class ProductsController extends Controller
                         </a >
                     </div >
                     <div class="product-info" >
-                        <h3 ><a href = "#" >$game->title titel</a></h3>
+                        <h3 ><a href = "#" >$game->title</a></h3>
                         <p>$truncated</p >
                         <span class="price" >&euro; $game->price</span >
                     </div >
@@ -75,7 +75,7 @@ class ProductsController extends Controller
                                 class="lnr lnr-heart" ></span ><span class="button-text" > Add to Wishlist </span ></a > <a
                             class="button" href = "#" ><span class="lnr lnr-magnifier" ></span ><span class="button-text" > Go to Article </span ></a >
                     </div >
-                </article >
+            </article >
 GAME;
 
         }

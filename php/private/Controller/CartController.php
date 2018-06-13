@@ -1,27 +1,37 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: NickHartjes
- * Date: 09/06/2018
- * Time: 10:03
- */
 
 namespace Webshop\Controller;
-
 
 use Webshop\Core\Controller;
 
 class CartController extends Controller
 {
 
+    function __construct($registry)
+    {
+        $this->registry = $registry;
+        $this->registry->template->title = "GameParadise - Winkelwagen";
+        $this->registry->template->description = "Dit is de text die geindexeerd word door Google";
+    }
+
     /**
      * @all controllers must contain an index method
      */
     function index()
     {
-        $this->registry->template->title = "Nick";
-        $this->registry->template->description = "Fout";
+        $cartList = array("test1", "test2");
+        $cartHtml = '';
 
+        foreach ($cartList as $item) {
+
+            $cartHtml .= <<< CART
+            <article>
+                <p>$item</p>
+            </article>
+CART;
+        }
+
+        $this->registry->template->cart = $cartHtml;
         $this->registry->template->show('cart');
     }
 }
