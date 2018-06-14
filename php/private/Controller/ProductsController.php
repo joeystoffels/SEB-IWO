@@ -25,11 +25,10 @@ class ProductsController extends Controller
         $developers = new \Webshop\Model\Developer();
         $games = new \Webshop\Model\Game();
 
-        var_dump($_GET['Platform']);
-        var_dump($_GET['']);
 
-        (isset($_GET['Platform'])) ? $whereStatement[] = $_GET['Platform']: '';
-        (isset($_GET['Developers'])) ? $whereStatement[] = $_GET['Developers']: '';
+        (isset($_GET['Platform'])) ? $whereStatement['platform'] = $_GET['Platform']: '';
+        (isset($_GET['Developers'])) ? $whereStatement['developers'] = $_GET['Developers']: '';
+
 
 
         // Get the categories
@@ -41,9 +40,11 @@ class ProductsController extends Controller
             $categoriesHtml .= "<legend>$categoryKey</legend>";
             foreach ($categoryValue as $object) {
                 $unique = uniqid();
-                $categoriesHtml .= "   <input type='checkbox' id='$unique' name='" . $categoryKey. "[ ". $object->name. "]'/>";
+                $value = (isset($object->value))? $object->value : $object->name;
+                $categoriesHtml .= "   <input type='checkbox' id='$unique' name='" . $categoryKey. "[". $object->name."]' value='$value'/>";
                 $categoriesHtml .= "   <label for='$unique'><span>checkbox</span>$object->name</label>";
             }
+            $categoriesHtml .= "<input type='submit' name='Filteren'>";
             $categoriesHtml .= "</fieldset>";
         }
         $this->registry->template->categories =  $categoriesHtml;
@@ -71,7 +72,7 @@ class ProductsController extends Controller
                         <span class="price" >&euro; $game->price</span >
                     </div >
                     <div class="product-action" >
-                        <a class="button add-to-cart" href = "#" > Add to Cart </a > <a class="button" href = "#" ><span
+                        <a class="button add-to-cart" href = "/cart/add/$game->id" > Add to Cart </a > <a class="button" href = "#" ><span
                                 class="lnr lnr-heart" ></span ><span class="button-text" > Add to Wishlist </span ></a > <a
                             class="button" href = "#" ><span class="lnr lnr-magnifier" ></span ><span class="button-text" > Go to Article </span ></a >
                     </div >

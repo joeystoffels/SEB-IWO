@@ -6,6 +6,7 @@ use Webshop\Core\Model;
 
 class Game extends Model
 {
+    private $id;
     private $title;
     private $price;
     private $minAge;
