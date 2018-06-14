@@ -6,7 +6,6 @@ use Webshop\Core\Model;
 
 class Game extends Model
 {
-    private $id;
     private $title;
     private $price;
     private $minAge;
@@ -19,6 +18,7 @@ class Game extends Model
     private $image;
     private $imageBackground;
     private $releaseDate;
+    private $id;
 
     public function __construct()
     {

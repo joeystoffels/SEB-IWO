@@ -72,7 +72,7 @@ class ProductsController extends Controller
                         <span class="price" >&euro; $game->price</span >
                     </div >
                     <div class="product-action" >
-                        <a class="button add-to-cart" href = "/cart/add/$game->id" > Add to Cart </a > <a class="button" href = "#" ><span
+                        <a class="button add-to-cart" href = "/cart/add/$game->id" > Add to Cart </a > <a class="button" href = "/cart/add/$game->id"><span
                                 class="lnr lnr-heart" ></span ><span class="button-text" > Add to Wishlist </span ></a > <a
                             class="button" href = "#" ><span class="lnr lnr-magnifier" ></span ><span class="button-text" > Go to Article </span ></a >
                     </div >

@@ -3,6 +3,7 @@
 namespace Webshop\Core;
 
 use PDO;
+use Webshop\Model\Game;
 
 
 Abstract class Model
@@ -40,6 +41,16 @@ Abstract class Model
         $result = Database::getConnection()->query('SELECT * FROM ' . $this->tableName);
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, get_class($this));
         return $result->fetchAll();
+    }
+
+    public function getOne($key, $value) : object
+    {
+        $query = "SELECT * FROM " . $this->tableName . " WHERE $key = :value";
+        $stmt = Database::getConnection()->prepare($query);
+        $stmt->bindValue(':value', $value, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, get_class($this));
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
     public function getPage($currentPage, $perPage, $whereFilters = null): array
