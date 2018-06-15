@@ -15,7 +15,14 @@ class ProductsController extends Controller
         $this->registry = $registry;
         $this->registry->template->title = "GameParadise - Producten";
         $this->registry->template->description = "Dit is de text die geindexeerd word door Google";
-        $this->registry->template->cartItems = count($_SESSION['cart']);
+
+        if(isset($_SESSION['cart']))
+            $nrCartItems = count($_SESSION['cart']);
+        else {
+            $nrCartItems = 0;
+        }
+
+        $this->registry->template->cartItems = $nrCartItems;
     }
 
     public function index()
@@ -63,22 +70,24 @@ class ProductsController extends Controller
             $truncated = Util::cleanStringAndTruncate($game->details, 200);
             $gamesHtml .= <<< GAME
             <article >
+            <div class="product-border">
                     <div class="product-thumb" >
                         <a href = "#" >
                             <img alt = "Secondary image of the article" class="product-back-img" src = "http://via.placeholder.com/480x480/666666/898989" > 
                             <img alt = "Primary image of the article" class="product-front-img" src = "/images/games/$game->image" >
                         </a >
                     </div >
-                    <div class="product-info" >
-                        <h3><a href = "#" >$game->title</a></h3>
-                        <p>$truncated</p >
-                        <span class="price" >&euro; $game->price</span >
+                    <div class="product-info">
+                        <h3><a href="#">$game->title</a></h3>
+                        <!--<p>$truncated</p>-->
+                        <span class="price">&euro; $game->price</span>
+                    </div>
+                    <div class="product-action">
+                        <a class="button add-to-cart" href="/cart/add/$game->id">In winkelwagen</a> 
+                        <!--<a class="button" href="/cart/add/$game->id"><span class="lnr lnr-heart" ></span ><span class="button-text" > Add to Wishlist </span ></a >-->
+                        <a class="button" href = "#" ><span class="lnr lnr-magnifier" ></span ><span class="button-text" > Ga naar artikel </span ></a>
                     </div >
-                    <div class="product-action" >
-                        <a class="button add-to-cart" href = "/cart/add/$game->id" > Add to Cart </a > <a class="button" href = "/cart/add/$game->id"><span
-                                class="lnr lnr-heart" ></span ><span class="button-text" > Add to Wishlist </span ></a > <a
-                            class="button" href = "#" ><span class="lnr lnr-magnifier" ></span ><span class="button-text" > Go to Article </span ></a >
-                    </div >
+                    </div>
             </article >
 GAME;
 
@@ -90,11 +99,56 @@ GAME;
 
     public function game()
     {
+        $this->registry->template->title = "GameParadise - GameDetail";
+        $this->registry->template->description = "Product Details";
+        $game = new \Webshop\Model\Game();
 
-        $this->registry->template->title = "Nick";
-        $this->registry->template->description = "Fout";
-        $this->registry->template->gameId = $this->registry->params[0];
-        $this->registry->template->cartItems = count($_SESSION['cart']);
+        $gameHtml = "";
+
+        $gameId = $this->registry->params[0];
+
+        if ($game->getOne("id", $gameId)) {
+            $resultGame = $game->getOne("id", $gameId);
+        } else {
+            echo "Error, gameId not found!";
+        }
+
+        if (file_exists("images/games/" . $resultGame->imageBackground)) {
+            $gameBackgroundImage = $resultGame->imageBackground;
+        } else {
+            $gameBackgroundImage = "pc/General_background.jpg";
+        }
+
+        $gameHtml = <<< GAME
+        <div class="main-container container">
+        <aside>
+            <img alt = "Primary image of the article" class="product-detail-front-img" src = "/images/games/$resultGame->image" ><br><br>
+            <span class="price"><strong>Prijs: &euro; $resultGame->price</strong></span><br><br>
+            <div class="product-detail-action">
+                <a class="add-to-cart" href = "/cart/add/$resultGame->id" > + In winkelwagen </a > <a class="" href = "/cart/add/$resultGame->id">
+            </div >
+        </aside>
+        <main>
+        
+            <article >
+            
+                    <div class="product-detail-thumb">
+                        <a href = "#" >
+                            <img alt = "Secondary image of the article" class="product-detail-back-img" src = "/images/games/$gameBackgroundImage"> 
+                        </a>
+                    </div>
+                    <div class="product-info" >                        
+                        <p>$resultGame->details</p>
+                    </div>
+
+            </article >
+        </main>
+        </div>
+GAME;
+
+
+        $this->registry->template->game = $gameHtml;
+
         $this->registry->template->show('game');
 
     }
