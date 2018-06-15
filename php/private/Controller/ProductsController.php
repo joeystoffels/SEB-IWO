@@ -69,7 +69,7 @@ class ProductsController extends Controller
                         </a >
                     </div >
                     <div class="product-info" >
-                        <h3 ><a href = "#" >$game->title</a></h3>
+                        <h3><a href = "#" >$game->title</a></h3>
                         <p>$truncated</p >
                         <span class="price" >&euro; $game->price</span >
                     </div >

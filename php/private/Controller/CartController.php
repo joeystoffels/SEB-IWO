@@ -20,10 +20,12 @@ class CartController extends Controller
      */
     function index()
     {
-        $cartHtml = '';
+        $cartItemsHtml = '';
         $game = new \Webshop\Model\Game();
 
         $resultGames = array();
+
+        $subtotaal = 0.0;
 
         if (empty($_SESSION['cart'])) {
             echo "Session cart is leeg!";
@@ -33,25 +35,54 @@ class CartController extends Controller
                     $resultGames[] = $game->getOne("id", $gameId);
                 }
             }
+
+
+
             foreach ($resultGames as $game) {
-                $cartHtml .= <<< CART
+                $subtotaal += $game->price;
+                $cartItemsHtml .= <<< CARTITEMS
             <article>
-                <div class="product-info" >
-                    <h3><a href = "#" >$game->title</a></h3>
-                </div>
-                <div class="product-thumb">
-                    <a href = "#" >
-                        <!--<img alt = "Secondary image of the article" class="product-back-img" src = "http://via.placeholder.com/480x480/666666/898989">-->
-                    </a>
-                </div>
-                <div class="product-action">
-                    <a class="button add-to-cart" href = "/cart/remove/$game->id"> Remove from Cart </a> 
-                    <a class="button" href = "#"><span class="lnr lnr-magnifier" ></span><span class="button-text"> Go to Article </span></a>
+                <div class="product-info-cart-border" style="background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)), url(/images/games/$game->imageBackground) center center no-repeat; background-size: cover;">
+                    <div class="product-info-cart" >
+                        <h1><a href = "#" >$game->title</a></h1>
+                        <br><p><strong>Prijs: € $game->price</strong></p><br>
+                        <a class="button remove-from-cart" href = "/cart/remove/$game->id"> Verwijderen </a> 
+                    </div>
+                    <div class="product-thumb-cart">
+                        <a href = "#" >
+                            <img alt = "Primary image of the article" class="product-front-img" src = "/images/games/$game->image">
+                        </a>                
+                    </div>
                 </div>
             </article>
-CART;
+CARTITEMS;
             }
         }
+
+        $totalPrice = $subtotaal + 1.98; // Default verzendkosten
+
+        $cartHtml = <<< CART
+        <div class="main-container container">
+            <aside>
+                <h1>Overzicht</h1>
+                <br>
+                <p>Subtotaal: € $subtotaal</p>
+                <br>
+                <p>Verzendkosten: € 1,98</p>
+                <br>
+                <p><strong>Totaal: € $totalPrice</strong></p>
+                <br><br>
+                <a href="#"><p><strong>Afrekenen</strong></p></a>
+            </aside>
+            <main>
+                <h1>Winkelwagen</h1>
+                <br>
+                <section>
+                    $cartItemsHtml
+                </section>
+            </main>
+        </div>
+CART;
 
         $this->registry->template->cart = $cartHtml;
         $this->registry->template->show('cart');
