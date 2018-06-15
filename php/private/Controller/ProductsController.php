@@ -72,13 +72,13 @@ class ProductsController extends Controller
             <article >
             <div class="product-border">
                     <div class="product-thumb" >
-                        <a href = "#" >
+                        <a href = "/products/game/$game->id" >
                             <img alt = "Secondary image of the article" class="product-back-img" src = "http://via.placeholder.com/480x480/666666/898989" > 
                             <img alt = "Primary image of the article" class="product-front-img" src = "/images/games/$game->image" >
                         </a >
                     </div >
                     <div class="product-info">
-                        <h3><a href="#">$game->title</a></h3>
+                        <h3><a href="/products/game/$game->id">$game->title</a></h3>
                         <!--<p>$truncated</p>-->
                     </div>
                     <div class="product-action">
