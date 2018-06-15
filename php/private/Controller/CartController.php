@@ -45,17 +45,24 @@ class CartController extends Controller
             }
 
             foreach ($resultGames as $game) {
+
+                if (file_exists("images/games/" . $game->imageBackground)) {
+                    $gameBackgroundImage = $game->imageBackground;
+                } else {
+                    $gameBackgroundImage = "pc/General_background.jpg";
+                }
+
                 $subtotaal += $game->price;
                 $cartItemsHtml .= <<< CARTITEMS
             <article>
-                <div class="product-info-cart-border" style="background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)), url(/images/games/$game->imageBackground) center center no-repeat; background-size: cover;">
+                <div class="product-info-cart-border" style="background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url(/images/games/$gameBackgroundImage) center center no-repeat; background-size: cover;">
                     <div class="product-info-cart" >
-                        <h1><a href = "#" >$game->title</a></h1>
+                        <h1><a href = "/products/game/$game->id" >$game->title</a></h1>
                         <br><p><strong>Prijs: € $game->price</strong></p><br>
                         <a class="button remove-from-cart" href = "/cart/remove/$game->id"> Verwijderen </a> 
                     </div>
                     <div class="product-thumb-cart">
-                        <a href = "#" >
+                        <a href = "/products/game/$game->id" >
                             <img alt = "Primary image of the article" class="product-front-img" src = "/images/games/$game->image">
                         </a>                
                     </div>

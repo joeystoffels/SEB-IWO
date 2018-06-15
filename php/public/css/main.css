@@ -368,13 +368,13 @@ main article .product-action {
 
 .product-thumb-cart img {
     max-width: 20%;
-    max-height: 15%;
+    max-height: 5%;
     border: 1px solid black;
 }
 
 .product-info-cart {
     float: right;
-    padding: 5%;
+    padding: 4%;
     text-align: right;
     font-size: 20px;
 }
