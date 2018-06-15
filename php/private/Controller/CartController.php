@@ -13,6 +13,7 @@ class CartController extends Controller
         $this->registry = $registry;
         $this->registry->template->title = "GameParadise - Winkelwagen";
         $this->registry->template->description = "Dit is de text die geindexeerd word door Google";
+        $this->registry->template->cartItems = count($_SESSION['cart']);
     }
 
     /**
@@ -35,8 +36,6 @@ class CartController extends Controller
                     $resultGames[] = $game->getOne("id", $gameId);
                 }
             }
-
-
 
             foreach ($resultGames as $game) {
                 $subtotaal += $game->price;

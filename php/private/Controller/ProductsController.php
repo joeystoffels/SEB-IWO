@@ -15,6 +15,7 @@ class ProductsController extends Controller
         $this->registry = $registry;
         $this->registry->template->title = "GameParadise - Producten";
         $this->registry->template->description = "Dit is de text die geindexeerd word door Google";
+        $this->registry->template->cartItems = count($_SESSION['cart']);
     }
 
     public function index()
@@ -93,7 +94,7 @@ GAME;
         $this->registry->template->title = "Nick";
         $this->registry->template->description = "Fout";
         $this->registry->template->gameId = $this->registry->params[0];
-
+        $this->registry->template->cartItems = count($_SESSION['cart']);
         $this->registry->template->show('game');
 
     }
