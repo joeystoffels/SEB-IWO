@@ -21,4 +21,11 @@ class Util
         return strip_tags($text);
     }
 
+    static function deleteElement($element, &$array){
+        $index = array_search($element, $array);
+        if($index !== false){
+            unset($array[$index]);
+        }
+    }
+
 }

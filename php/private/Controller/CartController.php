@@ -3,6 +3,7 @@
 namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
+use Webshop\Core\Util;
 
 class CartController extends Controller
 {
@@ -44,8 +45,7 @@ class CartController extends Controller
                     </a>
                 </div>
                 <div class="product-action">
-                    <a class="button add-to-cart" href = "#"> Add to Cart </a> 
-                    <a class="button" href = "#"><span class="lnr lnr-heart"></span><span class="button-text" > Add to Wishlist </span></a>
+                    <a class="button add-to-cart" href = "/cart/remove/$game->id"> Remove from Cart </a> 
                     <a class="button" href = "#"><span class="lnr lnr-magnifier" ></span><span class="button-text"> Go to Article </span></a>
                 </div>
             </article>
@@ -63,9 +63,20 @@ CART;
 
         // TODO verify requested ID is within ID range
         if (!is_numeric($gameId) || (!empty($_SESSION['cart']) && in_array($gameId, $_SESSION['cart']))) {
-            echo "gameId is niet numeric, geldig of cart bevat al deze game!";
+            echo "gameId is niet numeric, geldig of winkelwagen bevat al deze game!";
         } else {
             $_SESSION['cart'][] = $gameId;
+        }
+
+        $this->index();
+    }
+
+    function remove()
+    {
+        $gameId = $this->registry->params[0];
+
+        if(isset($gameId, $_SESSION['cart'])) {
+            Util::deleteElement($gameId, $_SESSION['cart']);
         }
 
         $this->index();
