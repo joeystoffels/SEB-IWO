@@ -28,4 +28,13 @@ class Util
         }
     }
 
+    static function getNrCartItems() {
+        if(isset($_SESSION['cart']))
+            $nrCartItems = count($_SESSION['cart']);
+        else {
+            $nrCartItems = 0;
+        }
+        return $nrCartItems;
+    }
+
 }

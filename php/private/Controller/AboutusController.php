@@ -8,8 +8,8 @@
 
 namespace Webshop\Controller;
 
-
 use Webshop\Core\Controller;
+use Webshop\Core\Util;
 
 class AboutusController extends Controller
 {
@@ -21,15 +21,7 @@ class AboutusController extends Controller
     {
         $this->registry->template->title = "Nick";
         $this->registry->template->description = "Fout";
-
-        if(isset($_SESSION['cart']))
-            $nrCartItems = count($_SESSION['cart']);
-        else {
-            $nrCartItems = 0;
-        }
-
-        $this->registry->template->cartItems = $nrCartItems;
-
+        $this->registry->template->cartItems = Util::getNrCartItems();
         $this->registry->template->show('about');
     }
 }

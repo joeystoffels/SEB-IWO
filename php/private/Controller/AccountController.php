@@ -8,8 +8,8 @@
 
 namespace Webshop\Controller;
 
-
 use Webshop\Core\Controller;
+use Webshop\Core\Util;
 
 class AccountController extends Controller
 {
@@ -21,6 +21,7 @@ class AccountController extends Controller
     {
         $this->registry->template->title = "Nick";
         $this->registry->template->description = "Fout";
+        $this->registry->template->cartItems = Util::getNrCartItems();
         $this->registry->template->show('account');
     }
 

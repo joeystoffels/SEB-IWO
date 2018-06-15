@@ -10,6 +10,7 @@ namespace Webshop\Controller;
 
 
 use Webshop\Core\Controller;
+use Webshop\Core\Util;
 
 class ErrorController extends Controller
 {
@@ -29,7 +30,7 @@ class ErrorController extends Controller
         $this->registry->template->description = "Fout";
         $this->registry->template->errorNumber = $errorNumber;
         $this->registry->template->errorMessage = $errorMessage;
-
+        $this->registry->template->cartItems = Util::getNrCartItems();
         $this->registry->template->show('error');
     }
 }

@@ -13,14 +13,7 @@ class CartController extends Controller
         $this->registry = $registry;
         $this->registry->template->title = "GameParadise - Winkelwagen";
         $this->registry->template->description = "Dit is de text die geindexeerd word door Google";
-
-        if(isset($_SESSION['cart']))
-            $nrCartItems = count($_SESSION['cart']);
-        else {
-            $nrCartItems = 0;
-        }
-
-        $this->registry->template->cartItems = $nrCartItems;
+        $this->registry->template->cartItems = Util::getNrCartItems();
     }
 
     /**
