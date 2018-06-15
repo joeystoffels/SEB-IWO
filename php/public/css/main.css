@@ -305,6 +305,7 @@ main article .product-info .price {
 
 main article .product-thumb .product-front-img {
     position: relative;
+    height: 12%;
 }
 
 main article .product-thumb .product-back-img {
