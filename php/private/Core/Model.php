@@ -3,7 +3,6 @@
 namespace Webshop\Core;
 
 use PDO;
-use Webshop\Model\Game;
 
 
 Abstract class Model
@@ -36,10 +35,44 @@ Abstract class Model
         }
     }
 
-    public function getAll(): array
+    private function createWhereStatementKeys(array $whereFilters): string
     {
-        $result = Database::getConnection()->query('SELECT * FROM ' . $this->tableName);
+        $whereStatement = '';
+        foreach ($whereFilters as $key => $values) {
+            foreach ($values as $value) {
+                $value = Util::cleanString($value);
+                $whereStatement .= "$key = :$value OR " ;
+            }
+            $whereStatement = substr($whereStatement, 0, -3);
+            $whereStatement .= " AND " ;
+        }
+        return substr($whereStatement, 0, -4);
+
+}
+
+    public function getAll($whereFilters = null): array
+    {
+//        var_dump($whereFilters);
+        if (is_array($whereFilters) && isset($whereFilters)) {
+            $whereStatement = $this->createWhereStatementKeys($whereFilters);
+            $query = "SELECT * FROM $this->tableName WHERE ( $whereStatement )";
+        } else {
+            $query = "SELECT * FROM $this->tableName";
+        }
+
+//        var_dump($query);
+
+        $result = Database::getConnection()->prepare($query);
+        if (is_array($whereFilters)) {
+            foreach ($whereFilters as $key => $values) {
+                foreach ($values as $value) {
+                    $needle = Util::cleanString($value);
+                    $result->bindValue($needle, $value, PDO::PARAM_STR);
+                }
+            }
+        }
         $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, get_class($this));
+        $result->execute();
         return $result->fetchAll();
     }
 
@@ -56,18 +89,24 @@ Abstract class Model
     public function getPage($currentPage, $perPage, $whereFilters = null): array
     {
         ($perPage > $this->pageAmountLimit) ? $perPage = $this->pageAmountLimit : '';
-
-        if (is_array($whereFilters)){
-            echo 'test';
-            var_dump($whereFilters);
+        if (is_array($whereFilters)) {
+            $whereStatement = $this->createWhereStatementKeys($whereFilters);
+            $query = "SELECT * FROM $this->tableName WHERE ( $whereStatement ) LIMIT :limit OFFSET :offset";
         } else {
-            echo 'no';
+            $query = "SELECT * FROM $this->tableName LIMIT :limit OFFSET :offset";
         }
 
-        $query = "SELECT * FROM $this->tableName LIMIT :limit OFFSET :offset";
         $queryResult = Database::getConnection()->prepare($query);
         $queryResult->bindValue(':limit', $perPage, PDO::PARAM_INT);
-        $queryResult->bindValue(':offset', (($currentPage -1) * $perPage), PDO::PARAM_INT);
+        $queryResult->bindValue(':offset', (($currentPage - 1) * $perPage), PDO::PARAM_INT);
+        if (is_array($whereFilters)) {
+            foreach ($whereFilters as $key => $values) {
+                foreach ($values as $value) {
+                    $needle = Util::cleanString($value);
+                    $queryResult->bindValue($needle, $value, PDO::PARAM_STR);
+                }
+            }
+        }
         $queryResult->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, get_class($this));
         $queryResult->execute();
 

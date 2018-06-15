@@ -3,6 +3,7 @@
 namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
+use Webshop\Core\Util;
 
 class ProductsController extends Controller
 {
@@ -18,46 +19,47 @@ class ProductsController extends Controller
 
     public function index()
     {
-
-//        var_dump($_GET);
         // Initialize the models we need
         $platform = new \Webshop\Model\Platform();
-        $developers = new \Webshop\Model\Developer();
+//        $developers = new \Webshop\Model\Developer();
         $games = new \Webshop\Model\Game();
 
-
-        (isset($_GET['Platform'])) ? $whereStatement['platform'] = $_GET['Platform']: '';
-        (isset($_GET['Developers'])) ? $whereStatement['developers'] = $_GET['Developers']: '';
-
+        $whereStatement = null;
+        (isset($_GET['Platform'])) ? $whereStatement['platform'] = $_GET['Platform'] : '';
+        (isset($_GET['Developers'])) ? $whereStatement['developer'] = $_GET['Developers'] : '';
 
 
         // Get the categories
         $categories['Platform'] = $platform->getAll();
-        $categories['Developers'] = $developers->getAll();
+//        $categories['Developers'] = $developers->getAll($_GET['Developers']);
+
+
         $categoriesHtml = '';
-        foreach ($categories as $categoryKey => $categoryValue){
+        foreach ($categories as $categoryKey => $categoryValue) {
             $categoriesHtml .= "<fieldset>";
             $categoriesHtml .= "<legend>$categoryKey</legend>";
             foreach ($categoryValue as $object) {
                 $unique = uniqid();
-                $value = (isset($object->value))? $object->value : $object->name;
-                $categoriesHtml .= "   <input type='checkbox' id='$unique' name='" . $categoryKey. "[". $object->name."]' value='$value'/>";
+                $value = $object->value;
+                if (empty($value)) {
+                    $value = $object->name;
+                };
+
+                $checked = '';
+                (isset($_GET[$categoryKey][$object->name])) ? $checked = " checked " : '' ;
+
+                $categoriesHtml .= "   <input type='checkbox' id='$unique' name='" . $categoryKey . "[" . $object->name . "]' $checked  value='$value'/>";
                 $categoriesHtml .= "   <label for='$unique'><span>checkbox</span>$object->name</label>";
             }
             $categoriesHtml .= "<input type='submit' name='Filteren'>";
             $categoriesHtml .= "</fieldset>";
         }
-        $this->registry->template->categories =  $categoriesHtml;
+        $this->registry->template->categories = $categoriesHtml;
 
-        $gamesData = $games->getPage(1, 25, (isset($whereStatement))? $whereStatement: null );
+        $gamesData = $games->getPage(1, 25, (isset($whereStatement)) ? $whereStatement : null);
         $gamesHtml = '';
-        foreach ($gamesData['data'] as  $game) {
-            $truncated = (strlen($game->details) > 150) ? substr($game->details, 0, 200) . '...' : $game->details;
-            // Remove all headings and text
-            $truncated = preg_replace('#<h([1-6])>(.*?)<\/h[1-6]>#si', '', $truncated);
-            // Strip tags
-            $truncated = strip_tags($truncated);
-
+        foreach ($gamesData['data'] as $game) {
+            $truncated = Util::cleanStringAndTruncate($game->details, 200);
             $gamesHtml .= <<< GAME
             <article >
                     <div class="product-thumb" >
