@@ -7,19 +7,19 @@
       <legend>Inloggen</legend>
 
       <label for="inloggenEmailadres">Emailadres</label>
-      <input id="inloggenEmailadres" name="inloggen[emailadres]" type="email"
+      <input id="inloggenEmailadres" name="login[emailadres]" type="email"
              placeholder="Vul hier uw emailadres in" required autofocus>
       <p class="inputError">Voer een geldig emailadres in</p>
 
       <label for="inloggenPassword">Wachtwoord</label>
-      <input id="inloggenPassword" name="inloggen[password]" type="password"
+      <input id="inloggenPassword" name="login[password]" type="password"
              placeholder="Vul hier uw nieuwe wachtwoord in" required>
       <p class="inputError">Vul hier uw wachtwoord in</p>
 
-      <input id="inloggenStay" name="inloggen[stay]" type="checkbox"/>
+      <input id="inloggenStay" name="login[stay]" type="checkbox"/>
       <label for="inloggenStay"><span></span>Ingelogged blijven</label>
 
-      <input name="login" type="submit" value="Inloggen">
+      <input name="loginSubmit" type="submit" value="Inloggen">
 
     </fieldset>
   </form>
@@ -29,46 +29,46 @@
       <legend>Registreren</legend>
 
       <label for="registerEmailadres">Emailadres</label>
-      <input id="registerEmailadres" name="emailadres" type="email" placeholder="Vul hier uw emailadres in"
+      <input id="registerEmailadres" name="register[emailadres]" type="email" placeholder="Vul hier uw emailadres in"
              required autofocus>
       <p class="inputError">Voer een geldig emailadres in</p>
 
       <label for="registerPasswordFirst">Nieuw wachtwoord</label>
-      <input id="registerPasswordFirst" name="passwordFirst" type="password"
+      <input id="registerPasswordFirst" name="register[passwordFirst]" type="password"
              placeholder="Vul hier uw nieuwe wachtwoord in" required>
       <p class="inputError">Uw wachtwoord moet minimaal 1 hoofdletter en 1 cijfer bevatten.</p>
 
       <label for="registerPasswordSecond">Nieuw wachtwoord bevestigen</label>
-      <input id="registerPasswordSecond" name="passwordSecond" type="password"
+      <input id="registerPasswordSecond" name="register[passwordSecond]" type="password"
              placeholder="Bevestig hier uw nieuwe wachtwoord" required>
       <p class="inputError">De bevestiging van uw wachtwoord komt niet overeen met het ingevulde wachtwoord.</p>
 
       <label for="registerFirstName">Voornaam</label>
-      <input id="registerFirstName" name="firstName" type="text" placeholder="Vul hier uw voornaam in" required>
+      <input id="registerFirstName" name="register[firstName]" type="text" placeholder="Vul hier uw voornaam in" required>
       <p class="inputError">Vul hier uw naam in</p>
 
       <label for="registerLastName">Achternaam</label>
-      <input id="registerLastName" name="lastName" type="text" placeholder="Vul hier uw achternaam in" required>
+      <input id="registerLastName" name="register[lastName]" type="text" placeholder="Vul hier uw achternaam in" required>
       <p class="inputError">Vul hier uw achternaam in</p>
 
       <label for="registerDayOfBirth">Geboortedatum</label>
-      <input id="registerDayOfBirth" name="dayOfBirth" type="date" placeholder="Vul hier uw geboortedatum in"
+      <input id="registerDayOfBirth" name="register[dayOfBirth]" type="date" placeholder="Vul hier uw geboortedatum in"
              required>
       <p class="inputError">Vul hier uw geboortedatum in</p>
 
       <label for="registerGelacht">Geslacht</label>
-      <input type="text" id="inpChocType" list="geslachtTypes">
+      <input type="text" id="inpChocType" name="register[sex]" list="geslachtTypes">
       <datalist id="geslachtTypes">
         <option value="Man"/>
         <option value="Vrouw"/>
         <option value="Neutraal" selected="selected"/>
       </datalist>
 
-      <input id="registerAccept" name="regsiter[stay]" type="checkbox" required>
+      <input id="registerAccept" name="register[stay]" type="checkbox" required>
       <label for="registerAccept"><span></span>Hierbij accepteer ik de algemene voorwaarden</label>
 
 
-      <input name="register" type="submit" value="Registreren">
+      <input name="registerSubmit" type="submit" value="Registreren">
 
     </fieldset>
   </form>

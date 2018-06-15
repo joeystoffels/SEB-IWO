@@ -10,6 +10,7 @@ namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
 use Webshop\Core\Util;
+use Webshop\Model\User;
 
 class AccountController extends Controller
 {
@@ -27,46 +28,82 @@ class AccountController extends Controller
 
     function login()
     {
-        if (isset($_POST['login'])) {
-            var_dump($_POST);
-            $formulier = $_POST['inloggen'];
-            $email = $formulier['emailadres'];
-            $password = $formulier['password'];
-            var_dump($email, $password);
+        if (isset($_POST['loginSubmit'])) {
+            $user = new \Webshop\Model\User();
+
+            $formulier      = $_POST['login'];
+            $emailadres     = $formulier['emailadres'];
+            $password       = $formulier['password'];
+
+            $loggedInUser = $user->getOne('emailadres', $emailadres);
+            if(is_object($loggedInUser)){
+                $password =  password_verify($password, $loggedInUser->password);
+                if($password) {
+                    $_SESSION['user'] = $loggedInUser;
+                }else {
+                    $_SESSION['loginFormError'] = "Your email or password is incorrect";
+                }
+            } else {
+                $_SESSION['loginFormError'] = "Your email or password is incorrect";
+            }
+            var_dump($_SESSION);
         }
     }
 
     function register()
     {
-        if (isset($_POST['verzenden'])) {
+        echo '<pre>';
+        var_dump($_POST);
+        echo '</pre>';
+        if (isset($_POST['registerSubmit'])) {
+            $user = new \Webshop\Model\User();
 
-            var_dump($_POST);
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['pass'];
-            $retyped_password = $_POST['retyped_password'];
-            $name = $_POST['name'];
-            if ($username == '' || $email == '' || $password == '' || $retyped_password == '' || $name == '') {
-                echo '<h2>Fields Left Blank</h2>', '<p>Some Fields were left blank. Please fill up all fields.</p>';
-            } elseif (!$LS->validEmail($email)) {
-                echo '<h2>E-Mail Is Not Valid</h2>', '<p>The E-Mail you gave is not valid</p>';
-            } elseif (!ctype_alnum($username)) {
-                echo '<h2>Invalid Username</h2>', "<p>The Username is not valid. Only ALPHANUMERIC characters are allowed and shouldn't exceed 10 characters.</p>";
-            } elseif ($password != $retyped_password) {
-                echo "<h2>Passwords Don't Match</h2>", "<p>The Passwords you entered didn't match</p>";
-            } else {
-                $createAccount = $LS->register($username, $password,
-                    array(
-                        'email' => $email,
-                        'name' => $name,
-                        'created' => date('Y-m-d H:i:s'), // Just for testing
-                    )
-                );
-                if ($createAccount === 'exists') {
-                    echo '<label>User Exists.</label>';
-                } elseif ($createAccount === true) {
-                    echo "<label>Success. Created account. <a href='login.php'>Log In</a></label>";
+
+            $errorCatched = false;
+
+            $form           = $_POST['register'];
+            $emailadres     = (string) $form['emailadres'];
+            $passwordFirst  = (string) $form['passwordFirst'];
+            $passwordSecond = (string) $form['passwordSecond'];
+            $firstName      = (string) $form['firstName'];
+            $lastName       = (string) $form['lastName'];
+            $dayOfBirth     = \DateTime::createFromFormat('Y-m-d', $form['dayOfBirth']); //date('Y-m-d', $form['dayOfBirth']);
+            $sex            = (string) $form['sex'];
+
+            foreach ($form as $name => $value){
+                if(empty($value)){
+                    $_SESSION['registerFormError']['blank'] = '<p>Some Fields were left blank. Please fill up all fields.</p>';
+                    $errorCatched = true;
                 }
+            }
+
+            switch (true){
+                case !filter_var($emailadres, FILTER_VALIDATE_EMAIL):
+                    $_SESSION['registerFormError']['email'] = '<p>The emailadres you gave is not valid.</p>';
+                    $errorCatched = true;
+                    break;
+                case ($passwordFirst != $passwordSecond):
+                    $_SESSION['registerFormError']['password'] = '<p>The Passwords you entered didn\'t match</p>';
+                    $errorCatched = true;
+                    break;
+                case !is_bool($user->getOne('emailadres', $emailadres)):
+                    $_SESSION['registerFormError']['registered'] = '<p>This email is already registred</p>';
+                    $errorCatched = true;
+                    break;
+            }
+
+            if(!$errorCatched){
+                $user = new \Webshop\Model\User();
+
+                $user->emailadres   = $emailadres;
+                $user->password     = $passwordFirst;
+                $user->firstName    = $firstName;
+                $user->lastName     = $lastName;
+                $user->dayOfBirth   = $dayOfBirth;
+                $user->sex          = $sex;
+                var_dump($emailadres);
+                var_dump($user);
+                $user->save();
             }
         }
     }

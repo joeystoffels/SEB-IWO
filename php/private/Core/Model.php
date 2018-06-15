@@ -27,7 +27,6 @@ Abstract class Model
     }
 
     // Magic getter
-
     public function __set($key, $value)
     {
         if (isset($this->$key)) {
@@ -76,11 +75,15 @@ Abstract class Model
         return $result->fetchAll();
     }
 
-    public function getOne($key, $value) : object
+    public function getOne($key, $value)
     {
         $query = "SELECT * FROM " . $this->tableName . " WHERE $key = :value";
         $stmt = Database::getConnection()->prepare($query);
-        $stmt->bindValue(':value', $value, PDO::PARAM_INT);
+        if(is_int($value)) {
+            $stmt->bindValue(':value', $value, PDO::PARAM_INT);
+        } else {
+            $stmt->bindValue(':value', $value, PDO::PARAM_STR);
+        }
         $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, get_class($this));
         $stmt->execute();
         return $stmt->fetch();
