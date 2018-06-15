@@ -291,22 +291,25 @@ main article .product-thumb img {
 
 main article .product-info {
     display: block;
+    text-align: center;
 }
 
 main article .product-info h3 {
-    padding: 1em 0;
+    position: relative;
+    padding: 5px;
 }
 
-main article .product-info .price {
+main article .product-action .price {
+    position: relative;
     display: block;
-    padding: 1em 0;
     font-weight: bold;
+    padding: 5px;
 }
 
 main article .product-thumb .product-front-img {
     position: relative;
     width: 100%;
-    height: 60%;
+    height: 65%;
     padding: 5px;
 }
 
@@ -324,11 +327,11 @@ main article .button {
     border: 1px solid #e0e0e0;
     color: #666666;
     display: inline-block;
+    height: 38px;
     font-size: 15px;
-    height: 40px;
     padding: 10px;
-    margin: auto;
     transition: all 0.3s ease 0s;
+
 }
 
 main article .button-text {
@@ -344,18 +347,19 @@ main article .button:hover {
 main article .add-to-cart {
     position: relative;
     color: #666666;
-    font-size: 16px;
     font-weight: 400;
-    line-height: 38px;
-    padding: 0 10px;
     text-transform: uppercase;
-    bottom: 3%;
 }
 
 main article .product-border {
     position: relative;
     border: 1px solid black;
-    height: 50%;
+    height: 45%;
+}
+
+main article .product-action {
+    position: relative;
+    text-align: center;
 }
 
 /* ====================================================================================================

@@ -80,9 +80,9 @@ class ProductsController extends Controller
                     <div class="product-info">
                         <h3><a href="#">$game->title</a></h3>
                         <!--<p>$truncated</p>-->
-                        <span class="price">&euro; $game->price</span>
                     </div>
                     <div class="product-action">
+                        <span class="price">&euro; $game->price</span>
                         <a class="button add-to-cart" href="/cart/add/$game->id">In winkelwagen</a> 
                         <!--<a class="button" href="/cart/add/$game->id"><span class="lnr lnr-heart" ></span ><span class="button-text" > Add to Wishlist </span ></a >-->
                         <a class="button" href = "#" ><span class="lnr lnr-magnifier" ></span ><span class="button-text" > Ga naar artikel </span ></a>
