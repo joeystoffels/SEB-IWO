@@ -9,7 +9,7 @@ use PDO;
 class User extends Model
 {
     private $id;
-    public $emailadres;
+    private $emailadres;
     private $password;
     private $firstName;
     private $lastName;
@@ -38,7 +38,6 @@ class User extends Model
     }
 
 
-
     public function save(): void
     {
         $options = [
@@ -52,10 +51,9 @@ class User extends Model
         $stmt->bindValue(':password', $password, PDO::PARAM_STR);
         $stmt->bindValue(':firstName', $this->firstName, PDO::PARAM_STR);
         $stmt->bindValue(':lastName', $this->lastName, PDO::PARAM_STR);
-        $stmt->bindValue(':dayOfBirth', date("Y-m-d H:i:s", strtotime($this->dayOfBirth)), PDO::PARAM_STR);
+        $stmt->bindValue(':dayOfBirth', date("Y-m-d",strtotime($this->dayOfBirth)), PDO::PARAM_STR);
         $stmt->bindValue(':sex', $this->sex, PDO::PARAM_STR);
         $count = $stmt->execute();
-        var_dump($count);
     }
 
 }

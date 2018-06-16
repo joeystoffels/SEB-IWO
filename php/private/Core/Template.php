@@ -5,6 +5,7 @@ namespace Webshop\Core;
 
 class Template
 {
+    private $registry;
 
     function __construct($registry)
     {
@@ -27,10 +28,19 @@ class Template
             return false;
         }
 
+        // Add useraccount information to the template
+        $userAccount = $this->registry->userAccount;
+        if($userAccount->isLogedIn()){
+
+            $this->vars['userInfo'] = $userAccount->getUserInfo();
+        }
+
         // Load variables
         foreach ($this->vars as $key => $value) {
             $$key = $value;
         }
+
+
         include($path);
     }
 

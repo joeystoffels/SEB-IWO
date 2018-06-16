@@ -5,7 +5,7 @@ namespace Webshop\Core;
 
 class Application
 {
-    private $registery;
+    private $registry;
 
     public function __construct()
     {
@@ -15,11 +15,10 @@ class Application
         }
 
         // Create the registery
-        $this->registery = new \Webshop\Core\Registery();
+        $this->registry = new \Webshop\Core\Registery();
 
         // Register the template engine
-        $this->registery->template = new \Webshop\Core\Template($this->registery);
-
+        $this->registry->template = new \Webshop\Core\Template($this->registry);
 
     }
 
@@ -36,7 +35,10 @@ class Application
             ini_set('display_errors', 0);
         }
 
-        $router = new \Webshop\Core\Router($this->registery);
+        // Add user account information to the registery
+        $this->registry->userAccount = new UserAccount();
+
+        $router = new \Webshop\Core\Router($this->registry);
         $router->route();
     }
 
@@ -53,11 +55,4 @@ class Application
             die("Configuration file not found");
         }
     }
-
-    public function classLoader()
-    {
-
-    }
-
-
 }

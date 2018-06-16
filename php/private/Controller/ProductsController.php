@@ -16,24 +16,22 @@ class ProductsController extends Controller
         $this->registry->template->title = "GameParadise - Producten";
         $this->registry->template->description = "Dit is de text die geindexeerd word door Google";
         $this->registry->template->cartItems = Util::getNrCartItems();
+
+
     }
 
     public function index()
     {
         // Initialize the models we need
         $platform = new \Webshop\Model\Platform();
-//        $developers = new \Webshop\Model\Developer();
+
         $games = new \Webshop\Model\Game();
 
         $whereStatement = null;
         (isset($_GET['Platform'])) ? $whereStatement['platform'] = $_GET['Platform'] : '';
-        (isset($_GET['Developers'])) ? $whereStatement['developer'] = $_GET['Developers'] : '';
-
 
         // Get the categories
         $categories['Platform'] = $platform->getAll();
-//        $categories['Developers'] = $developers->getAll($_GET['Developers']);
-
 
         $categoriesHtml = '';
         foreach ($categories as $categoryKey => $categoryValue) {

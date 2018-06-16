@@ -42,7 +42,7 @@ class AccountController extends Controller
             if (is_object($loggedInUser)) {
                 $password = password_verify($password, $loggedInUser->password);
                 if ($password) {
-                    $_SESSION[$this->userSession] = $loggedInUser;
+                    $_SESSION[$this->userSession] = $emailadres;
                     header('Location: /');
                     die();
                 }
@@ -50,7 +50,7 @@ class AccountController extends Controller
 
             // Save errors in a session
             $_SESSION[$this->loginForm] = $form;
-            Util::redirectWithError('/account', $this->loginError, "Your email or password is incorrect");
+            Util::redirectWithError('/account', $this->loginError, "Uw email of wachtwoord is incorrect");
         }
     }
 
@@ -71,7 +71,7 @@ class AccountController extends Controller
             $passwordSecond = (string)$form['passwordSecond'];
             $firstName = (string)$form['firstName'];
             $lastName = (string)$form['lastName'];
-            $dayOfBirth = \DateTime::createFromFormat('Y-m-d', $form['dayOfBirth']);
+            $dayOfBirth = (string) $form['dayOfBirth'];
             $sex = (string)$form['sex'];
 
             foreach ($form as $name => $value) {
@@ -83,15 +83,19 @@ class AccountController extends Controller
 
             switch (true) {
                 case !filter_var($emailadres, FILTER_VALIDATE_EMAIL):
-                    $_SESSION[$this->registerError]['email'] = 'The emailadres you gave is not valid.';
+                    $_SESSION[$this->registerError]['email'] = 'Ongeldig emailadres';
                     $errorCatched = true;
                     break;
                 case ($passwordFirst != $passwordSecond):
-                    $_SESSION[$this->registerError]['password'] = 'The Passwords you entered didn\'t match';
+                    $_SESSION[$this->registerError]['password'] = 'De opgegeven wachtwoorden kwamen niet overeen';
                     $errorCatched = true;
                     break;
                 case !is_bool($user->getOne('emailadres', $emailadres)):
-                    $_SESSION[$this->registerError]['registered'] = 'This email is already registred';
+                    $_SESSION[$this->registerError]['registered'] = 'Er bestaat al een account met dit emailadres';
+                    $errorCatched = true;
+                    break;
+                case !isset($form['accept']):
+                    $_SESSION[$this->registerError]['accept'] = 'Je moet de algemene voorwaarden accepteren om een account ';
                     $errorCatched = true;
                     break;
             }
@@ -105,11 +109,11 @@ class AccountController extends Controller
                 $user->lastName = $lastName;
                 $user->dayOfBirth = $dayOfBirth;
                 $user->sex = $sex;
-                var_dump($emailadres);
-                var_dump($user);
                 $user->save();
 
-//                header('Location: /');
+                // Save user in session
+                $_SESSION[$this->userSession] = $emailadres;
+                header('Location: /');
             } else {
                 // There are errors, so redirect back to the account page and save the errors in a session
                 $_SESSION[$this->registerForm] = $form;

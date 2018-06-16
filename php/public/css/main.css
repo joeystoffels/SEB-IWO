@@ -478,6 +478,8 @@ footer section {
 
 .formulieren form {
     margin-top: 1.5vh;
+    flex-basis: 100%;
+    font-size: 1.3em;
 }
 
 .formulieren label {
@@ -491,15 +493,16 @@ footer section {
 }
 
 .formulieren legend {
-    font-size: 1.5em;
+    font-size: 2em;
 }
 
-.formulieren input {
+.formulieren input, .formulieren select {
     border: 3px solid #d3d3d3;
     padding: 7px;
     line-height: 1.35em;
     outline: none;
     box-shadow: none;
+    width: 100%;
 }
 
 .formulieren .verzonden input:invalid, .verzonden input.invalid {

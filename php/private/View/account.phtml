@@ -1,5 +1,4 @@
-<?php include('Partials/header.phtml');
-var_dump($_SESSION) ?>
+<?php include('Partials/header.phtml'); ?>
 
 <div class="main-container container formulieren">
 
@@ -11,7 +10,6 @@ var_dump($_SESSION) ?>
       <input id="inloggenEmailadres" name="login[emailadres]" type="email"
              placeholder="Vul hier uw emailadres in" required autofocus
         <?= ($loginSend) ? 'value="' . $_SESSION['loginForm']['emailadres'] . '"' : ''; ?>>
-      <!--      <p class="inputError">Voer een geldig emailadres in</p>-->
 
       <label for="inloggenPassword">Wachtwoord</label>
       <input id="inloggenPassword" name="login[password]" type="password"
@@ -27,7 +25,7 @@ var_dump($_SESSION) ?>
   </form>
 
   <form id="register" <?= ($registerSend) ? 'class="verzonden"' : ''; ?> method="POST" action="account/register">
-    <!-- class="verzonden" -->
+
     <fieldset>
       <legend>Registreren</legend>
 
@@ -45,7 +43,7 @@ var_dump($_SESSION) ?>
       <label for="registerPasswordSecond">Nieuw wachtwoord bevestigen</label>
       <input id="registerPasswordSecond" name="register[passwordSecond]" type="password"
              placeholder="Bevestig hier uw nieuwe wachtwoord" required
-        <?= ($registerSend) ? 'value="' . $_SESSION['registerForm']['passwordSecond'] . '"' : ''; ?>>
+       <?= ($registerSend) ? 'value="' . $_SESSION['registerForm']['passwordSecond'] . '"' : ''; ?>>
        <?= ($registerSend && array_key_exists('password',$_SESSION["registerError"])) ? "<p class='inputError'>".$_SESSION["registerError"]["password"]."</p>" : ''; ?>
 
       <label for="registerFirstName">Voornaam</label>
@@ -76,10 +74,8 @@ var_dump($_SESSION) ?>
       <?= ($registerSend && array_key_exists('check',$_SESSION["registerError"])) ? "<p class='inputError'>".$_SESSION["registerError"]["check"]."</p>" : ''; ?>
       <?= ($registerSend && array_key_exists('registered',$_SESSION["registerError"])) ? "<p class='inputError'>".$_SESSION["registerError"]["registered"]."</p>" : ''; ?>
 
-
-      <input id="registerAccept" name="register[stay]" type="checkbox" required>
+      <input id="registerAccept" name="register[accept]" type="checkbox" required>
       <label for="registerAccept"><span></span>Hierbij accepteer ik de algemene voorwaarden</label>
-
 
       <input name="registerSubmit" type="submit" value="Registreren">
 
