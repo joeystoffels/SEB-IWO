@@ -192,14 +192,13 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `emailadres` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `salt` varchar(255) NOT NULL,
   `firstName` varchar(40) NOT NULL,
   `lastName` varchar(150) NOT NULL,
   `dayOfBirth` date DEFAULT NULL,
   `sex` enum('M','F','N') DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_id_uindex` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -208,6 +207,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'nickhartjes@gmail.com','$2y$11$nPVVU0caH50RNTFhx0zkXOinF2A5O9vOwiq/DvhuInL4HMYjDpV4O','Nick','Hartjes','1970-01-01',''),(2,'s@gam.com','$2y$11$ldJkqMWXfQFHm2E9OCzZ0uCr3bVyVqLcMd3tuf/JCXFDORKHAMLzK','s','sd','1970-01-01','F'),(3,'admin@exe.energy','$2y$11$4HeB0TP.zfaegfGns1.eZ..gIFgdbaBKIxYPDStgUQDDHCef7ZpPK','Admin','EXE','1970-01-01','M');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,4 +228,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-14 18:47:04
+-- Dump completed on 2018-06-16 10:21:06
