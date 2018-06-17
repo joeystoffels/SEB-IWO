@@ -13,8 +13,8 @@ class ProductsController extends Controller
     function __construct($registry)
     {
         $this->registry = $registry;
-        $this->registry->template->title = "GameParadise - Producten";
-        $this->registry->template->description = "Dit is de text die geindexeerd word door Google";
+        $this->registry->template->title = "Producten";
+        $this->registry->template->description = "Bekijk hier alle nieuwste en hipster spellen.";
         $this->registry->template->cartItems = Util::getNrCartItems();
 
 
@@ -50,7 +50,7 @@ class ProductsController extends Controller
                 $categoriesHtml .= "   <input type='checkbox' id='$unique' name='" . $categoryKey . "[" . $object->name . "]' $checked  value='$value'/>";
                 $categoriesHtml .= "   <label for='$unique'><span>checkbox</span>$object->name</label>";
             }
-            $categoriesHtml .= "<input type='submit' name='Filteren'>";
+            $categoriesHtml .= "<button type='submit' value='Submit'>Filteren</button>";
             $categoriesHtml .= "</fieldset>";
         }
         $this->registry->template->categories = $categoriesHtml;
@@ -61,24 +61,21 @@ class ProductsController extends Controller
             $truncated = Util::cleanStringAndTruncate($game->details, 200);
             $gamesHtml .= <<< GAME
             <article >
-            <div class="product-border">
-                    <div class="product-thumb" >
-                        <a href = "/products/game/$game->id" >
-                            <img alt = "Secondary image of the article" class="product-back-img" src = "http://via.placeholder.com/480x480/666666/898989" > 
-                            <img alt = "Primary image of the article" class="product-front-img" src = "/images/games/$game->image" >
-                        </a >
-                    </div >
-                    <div class="product-info">
-                        <h3><a href="/products/game/$game->id">$game->title</a></h3>
-                        <!--<p>$truncated</p>-->
-                    </div>
-                    <div class="product-action">
-                        <span class="price">&euro; $game->price</span>
-                        <a class="button add-to-cart" href="/cart/add/$game->id">In winkelwagen</a> 
-                        <!--<a class="button" href="/cart/add/$game->id"><span class="lnr lnr-heart" ></span ><span class="button-text" > Add to Wishlist </span ></a >-->
-                        <a class="button" href = "#" ><span class="lnr lnr-magnifier" ></span ><span class="button-text" > Ga naar artikel </span ></a>
-                    </div >
-                    </div>
+                <a href="/products/game/$game->id">
+                    <h3>$game->title</h3>
+                    <figure>
+                        <img alt = "Primary image of the article" class="product-front-img" src = "/images/games/$game->image" >
+                    </figure>
+                </a >
+                <ul>
+                    <li class="price">&euro; $game->price</li>
+                    <li>
+                        <a class="button add-to-cart" href="/cart/add/$game->id"><span class="lnr lnr-cart" ></span></a>
+                    </li>
+                    <li>
+                        <a class="button" href="/products/game/$game->id" ><span class="lnr lnr-magnifier" ></span ></a>
+                    </li>
+                </ul>
             </article >
 GAME;
 

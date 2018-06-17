@@ -1,0 +1,13 @@
+{
+    "name": "nickhartjes/webshop-iwo",
+    "description": "GameParadise Webshop voor de HAN",
+    "authors": [
+        {
+            "name": "Nick Hartjes",
+            "email": "info@nickhartjes.nl"
+        }
+    ],
+    "require": {
+        "mollie/mollie-api-php": "2.0"
+    }
+}

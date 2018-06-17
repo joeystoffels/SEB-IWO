@@ -27,10 +27,6 @@
         <h1>Game Paradise Webshop</h1>
         <a class="logo" href="#"><img alt="Logo GameParadise Webshop" src="http://via.placeholder.com/500x150"></a>
       </li>
-      <!--        <li>-->
-      <!--          <a href="#"><span class="lnr lnr-heart"></span>-->
-      <!--            <p>Wishlist</p></a>-->
-      <!--        </li>-->
       <li>
         <a href="/account"><span class="lnr lnr-user"></span>
           <?= ($userAccount->isLogedIn())? "<p>$userInfo->firstName $userInfo->lastName </p>": "<p>Account</p>";?>
@@ -41,7 +37,7 @@
           <p>Cart</p><span class="cart-items"><?=$cartItems?></span></a>
       </li>
       <?php if ($userAccount->isLogedIn()) {
-          echo '<li><a href="/account/logout"><span class="lnr lnr-exit"></span><p>Uitloggen</p></li>';
+          echo '<li><a href="/account/logout"><span class="lnr lnr-exit"></span><p>Uitloggen</p></a></li>';
       }
       ?>
     </ul>
