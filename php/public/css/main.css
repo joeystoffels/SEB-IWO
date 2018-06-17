@@ -52,7 +52,7 @@ h6,
 p,
 ol,
 ul,
-figure{
+figure {
     margin: 0;
     padding: 0;
     font-weight: normal;
@@ -155,6 +155,9 @@ button:hover {
     cursor: pointer;
 }
 
+.strike {
+    text-decoration: line-through;
+}
 
 /* ====================================================================================================
 	03. HEADER
@@ -184,7 +187,6 @@ header h1 {
 .header-top ul li:first-child {
     flex-basis: 100%;
 }
-
 
 .header-top ul li a span {
     font-size: 40px;
@@ -291,7 +293,6 @@ main h2 {
     margin: 1vh 0 1vh 0.5vh;
 }
 
-
 /* ====================================================================================================
 	06. MAIN ARTICLE
 ==================================================================================================== */
@@ -302,7 +303,6 @@ main article {
     padding-bottom: 2vh;
     text-align: center;
 }
-
 
 main article h3 {
     position: relative;
@@ -335,7 +335,6 @@ main article figure img:hover {
     transform: scale(1.03);
 }
 
-
 main article ul {
     display: flex;
     flex-direction: row;
@@ -347,6 +346,7 @@ main article ul {
 main article ul li {
     flex-basis: 10%;
 }
+
 main article ul li.price {
     flex-basis: 55%;
     font-weight: bold;
@@ -369,16 +369,16 @@ main article .button:hover {
     border-color: #000;
     color: #fff;
 }
-    /*main article .button-text {*/
-    /*display: none;*/
+
+/*main article .button-text {*/
+/*display: none;*/
 /*}*/
 
-
 /*main article .add-to-cart {*/
-    /*position: relative;*/
-    /*color: #666666;*/
-    /*font-weight: 400;*/
-    /*text-transform: uppercase;*/
+/*position: relative;*/
+/*color: #666666;*/
+/*font-weight: 400;*/
+/*text-transform: uppercase;*/
 /*}*/
 
 /* ====================================================================================================
@@ -547,6 +547,131 @@ footer section {
 }
 
 /* ====================================================================================================
+ 12. About us
+==================================================================================================== */
+
+.aboutus-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.aboutus-stats figure {
+    background-color: #e1e1e1;
+    flex-basis: 100%;
+    border: 1px solid #d6d6d6;
+    padding: 60px 0 60px 0;
+
+}
+
+.aboutus-stats .lnr {
+    font-size: 4.5em;
+    display: block;
+    margin: auto;
+
+}
+
+.aboutus-stats .lnr h5 {
+    margin-top: 25px;
+    display: block;
+    font-size: 0.4em;
+}
+
+.aboutus main {
+    width: 100%;
+}
+
+.aboutus main ul li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.aboutus main ul li:nth-child(2) {
+    flex-direction: row-reverse;
+}
+
+.aboutus main section {
+    margin: 20px 0 20px 0;
+    margin: auto;
+}
+
+.aboutus main section img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.aboutus main section h3 {
+    margin-bottom: 10px;
+}
+
+.aboutus main section ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.progress {
+    background: #333;
+    border-radius: 13px;
+    height: 20px;
+    width: 100%;
+    padding: 3px;
+}
+
+.progress:after {
+    content: '';
+    display: block;
+    background: #39b54a;
+    width: 50%;
+    height: 100%;
+    border-radius: 9px;
+}
+
+.progress-10:after {
+    width: 10%;
+}
+
+.progress-20:after {
+    width: 20%;
+}
+
+.progress-30:after {
+    width: 30%;
+}
+
+.progress-40:after {
+    width: 40%;
+}
+
+.progress-50:after {
+    width: 50%;
+}
+
+.progress-60:after {
+    width: 60%;
+}
+
+.progress-70:after {
+    width: 70%;
+}
+
+.progress-80:after {
+    width: 80%;
+}
+
+.progress-90:after {
+    width: 90%;
+}
+
+.progress-1000:after {
+    width: 100%;
+}
+
+/* ====================================================================================================
 	11. MEDIA QUERIES -  Mobile First Method
 ==================================================================================================== */
 
@@ -582,6 +707,10 @@ footer section {
 
     nav ul li:last-child {
         border: none;
+    }
+
+    .aboutus-stats figure {
+        flex-basis: 50%;
     }
 }
 
@@ -683,6 +812,19 @@ footer section {
 
     .main-container {
         padding: 1vh 0 1vh 0;
+    }
+
+    .aboutus-stats figure {
+        flex-basis: 25%;
+    }
+
+    .aboutus ul section:nth-child(1) {
+        flex-basis: 30%;
+    }
+
+    .aboutus ul section:nth-child(2), .aboutus ul section:nth-child(3) {
+        padding: 0 10px 0 10px;
+        flex-basis: 35%;
     }
 
 }
