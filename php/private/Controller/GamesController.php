@@ -55,6 +55,7 @@ class GamesController extends Controller
             }
             $categoriesHtml .= "<button type='submit' value='Submit'>Filteren</button>";
             $categoriesHtml .= "</fieldset>";
+            $categoriesHtml .= "</form>";
         }
         $this->registry->template->categories = $categoriesHtml;
 
