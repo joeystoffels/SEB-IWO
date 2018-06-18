@@ -109,6 +109,7 @@ a:hover {
     flex-direction: column;
     justify-content: flex-start;
     box-sizing: border-box;
+    flex-wrap: wrap;
 
 }
 
@@ -298,8 +299,6 @@ main h2 {
 ==================================================================================================== */
 
 main article {
-    /*border: 1px solid #000;*/
-    /*padding: 0.3vh 0.3vh 1.5vh 0.3vh;*/
     padding-bottom: 2vh;
     text-align: center;
 }
@@ -353,7 +352,15 @@ main article ul li.price {
     margin: auto;
 }
 
-main article .button {
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    display: inline;
+
+}
+
+main article .button, .pagination li {
     border: 1px solid #e0e0e0;
     background-color: #fff;
     color: #666666;
@@ -362,24 +369,35 @@ main article .button {
     font-size: 15px;
     padding: 10px;
     transition: all 0.3s ease 0s;
+    font-weight: bold;
 }
 
-main article .button:hover {
+main article .button:hover,  .pagination li:hover {
     background-color: #000;
     border-color: #000;
     color: #fff;
 }
 
-/*main article .button-text {*/
-/*display: none;*/
-/*}*/
+.pagination-section {
+    flex-basis: 100%;
+    margin: 1em auto;
+}
 
-/*main article .add-to-cart {*/
-/*position: relative;*/
-/*color: #666666;*/
-/*font-weight: 400;*/
-/*text-transform: uppercase;*/
-/*}*/
+.pagination li a:hover{
+    color: #fff;
+}
+
+.paginationAmount {
+    margin-left: 2em;
+}
+
+.pagination .active {
+    background-color: #8F8F8F;
+}
+
+.pagination .active a {
+    color: #fff;
+}
 
 /* ====================================================================================================
 	07. CART
@@ -826,6 +844,9 @@ footer section {
         padding: 0 10px 0 10px;
         flex-basis: 35%;
     }
+    .pagination-section {
+        margin-left: 25%;
+    }
 
 }
 
@@ -848,11 +869,11 @@ footer section {
     }
 
     .slider {
-        padding-top: 3vh;
+        padding-top: 1vh;
     }
 
     .main-container {
-        padding: 3vh 0 3vh 0;
+        /*padding: 3vh 0 3vh 0;*/
     }
 
 }

@@ -19,7 +19,7 @@ class Router
 
         $request = trim(strtok($_SERVER["REQUEST_URI"], '?'), '/');
         $url = explode('/', $request);
-        $this->registery->controller = ucfirst((!empty($url[0])) ? $url[0] . 'Controller' : 'ProductsController');
+        $this->registery->controller = ucfirst((!empty($url[0])) ? $url[0] . 'Controller' : 'GamesController');
         $this->registery->action = isset($url[1]) ? $url[1] : 'index';
         unset($url[0], $url[1]);
         $this->registery->params = !empty($url) ? array_values($url) : [];

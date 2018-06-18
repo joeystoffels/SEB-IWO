@@ -51,15 +51,13 @@ Abstract class Model
 
     public function getAll($whereFilters = null): array
     {
-//        var_dump($whereFilters);
+
         if (is_array($whereFilters) && isset($whereFilters)) {
             $whereStatement = $this->createWhereStatementKeys($whereFilters);
             $query = "SELECT * FROM $this->tableName WHERE ( $whereStatement )";
         } else {
             $query = "SELECT * FROM $this->tableName";
         }
-
-//        var_dump($query);
 
         $result = Database::getConnection()->prepare($query);
         if (is_array($whereFilters)) {
@@ -113,10 +111,24 @@ Abstract class Model
         $queryResult->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, get_class($this));
         $queryResult->execute();
 
-        $count = "SELECT count(*) FROM $this->tableName";
-        $countResult = Database::getConnection()->prepare($count);
-        $countResult->execute();
+        if (is_array($whereFilters)) {
+            $whereStatement = $this->createWhereStatementKeys($whereFilters);
+            $count = "SELECT count(*) FROM $this->tableName WHERE ( $whereStatement )";
+        } else {
+            $count = "SELECT count(*) FROM $this->tableName";
+        }
 
+
+        $countResult = Database::getConnection()->prepare($count);
+        if (is_array($whereFilters)) {
+            foreach ($whereFilters as $key => $values) {
+                foreach ($values as $value) {
+                    $needle = Util::cleanString($value);
+                    $countResult->bindValue($needle, $value, PDO::PARAM_STR);
+                }
+            }
+        }
+        $countResult->execute();
         $return["total"] = $countResult->fetchColumn();
         $return["per_page"] = $perPage;
         $return["current_page"] = $currentPage;

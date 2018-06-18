@@ -1,0 +1,42 @@
+<?php include("Partials/header.phtml") ?>
+<div class="slider container">
+  <figure>
+    <a href="index.html">
+      <img alt="Aanbieding Nintendo Switch" src="../images/slide_1200x500_Switch.jpg">
+    </a>
+    <a href="index.html">
+      <img alt="Aanbieding days of play" src="../images/slide_1200x500_daysofplay.jpg">
+    </a>
+    <a href="index.html">
+      <img alt="Pre order Red dead redemption 2" src="../images/slide_1200x500_RDR2.jpg">
+    </a>
+    <a href="index.html">
+      <img alt="Aanbieding Nintendo Switch" src="../images/slide_1200x500_Switch.jpg">
+    </a>
+    <a href="index.html">
+      <img alt="Aanbieding days of play" src="../images/slide_1200x500_daysofplay.jpg">
+    </a>
+  </figure>
+</div>
+</div>
+<div class="main-container container">
+  <section class="pagination-section">
+    <?= $pagination ?>
+  </section>
+  <aside>
+      <?= $categories ?>
+   </aside>
+  <main>
+    <section>
+      <h2>Games</h2>
+      <div class="article-collection">
+        <?= $games ?>
+      </div>
+    </section>
+  </main>
+  <section class="pagination-section">
+    <?= $pagination ?>
+  </section>
+</div>
+
+<?php include("Partials/footer.phtml") ?>
