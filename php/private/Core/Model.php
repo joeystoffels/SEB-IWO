@@ -21,7 +21,7 @@ Abstract class Model
     // Magic setter. Silently ignore invalid fields
     public function __get($key)
     {
-        if (isset($this->$key)) {
+        if (property_exists($this, $key)) {
             return $this->$key;
         }
     }
@@ -29,9 +29,25 @@ Abstract class Model
     // Magic getter
     public function __set($key, $value)
     {
-        if (isset($this->$key)) {
+        if (property_exists($this, $key)) {
             $this->$key = $value;
         }
+    }
+
+    public function toArray()
+    {
+        $array = [];
+        $r = new \ReflectionClass($this);
+        foreach ($r->getProperties() as $var) {
+            $key = $var->name;
+
+            if (!is_null($this->$key) || !empty($this->$key)) {
+                $array[$key] = $this->$key;
+            } else {
+                $array[$key] = '';
+            }
+        }
+        return $array;
     }
 
     private function createWhereStatementKeys(array $whereFilters): string
@@ -40,14 +56,14 @@ Abstract class Model
         foreach ($whereFilters as $key => $values) {
             foreach ($values as $value) {
                 $value = Util::cleanString($value);
-                $whereStatement .= "$key = :$value OR " ;
+                $whereStatement .= "$key = :$value OR ";
             }
             $whereStatement = substr($whereStatement, 0, -3);
-            $whereStatement .= " AND " ;
+            $whereStatement .= " AND ";
         }
         return substr($whereStatement, 0, -4);
 
-}
+    }
 
     public function getAll($whereFilters = null): array
     {
@@ -77,7 +93,7 @@ Abstract class Model
     {
         $query = "SELECT * FROM " . $this->tableName . " WHERE $key = :value";
         $stmt = Database::getConnection()->prepare($query);
-        if(is_int($value)) {
+        if (is_int($value)) {
             $stmt->bindValue(':value', $value, PDO::PARAM_INT);
         } else {
             $stmt->bindValue(':value', $value, PDO::PARAM_STR);

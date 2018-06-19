@@ -123,44 +123,19 @@ GAME;
         if ($game->getOne("id", $gameId)) {
             $resultGame = $game->getOne("id", $gameId);
         } else {
-            echo "Error, gameId not found!";
+            $this->registry->template->errorNumber = 404;
+            $this->registry->template->errorMessage = "Oops... we konden deze game niet vinden";
+            $this->registry->template->cartItems = Util::getNrCartItems();
+            $this->registry->template->show('error');
+            die();
         }
 
         if (file_exists("images/games/" . $resultGame->imageBackground)) {
-            $gameBackgroundImage = $resultGame->imageBackground;
+            $this->registry->template->gameBackgroundImage = $resultGame->imageBackground;
         } else {
-            $gameBackgroundImage = "pc/General_background.jpg";
+            $this->registry->template->gameBackgroundImage = "pc/General_background.jpg";
         }
-
-        $gameHtml = <<< GAME
-        <div class="main-container container">
-        <aside>
-            <img alt = "Primary image of the article" class="product-detail-front-img" src = "/images/games/$resultGame->image" ><br><br>
-            <span class="price"><strong>Prijs: &euro; $resultGame->price</strong></span><br><br>
-            <div class="product-detail-action">
-                <a class="add-to-cart" href = "/cart/add/$resultGame->id" > + In winkelwagen </a > <a class="" href = "/cart/add/$resultGame->id">
-            </div >
-        </aside>
-        <main>
-        
-            <article >
-            
-                    <div class="product-detail-thumb">
-                        <a href = "#" >
-                            <img alt = "Secondary image of the article" class="product-detail-back-img" src = "/images/games/$gameBackgroundImage"> 
-                        </a>
-                    </div>
-                    <div class="product-info" >                        
-                        <p>$resultGame->details</p>
-                    </div>
-
-            </article >
-        </main>
-        </div>
-GAME;
-
-
-        $this->registry->template->game = $gameHtml;
+        $this->registry->template->game = $resultGame->toArray();
         $this->registry->template->show('game');
     }
 

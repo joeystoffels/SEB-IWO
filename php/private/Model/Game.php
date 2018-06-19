@@ -32,5 +32,4 @@ class Game extends Model
             return $this->$key;
         }
     }
-
 }
