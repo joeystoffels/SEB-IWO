@@ -115,9 +115,6 @@ GAME;
         $this->registry->template->title = "GameParadise - GameDetail";
         $this->registry->template->description = "Product Details";
         $game = new \Webshop\Model\Game();
-
-        $gameHtml = "";
-
         $gameId = $this->registry->params[0];
 
         if ($game->getOne("id", $gameId)) {

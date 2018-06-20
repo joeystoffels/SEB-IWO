@@ -14,8 +14,8 @@ class Application
             define('ABSPATH', dirname(dirname(__FILE__)));
         }
 
-        // Create the registery
-        $this->registry = new \Webshop\Core\Registery();
+        // Create the registry
+        $this->registry = new \Webshop\Core\Registry();
 
         // Register the template engine
         $this->registry->template = new \Webshop\Core\Template($this->registry);
@@ -35,7 +35,7 @@ class Application
             ini_set('display_errors', 0);
         }
 
-        // Add user account information to the registery
+        // Add user account information to the registry
         $this->registry->userAccount = new UserAccount();
 
         $router = new \Webshop\Core\Router($this->registry);

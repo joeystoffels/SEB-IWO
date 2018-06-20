@@ -149,3 +149,4 @@ local.properties
 .idea/sonarlint/
 .idea/
 .idea/*.iml
+/.idea/seb-iwo.iml

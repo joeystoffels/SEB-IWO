@@ -448,7 +448,7 @@ main article .button:hover,  .pagination li:hover {
 	08. DETAILS
 ==================================================================================================== */
 .gameBackgroundImage {
-    position: fixed;
+    position: absolute;
     left: 0;
     width: 100%;
     z-index: 0;
@@ -726,7 +726,7 @@ footer section {
     width: 90%;
 }
 
-.progress-1000:after {
+.progress-100:after {
     width: 100%;
 }
 

@@ -1,0 +1,16 @@
+  <?php include('Partials/header.phtml'); ?>
+
+<div class="main-container container formulieren">
+
+  <form id="login" <?= ($loginSend) ? 'class="verzonden"' : ''; ?> method="POST" action="/account/logout">
+    <fieldset>
+      <legend>Uitloggen</legend>
+      <p>Klik de onderstaande button om uit te loggen</p>
+      <input name="loginSubmit" type="submit" value="Uitloggen">
+
+    </fieldset>
+  </form>
+
+</div>
+
+<?php include("Partials/footer.phtml") ?>

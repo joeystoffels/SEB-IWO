@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: NickHartjes
- * Date: 09/06/2018
- * Time: 08:48
- */
 
 namespace Webshop\Core;
 

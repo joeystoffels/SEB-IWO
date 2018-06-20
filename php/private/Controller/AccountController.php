@@ -20,9 +20,15 @@ class AccountController extends Controller
         $this->registry->template->title = "Account";
         $this->registry->template->description = "Account pagina";
         $this->registry->template->cartItems = Util::getNrCartItems();
+        // Check if there errors from the forms, and display them.
         $this->registry->template->loginSend = Util::checkExcistInSession($this->loginError);
         $this->registry->template->registerSend = Util::checkExcistInSession($this->registerError);
-        $this->registry->template->show('account');
+
+        if($this->registry->userAccount->isLogedIn()){
+            $this->registry->template->show('account-loggedin');
+        } else {
+            $this->registry->template->show('account');
+        }
     }
 
     function login()

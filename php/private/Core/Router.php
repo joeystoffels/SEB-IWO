@@ -1,37 +1,31 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: NickHartjes
- * Date: 10/06/2018
- * Time: 13:56
- */
 
 namespace Webshop\Core;
 
 
 class Router
 {
-    private $registery;
+    private $registry;
 
-    public function __construct(Registery $registery)
+    public function __construct(Registry $registry)
     {
-        $this->registery = $registery;
+        $this->registry = $registry;
 
         $request = trim(strtok($_SERVER["REQUEST_URI"], '?'), '/');
         $url = explode('/', $request);
-        $this->registery->controller = ucfirst((!empty($url[0])) ? $url[0] . 'Controller' : 'GamesController');
-        $this->registery->action = isset($url[1]) ? $url[1] : 'index';
+        $this->registry->controller = ucfirst((!empty($url[0])) ? $url[0] . 'Controller' : 'GamesController');
+        $this->registry->action = isset($url[1]) ? $url[1] : 'index';
         unset($url[0], $url[1]);
-        $this->registery->params = !empty($url) ? array_values($url) : [];
+        $this->registry->params = !empty($url) ? array_values($url) : [];
     }
 
     public function route()
     {
-        if (file_exists(ABSPATH . "/Controller/" . $this->registery->controller . '.php')) {
-            $classString = "\\Webshop\\Controller\\" . $this->registery->controller;
-            $this->registery->controller = new $classString($this->registery);
-            if (method_exists($this->registery->controller, $this->registery->action)) {
-                call_user_func_array([$this->registery->controller, $this->registery->action], $this->registery->params);
+        if (file_exists(ABSPATH . "/Controller/" . $this->registry->controller . '.php')) {
+            $classString = "\\Webshop\\Controller\\" . $this->registry->controller;
+            $this->registry->controller = new $classString($this->registry);
+            if (method_exists($this->registry->controller, $this->registry->action)) {
+                call_user_func_array([$this->registry->controller, $this->registry->action], $this->registry->params);
             } else {
                 // There is no action in the controller with the right name
                 $this->loadErrorPage(404, "Can't find the correct path");
@@ -44,7 +38,7 @@ class Router
 
     private function loadErrorPage($errorNumber, $errorMessage)
     {
-        $error = new \Webshop\Controller\ErrorController($this->registery);
+        $error = new \Webshop\Controller\ErrorController($this->registry);
         $error->error($errorNumber, $errorMessage);
     }
 }

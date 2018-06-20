@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: NickHartjes
- * Date: 09/06/2018
- * Time: 10:46
- */
 
 namespace Webshop\Controller;
 
@@ -26,8 +20,8 @@ class ErrorController extends Controller
     function error(int $errorNumber, string $errorMessage)
     {
         http_response_code($errorNumber);
-        $this->registry->template->title = "Nick";
-        $this->registry->template->description = "Fout";
+        $this->registry->template->title = "Error..";
+        $this->registry->template->description = "If you're looking at this ... than it's nog good.";
         $this->registry->template->errorNumber = $errorNumber;
         $this->registry->template->errorMessage = $errorMessage;
         $this->registry->template->cartItems = Util::getNrCartItems();

@@ -71,7 +71,7 @@ CARTITEMS;
         <div class="main-container container">
             <aside>
                 <h1>Overzicht</h1>
-                <br>
+         
                 <p>Subtotaal: € $subtotaal</p>
                 <br>
                 <p>Verzendkosten: € 1,98</p>
@@ -104,8 +104,7 @@ CART;
         } else {
             $_SESSION['cart'][] = $gameId;
         }
-
-        $this->index();
+       header("Location: /cart");
     }
 
     function remove()
@@ -115,7 +114,6 @@ CART;
         if(isset($gameId, $_SESSION['cart'])) {
             Util::deleteElement($gameId, $_SESSION['cart']);
         }
-
-        $this->index();
+        header("Location: /cart");
     }
 }

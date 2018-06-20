@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: NickHartjes
- * Date: 09/06/2018
- * Time: 08:23
- */
 
 namespace Webshop\Core;
 
 
-class Registery
+class Registry
 {
     /*
       * @the vars array
