@@ -1,0 +1,114 @@
+<?php
+
+namespace Webshop\Model;
+
+use Webshop\Core\Model;
+use Webshop\Core\Database;
+use PDO;
+
+/**
+ * A object representation of the database table User
+ *
+ * Class User
+ * @package Webshop\Model
+ */
+class User extends Model
+{
+    /**
+     * @var int Id
+     */
+    private $id;
+
+    /**
+     * @var string Emailadres
+     */
+    private $emailadres;
+
+    /**
+     * @var string Password
+     */
+    private $password;
+
+    /**
+     * @var string First Name
+     */
+    private $firstName;
+
+    /**
+     * @var string Last Name
+     */
+    private $lastName;
+
+    /**
+     * @var Date Day of Birth
+     */
+    private $dayOfBirth;
+
+    /**
+     * @var string Sex
+     * @options=["M", "F", "N"]
+     */
+    private $sex;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct('users');
+    }
+
+    /**
+     * Magic getter. Silently ignore invalid fields
+     * @param string $key Name of the private variable to get
+     * @return mixed
+     */
+    public function __get($key)
+    {
+        if (property_exists($this, $key)) {
+            return $this->$key;
+        }
+    }
+
+    /**
+     * Magic setter
+     * @param string $key Name of the private variable to set
+     * @param string $value Value of the private variable to set
+     */
+    public function __set($key, $value)
+    {
+        if (property_exists($this, $key)) {
+            $this->$key = $value;
+        }
+    }
+
+
+    /**
+     * Save the User
+     */
+    public function save(): void
+    {
+        // Hash the password
+        $options = [
+            'cost' => 11,
+        ];
+        $renamedPassword =  password_hash($this->password, PASSWORD_BCRYPT, $options);
+
+        // The insert query
+        $query = "INSERT INTO $this->tableName (emailadres, password, firstName, lastName, dayOfBirth, sex ) VALUES ( :emailadres, :password, :firstName, :lastName, :dayOfBirth, :sex)";
+        $stmt = Database::getConnection()->prepare($query);
+
+        // Bind param string to user entered information
+        $stmt->bindValue(':emailadres', $this->emailadres, PDO::PARAM_STR);
+        $stmt->bindValue(':password', $renamedPassword, PDO::PARAM_STR);
+        $stmt->bindValue(':firstName', $this->firstName, PDO::PARAM_STR);
+        $stmt->bindValue(':lastName', $this->lastName, PDO::PARAM_STR);
+        $stmt->bindValue(':dayOfBirth', date("Y-m-d",strtotime($this->dayOfBirth)), PDO::PARAM_STR);
+        $stmt->bindValue(':sex', $this->sex, PDO::PARAM_STR);
+
+        // Execute the query
+        $count = $stmt->execute();
+    }
+
+}
+

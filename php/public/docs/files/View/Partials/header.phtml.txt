@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html class="no-js" lang="nl-NL">
+<head>
+  <meta charset="utf-8">
+  <meta content="ie=edge" http-equiv="x-ua-compatible">
+  <title>GameParadise :: <?= $title ?></title>
+  <base href="/">
+  <meta content="<?= $description ?>" name="description">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <link href="icon.png" rel="apple-touch-icon">
+  <link href="//fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+  <link href="/css/main.css" rel="stylesheet">
+  <link href="//cdn.linearicons.com/free/1.0.0/icon-font.min.css" rel="stylesheet">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">
+  You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+  your browser</a> to improve your experience and security.
+</p>
+<![endif]-->
+<header>
+  <div class="header-top container">
+    <ul>
+      <li>
+        <h1>Game Paradise Webshop</h1>
+        <a class="logo" href="#"><img alt="Logo GameParadise Webshop" src="http://via.placeholder.com/500x150"></a>
+      </li>
+      <li>
+        <a href="/account"><span class="lnr lnr-user"></span>
+          <?= ($userAccount->isLogedIn())? "<p>$userInfo->firstName $userInfo->lastName </p>": "<p>Account</p>";?>
+        </a>
+      </li>
+      <li>
+        <a href="/cart"><span class="lnr lnr-cart"></span>
+          <p>Cart</p><span class="cart-items"><?=$cartItems?></span></a>
+      </li>
+      <?php if ($userAccount->isLogedIn()) {
+          echo '<li><a href="/account/logout"><span class="lnr lnr-exit"></span><p>Uitloggen</p></a></li>';
+      }
+      ?>
+    </ul>
+  </div><!-- Start navigation menu -->
+  <nav>
+    <div class="container">
+      <ul>
+        <li>
+          <a class="active" href="/">Games</a>
+        </li>
+        <li>
+          <a href="/aboutus">Over ons</a>
+        </li>
+        <li>
+          <a href="/products/game/1231">Categorieen</a>
+<!--          <ul>-->
+<!--            <li>Nintendo</li>-->
+<!--          </ul>-->
+        </li>
+      </ul>
+    </div>
+  </nav><!-- End navigation menu -->
+</header>
+

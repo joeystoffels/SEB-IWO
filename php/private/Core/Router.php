@@ -2,11 +2,23 @@
 
 namespace Webshop\Core;
 
-
+/**
+ * Core router for routing the correct requests to the correct controller
+ * and controller methods
+ * Class Router
+ * @package Webshop\Core
+ */
 class Router
 {
+    /**
+     * Internal Registery
+     * @var null|Registry Internal registry
+     */
     private $registry;
 
+    /**
+     * Router constructor.
+     */
     public function __construct()
     {
         $this->registry = Registry::Instance();
@@ -19,6 +31,9 @@ class Router
         $this->registry->params = !empty($url) ? array_values($url) : [];
     }
 
+    /**
+     * Function that routes the request to the correct controller
+     */
     public function route()
     {
         if (file_exists(ABSPATH . "/Controller/" . $this->registry->controller . '.php')) {
@@ -36,6 +51,12 @@ class Router
         }
     }
 
+
+    /**
+     * Loads an error page
+     * @param int $errorNumber
+     * @param string $errorMessage
+     */
     private function loadErrorPage($errorNumber, $errorMessage)
     {
         $error = new \Webshop\Controller\ErrorController($this->registry);

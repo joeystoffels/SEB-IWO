@@ -4,7 +4,14 @@ namespace Webshop\Core;
 
 use PDO;
 
-
+/**
+ *
+ * Core model with default database implementation
+ *
+ * Class Model
+ * @package Webshop\Core
+ * @abstract
+ */
 Abstract class Model
 {
     /**

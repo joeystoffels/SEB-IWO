@@ -1,0 +1,9 @@
+<?php include("Partials/header.phtml") ?>
+
+
+
+<?=$cart?>
+
+
+<?php include("Partials/footer.phtml") ?>
+

@@ -3,6 +3,11 @@
 
 namespace Webshop\Core;
 
+/**
+ * Main application class for the Webshop
+ * Class Application
+ * @package Webshop\Core
+ */
 class Application
 {
     /**
@@ -12,11 +17,6 @@ class Application
 
     public function __construct()
     {
-        // Absolute path for the environment.
-        if (!defined('ABSPATH')) {
-            define('ABSPATH', dirname(dirname(__FILE__)));
-        }
-
         // Create the registry
         $this->registry = Registry::Instance();
 

@@ -5,6 +5,11 @@ namespace Webshop\Controller;
 use Webshop\Core\Controller;
 use Webshop\Core\Util;
 
+/**
+ * Controller for Payment
+ * Class PaymentController
+ * @package Webshop\Controller
+ */
 class PaymentController extends Controller
 {
     private $mollie;

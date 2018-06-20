@@ -6,6 +6,12 @@ use Webshop\Core\Model;
 use Webshop\Core\Database;
 use PDO;
 
+/**
+ * A object representation of the database table User
+ *
+ * Class User
+ * @package Webshop\Model
+ */
 class User extends Model
 {
     /**

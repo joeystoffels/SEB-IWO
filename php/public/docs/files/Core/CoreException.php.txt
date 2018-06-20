@@ -1,0 +1,17 @@
+<?php
+
+namespace Webshop\Core;
+
+
+class CoreException extends \Exception
+{
+
+    /**
+     * Exception constructor.
+     */
+    public function __construct(string $errorMesssage)
+    {
+        echo $errorMesssage;
+    }
+}
+

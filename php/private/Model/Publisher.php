@@ -5,6 +5,11 @@ namespace Webshop\Model;
 
 use Webshop\Core\Model;
 
+/**
+ * A object representation of the database table Publisher
+ * Class Publisher
+ * @package Webshop\Model
+ */
 class Publisher extends Model
 {
     /**

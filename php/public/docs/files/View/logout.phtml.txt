@@ -1,0 +1,10 @@
+<?php include("Partials/header.phtml");
+//header("refresh:3;/");
+?>
+<div class="main-container container formulieren">
+  <h1>U word uitgelogged</h1>
+  <p>En binnen enkele seconden naar de homepage doorgestuurd.</p>
+  <p>Uw producten blijven in uw winkelwagen staan.</p>
+</div>
+<?php include("Partials/footer.phtml") ?>
+

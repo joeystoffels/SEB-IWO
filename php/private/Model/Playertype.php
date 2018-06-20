@@ -5,6 +5,11 @@ namespace Webshop\Model;
 
 use Webshop\Core\Model;
 
+/**
+ * A object representation of the database table Player
+ * Class Playertype
+ * @package Webshop\Model
+ */
 class Playertype extends Model
 {
     /**

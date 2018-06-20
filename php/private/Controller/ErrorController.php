@@ -5,6 +5,11 @@ namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
 
+/**
+ * Controller for all errors
+ * Class ErrorController
+ * @package Webshop\Controller
+ */
 class ErrorController extends Controller
 {
 
@@ -19,7 +24,6 @@ class ErrorController extends Controller
         // Set title and description of the page
         $this->registry->template->title = "Error..";
         $this->registry->template->description = "If you're looking at this ... than it's nog good.";
-
     }
 
     /**
@@ -31,6 +35,8 @@ class ErrorController extends Controller
     }
 
     /**
+     * Function that shows an error pageclear
+     *
      * @param int $errorNumber Error number to show for example 404
      * @param string $errorMessage Error message to show example "not found"
      */

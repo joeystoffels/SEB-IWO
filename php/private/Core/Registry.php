@@ -2,15 +2,21 @@
 
 namespace Webshop\Core;
 
-
+/**
+ * Core class to save internal data
+ * Class Registry
+ * @package Webshop\Core
+ */
 class Registry
 {
     /**
+     * Internal storage for the variables for use in the template
      * @var array Internal storage array
      */
     private $vars = array();
 
     /**
+     * Get an Instance of the Registery
      * @return null|Registry Get instance of Registery ( Singleton Pattern)
      */
     public static function Instance()
@@ -27,9 +33,9 @@ class Registry
      * @param string $key Name of the private variable to get
      * @return mixed
      */
-    public function __get($index)
+    public function __get($key)
     {
-        return $this->vars[$index];
+        return $this->vars[$key];
     }
 
     /**

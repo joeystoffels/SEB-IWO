@@ -2,13 +2,24 @@
 
 namespace Webshop\Core;
 
-use \Webshop\Model\User;
-
+/**
+ * Useraccount class where the loggedin Users details are saved
+ * Class UserAccount
+ * @package Webshop\Core
+ */
 class UserAccount
 {
 
+    /**
+     * Is the user loged in
+     * @var bool $logedIn
+     */
     private $logedIn = false;
 
+    /**
+     * Information about the currently loggedIn user
+     * @var $userInfo
+     */
     private $userInfo;
 
     /**
@@ -16,15 +27,15 @@ class UserAccount
      */
     public function __construct()
     {
-        if(array_key_exists('user', $_SESSION)){
+        if (array_key_exists('user', $_SESSION)) {
             $this->logedIn = true;
             $user = new \Webshop\Model\User();
             $this->setUserInfo($user->getOne('emailadres', $_SESSION['user']));
-
         }
     }
 
     /**
+     * Is the user loggedIn
      * @return bool
      */
     public function isLogedIn()
@@ -33,7 +44,8 @@ class UserAccount
     }
 
     /**
-     * @param bool $logedIn
+     * Set if the user is loggedIn
+     * @param bool $logedIn;
      */
     public function setLogedIn($logedIn)
     {
@@ -41,6 +53,7 @@ class UserAccount
     }
 
     /**
+     * Get UserInfo
      * @return mixed
      */
     public function getUserInfo()
@@ -49,6 +62,7 @@ class UserAccount
     }
 
     /**
+     * Set UserInfo
      * @param mixed $userInfo
      */
     public function setUserInfo($userInfo)

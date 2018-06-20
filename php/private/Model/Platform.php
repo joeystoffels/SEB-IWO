@@ -2,9 +2,13 @@
 
 namespace Webshop\Model;
 
-
 use Webshop\Core\Model;
 
+/**
+ * A object representation of the database table Platform
+ * Class Platform
+ * @package Webshop\Model
+ */
 class Platform extends Model
 {
     /**

@@ -4,6 +4,11 @@ namespace Webshop\Model;
 
 use Webshop\Core\Model;
 
+/**
+ * A object representation of the database table Developer
+ * Class Developer
+ * @package Webshop\Model
+ */
 class Developer extends Model
 {
     /**

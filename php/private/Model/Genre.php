@@ -5,6 +5,12 @@ namespace Webshop\Model;
 
 use Webshop\Core\Model;
 
+/**
+ * A object representation of the Database table Genre
+ * Class Genre
+ * @package Webshop\Model
+ */
+
 class Genre extends Model
 {
     /**

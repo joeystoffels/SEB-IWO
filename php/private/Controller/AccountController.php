@@ -1,16 +1,43 @@
 <?php
+
 namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
 use Webshop\Core\Util;
 
+/**
+ * Controller for the accounts
+ * It  processes all login, logout en register forms
+ *
+ * Class AccountController
+ * @package Webshop\Controller
+ */
 class AccountController extends Controller
 {
 
+    /**
+     * @var string $loginError Name of the loginError value
+     */
     private $loginError = "loginError";
+
+    /**
+     * @var string $loginForm Name of the loginForm value
+     */
     private $loginForm = "loginForm";
+
+    /**
+     * @var string $registerError Name of the registerError value
+     */
     private $registerError = "registerError";
+
+    /**
+     * @var string $registerForm Name of the registerForm value
+     */
     private $registerForm = "registerForm";
+
+    /**
+     * @var string $user Name of the Usersession value
+     */
     private $userSession = "user";
 
     /**
@@ -36,7 +63,7 @@ class AccountController extends Controller
         $this->registry->template->registerSend = Util::checkExcistInSession($this->registerError);
 
         // If the user is loggedIn show the logout button
-        if($this->registry->userAccount->isLogedIn()){
+        if ($this->registry->userAccount->isLogedIn()) {
             $this->registry->template->show('account-loggedin');
         } else {
             $this->registry->template->show('account');
@@ -85,6 +112,9 @@ class AccountController extends Controller
         }
     }
 
+    /**
+     * Register processing function
+     */
     function register()
     {
         if (isset($_POST['registerSubmit'])) {
@@ -102,7 +132,7 @@ class AccountController extends Controller
             $passwordSecond = (string)$form['passwordSecond'];
             $firstName = (string)$form['firstName'];
             $lastName = (string)$form['lastName'];
-            $dayOfBirth = (string) $form['dayOfBirth'];
+            $dayOfBirth = (string)$form['dayOfBirth'];
             $sex = (string)$form['sex'];
 
             foreach ($form as $value) {
@@ -159,8 +189,8 @@ class AccountController extends Controller
     /**
      * Account logout function
      */
-    function logout(){
-
+    function logout()
+    {
         // Unset all form, error and user sessions
         unset($_SESSION[$this->userSession]);
         unset($_SESSION[$this->registerError]);

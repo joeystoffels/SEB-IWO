@@ -5,6 +5,12 @@ namespace Webshop\Controller;
 use Webshop\Core\Controller;
 use Webshop\Core\Util;
 
+/**
+ * Controller for the shopping cart
+ *
+ * Class CartController
+ * @package Webshop\Controller
+ */
 class CartController extends Controller
 {
     /**

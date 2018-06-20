@@ -1,11 +1,18 @@
 <?php
 
+namespace Webshop\Config;
+
+/**
+ * Settings for Development
+ */
+
+
 /* ====================================================================================================
 	01. Default Settings
 ==================================================================================================== */
 
 /** Domain name */
-define('DOMAIN', $_SERVER["REQUEST_SCHEME"]."://".$_SERVER["SERVER_NAME"]);
+define('DOMAIN', $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"]);
 
 /** Debugging. */
 define('DEBUG', true);
@@ -14,7 +21,8 @@ define('DEBUG', true);
 	02. Database Settings
 ==================================================================================================== */
 // ** MySQL settings ** //
-/** The name of the database for WordPress */
+
+/** MySql database name */
 define('DB_NAME', 'gameparadise');
 
 /** MySQL database username */

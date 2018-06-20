@@ -4,17 +4,28 @@ namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
 
+/**
+ * Controller for Games
+ * Class GamesController
+ * @package Webshop\Controller
+ */
 class GamesController extends Controller
 {
+    /**
+     * @var int $showAmount Amount of games shown per page
+     */
     private $showAmount = 28;
 
+    /**
+     * GamesController constructor.
+     */
     function __construct()
     {
         // Call parent constructor
         parent::__construct();
 
         // Set title and description of the page
-        $this->registry->template->title = "Producten";
+        $this->registry->template->title = "Games";
         $this->registry->template->description = "Bekijk hier alle nieuwste en hipster spellen.";
 
     }

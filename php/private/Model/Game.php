@@ -4,6 +4,11 @@ namespace Webshop\Model;
 
 use Webshop\Core\Model;
 
+/**
+ * A object representation of the database table Game
+ * Class Game
+ * @package Webshop\Model
+ */
 class Game extends Model
 {
     /**

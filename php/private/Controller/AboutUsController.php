@@ -4,6 +4,13 @@ namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
 
+/**
+ * Controller for the About page
+ * Because it's a static page, it doens't contain any functionality except of routing
+ *
+ * Class AboutUsController
+ * @package Webshop\Controller
+ */
 class AboutUsController extends Controller
 {
     /**

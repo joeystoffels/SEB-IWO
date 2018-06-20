@@ -1,0 +1,47 @@
+<footer>
+  <section class="footer-main container">
+    <div>
+      <h3>Thuiswinkel waarborg</h3>
+      <img alt="Thuiswinkel waarborg" src="/images/thuiswinkel-logo.png"
+    </div>
+    <div>
+      <h3>Betaalmogelijkheden</h3>
+      <img alt="Betaalmogelijkheden" src="/images/VisaMasterCard.png"
+    </div>
+    <div>
+      <h3>Pagina's</h3>
+      <a href="/">Games</a>
+      <a href="/aboutus">Over ons</a>
+      <a href="/cart">Winkelwagen</a>
+      <a href="/account">Account</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <dd>
+        <b>0031 - (0)6-21643816</b>
+        <small>Lokaal tarief.</small>
+        <em>
+          Maandag t/m vrijdag:<br>
+          08:00-21:00<br>
+          Zaterdag en zondag:<br>
+          10:00-18:00
+        </em>
+        <a class="btn footer-btn no-static-copy" href="/contact"><b>Contactformulier</b></a>
+      </dd>
+    </div>
+  </section>
+  <section class="footer-copyright">
+    <div class="container">
+      <h3>&copy; <?= date("Y") ?> JoNi</h3><a href="https://validator.w3.org/nu/?doc=<?= $_SERVER["HTTP_HOST"] ?>"
+                                              target="_blank"><img alt="W3C Validated"
+                                                                   src="../images/vhtml-blue.gif"></a> <a
+        href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img alt="Valid CSS!"
+                                                                                      src="../images/vcss-blue.gif"></a>
+      <a href="http://wave.webaim.org/report#/http://<?= $_SERVER["HTTP_HOST"] ?>" target="_blank"><img alt="Valid CSS!"
+                                                                                                        src="../images/vcss-blue.gif"></a>
+    </div>
+  </section>
+</footer>
+</body>
+</html>
+

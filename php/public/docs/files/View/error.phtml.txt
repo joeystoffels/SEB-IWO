@@ -1,0 +1,7 @@
+<?php include("Partials/header.phtml") ?>
+
+<h1>Game <?= $errorNumber ?> </h1>
+<p> <?= $errorMessage ?> </p>
+
+<?php include("Partials/footer.phtml") ?>
+

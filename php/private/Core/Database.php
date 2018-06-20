@@ -2,11 +2,26 @@
 
 namespace Webshop\Core;
 
-
+/**
+ * Core database class
+ * Used for connection to the mysql database
+ * Class Database
+ * @package Webshop\Core
+ * @abstract
+ */
 abstract class Database
 {
+
+    /**
+     * Database connection
+     * @var $connection Database connection
+     */
     private static $connection;
 
+    /**
+     * Get the instance of a database connection
+     * @return Database
+     */
     public static function getConnection()
     {
         if (self::$connection === null) {
@@ -15,6 +30,9 @@ abstract class Database
         return self::$connection;
     }
 
+    /**
+     * Open the connection to the database
+     */
     private static function openConnection()
     {
         try {

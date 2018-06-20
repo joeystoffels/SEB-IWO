@@ -2,14 +2,30 @@
 
 namespace Webshop\Core;
 
-
+/**
+ * Parent class for all Templates
+ * In this class all variables will be added to be used with the template
+ *
+ * Class Template
+ * @package Webshop\Core
+ */
 class Template
 {
-    public function __set($index, $value)
+    /**
+     * Magic setter
+     * @param string $key Name of the private variable to set
+     * @param string $value Value of the private variable to set
+     */
+    public function __set($key, $value)
     {
-        $this->vars[$index] = $value;
+        $this->vars[$key] = $value;
     }
 
+    /**
+     * Function that loads the phtml files and adds the variabels to it
+     * @param string $name Name of the template being loaded
+     * @throws CoreException
+     */
     function show($name)
     {
         $path = ABSPATH . '/View/' . $name . '.phtml';

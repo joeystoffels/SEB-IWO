@@ -1,17 +1,25 @@
 <?php
+/**
+ * Bootstrap file
+ * Used for setting defaults so the Application can work
+ */
 
 namespace Webshop;
+
+// Only needed for Mollie
 require_once __DIR__ . "/../vendor/autoload.php";
 
 session_start();
 ob_start();
-
 
 /** Absolute path for the environment. */
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(__FILE__));
 }
 
+/**
+ * Autoloading function
+ */
 spl_autoload_register(function ($class) {
     // project-specific namespace prefix
     $prefix = 'Webshop\\';
@@ -36,5 +44,8 @@ spl_autoload_register(function ($class) {
     }
 });
 
+/**
+ * Start the Application
+ */
 $application = new \Webshop\Core\Application();
 $application->init();
