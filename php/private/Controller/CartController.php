@@ -7,13 +7,17 @@ use Webshop\Core\Util;
 
 class CartController extends Controller
 {
-
-    function __construct($registry)
+    /**
+     * CartController constructor.
+     */
+    function __construct()
     {
-        $this->registry = $registry;
-        $this->registry->template->title = "GameParadise - Winkelwagen";
-        $this->registry->template->description = "Dit is de text die geindexeerd word door Google";
-        $this->registry->template->cartItems = Util::getNrCartItems();
+        // Call parent constructor
+        parent::__construct();
+
+        $this->registry->template->title = "Winkelwagen";
+        $this->registry->template->description = "De inhoud van de winkelwagen.";
+
     }
 
     /**

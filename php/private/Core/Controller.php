@@ -4,15 +4,14 @@ namespace Webshop\Core;
 
 Abstract Class Controller
 {
-
     /*
      * @registry object
      */
     protected $registry;
 
-    function __construct($registry)
+    function __construct()
     {
-        $this->registry = $registry;
+        $this->registry = Registry::Instance();
     }
 
     /**

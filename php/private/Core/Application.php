@@ -5,6 +5,9 @@ namespace Webshop\Core;
 
 class Application
 {
+    /**
+     * @var Registry Internal data storage
+     */
     private $registry;
 
     public function __construct()
@@ -15,10 +18,10 @@ class Application
         }
 
         // Create the registry
-        $this->registry = new \Webshop\Core\Registry();
+        $this->registry = Registry::Instance();
 
         // Register the template engine
-        $this->registry->template = new \Webshop\Core\Template($this->registry);
+        $this->registry->template = new \Webshop\Core\Template();
 
     }
 

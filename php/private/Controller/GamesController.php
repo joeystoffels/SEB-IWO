@@ -3,22 +3,27 @@
 namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
-use Webshop\Core\Util;
 
 class GamesController extends Controller
 {
     private $showAmount = 28;
 
-    protected $registry;
-
-    function __construct($registry)
+    function __construct()
     {
-        $this->registry = $registry;
+        // Call parent constructor
+        parent::__construct();
+
+        // Set title and description of the page
         $this->registry->template->title = "Producten";
         $this->registry->template->description = "Bekijk hier alle nieuwste en hipster spellen.";
-        $this->registry->template->cartItems = Util::getNrCartItems();
+
     }
 
+    /**
+     * Index and fallback function for the GamesController
+     * @param int $currentPage The number of the currentpage
+     * @param int|null $showAmount The number of the amount to show
+     */
     public function index($currentPage = 1, $showAmount = null)
     {
 
@@ -122,7 +127,7 @@ GAME;
         } else {
             $this->registry->template->errorNumber = 404;
             $this->registry->template->errorMessage = "Oops... we konden deze game niet vinden";
-            $this->registry->template->cartItems = Util::getNrCartItems();
+
             $this->registry->template->show('error');
             die();
         }

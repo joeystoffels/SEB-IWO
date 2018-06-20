@@ -12,18 +12,30 @@ class AccountController extends Controller
     private $registerError = "registerError";
     private $registerForm = "registerForm";
     private $userSession = "user";
+
     /**
-     * @all controllers must contain an index method
+     * AccountController constructor.
+     */
+    function __construct()
+    {
+        // Call parent constructor
+        parent::__construct();
+
+        // Set title and description of the page
+        $this->registry->template->title = "Account";
+        $this->registry->template->description = "Account pagina";
+    }
+
+    /**
+     * Index and fallback function for the AccountController
      */
     function index()
     {
-        $this->registry->template->title = "Account";
-        $this->registry->template->description = "Account pagina";
-        $this->registry->template->cartItems = Util::getNrCartItems();
         // Check if there errors from the forms, and display them.
         $this->registry->template->loginSend = Util::checkExcistInSession($this->loginError);
         $this->registry->template->registerSend = Util::checkExcistInSession($this->registerError);
 
+        // If the user is loggedIn show the logout button
         if($this->registry->userAccount->isLogedIn()){
             $this->registry->template->show('account-loggedin');
         } else {
@@ -31,24 +43,37 @@ class AccountController extends Controller
         }
     }
 
+    /**
+     * Login processing function
+     */
     function login()
     {
+        // Only process the login form if the login is submitted
         if (isset($_POST['loginSubmit'])) {
+
             // Unset previous values
             unset($_SESSION[$this->loginError]);
             unset($_SESSION[$this->loginForm]);
 
+            // Create a new user object
             $user = new \Webshop\Model\User();
+
 
             $form = $_POST['login'];
             $emailadres = $form['emailadres'];
             $password = $form['password'];
 
+            // Load the user with the given emailadres
             $loggedInUser = $user->getOne('emailadres', $emailadres);
             if (is_object($loggedInUser)) {
+
+                // Verify the user password with the database password
                 $password = password_verify($password, $loggedInUser->password);
                 if ($password) {
+                    // Set the user session
                     $_SESSION[$this->userSession] = $emailadres;
+
+                    // Redirect to the main page
                     header('Location: /');
                     die();
                 }
@@ -80,7 +105,7 @@ class AccountController extends Controller
             $dayOfBirth = (string) $form['dayOfBirth'];
             $sex = (string)$form['sex'];
 
-            foreach ($form as $name => $value) {
+            foreach ($form as $value) {
                 if (empty($value)) {
                     $_SESSION[$this->registerError]['blank'] = 'Some Fields were left blank. Please fill up all fields.';
                     $errorCatched = true;
@@ -103,6 +128,8 @@ class AccountController extends Controller
                 case !isset($form['accept']):
                     $_SESSION[$this->registerError]['accept'] = 'Je moet de algemene voorwaarden accepteren om een account ';
                     $errorCatched = true;
+                    break;
+                default:
                     break;
             }
 
@@ -128,15 +155,20 @@ class AccountController extends Controller
         }
     }
 
+
+    /**
+     * Account logout function
+     */
     function logout(){
+
+        // Unset all form, error and user sessions
         unset($_SESSION[$this->userSession]);
         unset($_SESSION[$this->registerError]);
         unset($_SESSION[$this->registerForm]);
         unset($_SESSION[$this->loginError]);
         unset($_SESSION[$this->loginForm]);
-        $this->registry->template->title = "Account";
-        $this->registry->template->description = "Account pagina";
-        $this->registry->template->cartItems = Util::getNrCartItems();
+
+        // Show the logout page
         $this->registry->template->show('logout');
     }
 }

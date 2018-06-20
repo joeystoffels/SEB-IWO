@@ -6,30 +6,97 @@ use Webshop\Core\Model;
 
 class Game extends Model
 {
-    private $title;
-    private $price;
-    private $minAge;
-    private $publisher;
-    private $developer;
-    private $languageText;
-    private $languageSpoken;
-    private $platform;
-    private $details;
-    private $image;
-    private $imageBackground;
-    private $releaseDate;
+    /**
+     * @var int Id
+     */
     private $id;
+
+    /**
+     * @var string Title
+     */
+    private $title;
+
+    /**
+     * @var double Price
+     */
+    private $price;
+
+    /**
+     * @var int Minimal Age
+     */
+    private $minAge;
+
+    /**
+     * @var string Publisher
+     */
+    private $publisher;
+
+    /**
+     * @var string Developer
+     */
+    private $developer;
+
+    /**
+     * @var string Language of the Text
+     */
+    private $languageText;
+
+    /**
+     * @var string Spoken language
+     */
+    private $languageSpoken;
+
+    /**
+     * @var string Platform
+     */
+    private $platform;
+
+    /**
+     * @var string Details
+     */
+    private $details;
+
+    /**
+     * @var string Image
+     */
+    private $image;
+
+    /**
+     * @var string BackgroundImage
+     */
+    private $imageBackground;
+
+    /**
+     * @var Date Release Date
+     */
+    private $releaseDate;
 
     public function __construct()
     {
         parent::__construct('games');
     }
 
-    // Magic setter. Silently ignore invalid fields
+    /**
+     * Magic getter. Silently ignore invalid fields
+     * @param string $key Name of the private variable to get
+     * @return mixed
+     */
     public function __get($key)
     {
-        if (isset($this->$key)) {
+        if (property_exists($this, $key)) {
             return $this->$key;
+        }
+    }
+
+    /**
+     * Magic setter
+     * @param string $key Name of the private variable to set
+     * @param string $value Value of the private variable to set
+     */
+    public function __set($key, $value)
+    {
+        if (property_exists($this, $key)) {
+            $this->$key = $value;
         }
     }
 }

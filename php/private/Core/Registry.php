@@ -5,20 +5,27 @@ namespace Webshop\Core;
 
 class Registry
 {
-    /*
-      * @the vars array
-      * @access private
-      */
+    /**
+     * @var array Internal storage array
+     */
     private $vars = array();
 
     /**
-     *
-     * @get variables
-     *
-     * @param mixed $index
-     *
+     * @return null|Registry Get instance of Registery ( Singleton Pattern)
+     */
+    public static function Instance()
+    {
+        static $inst = null;
+        if ($inst === null) {
+            $inst = new Registry();
+        }
+        return $inst;
+    }
+
+    /**
+     * Magic Getter
+     * @param string $key Name of the private variable to get
      * @return mixed
-     *
      */
     public function __get($index)
     {
@@ -26,19 +33,12 @@ class Registry
     }
 
     /**
-     *
-     * @set undefined vars
-     *
-     * @param string $index
-     *
-     * @param mixed $value
-     *
-     * @return void
-     *
+     * Magic setter
+     * @param string $key Name of the private variable to set
+     * @param string $value Value of the private variable to set
      */
-    public function __set($index, $value)
+    public function __set($key, $value)
     {
-        $this->vars[$index] = $value;
+        $this->vars[$key] = $value;
     }
-
 }

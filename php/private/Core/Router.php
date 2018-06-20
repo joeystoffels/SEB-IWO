@@ -7,9 +7,9 @@ class Router
 {
     private $registry;
 
-    public function __construct(Registry $registry)
+    public function __construct()
     {
-        $this->registry = $registry;
+        $this->registry = Registry::Instance();
 
         $request = trim(strtok($_SERVER["REQUEST_URI"], '?'), '/');
         $url = explode('/', $request);
@@ -23,7 +23,7 @@ class Router
     {
         if (file_exists(ABSPATH . "/Controller/" . $this->registry->controller . '.php')) {
             $classString = "\\Webshop\\Controller\\" . $this->registry->controller;
-            $this->registry->controller = new $classString($this->registry);
+            $this->registry->controller = new $classString( );
             if (method_exists($this->registry->controller, $this->registry->action)) {
                 call_user_func_array([$this->registry->controller, $this->registry->action], $this->registry->params);
             } else {

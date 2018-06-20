@@ -22,7 +22,7 @@ class PaymentController extends Controller
     {
 //        $this->registry->template->title = "Nick";
 //        $this->registry->template->description = "Fout";
-//        $this->registry->template->cartItems = Util::getNrCartItems();
+//
 //        $this->registry->template->show('about');
 
         $this->initMollie();
@@ -92,7 +92,7 @@ class PaymentController extends Controller
 
         $this->registry->template->title = "Nick";
         $this->registry->template->description = "Fout";
-        $this->registry->template->cartItems = Util::getNrCartItems();
+
 
         var_dump($this->registry->params);
 

@@ -7,18 +7,30 @@ use PDO;
 
 Abstract class Model
 {
+    /**
+     * @var string $tableName Name of the database table to use
+     */
     protected $tableName;
+
+    /**
+     * @var int $pageAmountLimit Limit of the amount of items to display on a page
+     */
     private $pageAmountLimit = 100;
 
     /**
      * Model constructor.
+     * @param string $tableName Name of the table to use
      */
-    public function __construct($tableName)
+    public function __construct(string $tableName)
     {
         $this->tableName = $tableName;
     }
 
-    // Magic setter. Silently ignore invalid fields
+    /**
+     * Magic getter. Silently ignore invalid fields
+     * @param string $key Name of the private variable to get
+     * @return mixed
+     */
     public function __get($key)
     {
         if (property_exists($this, $key)) {
@@ -26,7 +38,11 @@ Abstract class Model
         }
     }
 
-    // Magic getter
+    /**
+     * Magic setter
+     * @param string $key Name of the private variable to set
+     * @param string $value Value of the private variable to set
+     */
     public function __set($key, $value)
     {
         if (property_exists($this, $key)) {
@@ -34,6 +50,9 @@ Abstract class Model
         }
     }
 
+    /*
+     * Convert the object to an Array
+     */
     public function toArray()
     {
         $array = [];
@@ -50,6 +69,40 @@ Abstract class Model
         return $array;
     }
 
+    /**
+     * Fetch all objects from the database
+     * @param array|null $whereFilters
+     * @return array
+     */
+    public function getAll(array $whereFilters = null): array
+    {
+
+        if (is_array($whereFilters) && isset($whereFilters)) {
+            $whereStatement = $this->createWhereStatementKeys($whereFilters);
+            $query = "SELECT * FROM $this->tableName WHERE ( $whereStatement )";
+        } else {
+            $query = "SELECT * FROM $this->tableName";
+        }
+
+        $result = Database::getConnection()->prepare($query);
+        if (is_array($whereFilters)) {
+            foreach ($whereFilters as $values) {
+                foreach ($values as $value) {
+                    $needle = Util::cleanString($value);
+                    $result->bindValue($needle, $value, PDO::PARAM_STR);
+                }
+            }
+        }
+        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, get_class($this));
+        $result->execute();
+        return $result->fetchAll();
+    }
+
+    /**
+     * Create an wherestatement string from an Array to use with PDO
+     * @param array $whereFilters
+     * @return string
+     */
     private function createWhereStatementKeys(array $whereFilters): string
     {
         $whereStatement = '';
@@ -65,30 +118,11 @@ Abstract class Model
 
     }
 
-    public function getAll($whereFilters = null): array
-    {
-
-        if (is_array($whereFilters) && isset($whereFilters)) {
-            $whereStatement = $this->createWhereStatementKeys($whereFilters);
-            $query = "SELECT * FROM $this->tableName WHERE ( $whereStatement )";
-        } else {
-            $query = "SELECT * FROM $this->tableName";
-        }
-
-        $result = Database::getConnection()->prepare($query);
-        if (is_array($whereFilters)) {
-            foreach ($whereFilters as $key => $values) {
-                foreach ($values as $value) {
-                    $needle = Util::cleanString($value);
-                    $result->bindValue($needle, $value, PDO::PARAM_STR);
-                }
-            }
-        }
-        $result->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, get_class($this));
-        $result->execute();
-        return $result->fetchAll();
-    }
-
+    /**
+     * @param string $key The name of the key to search
+     * @param string $value The name of the value to search
+     * @return mixed
+     */
     public function getOne($key, $value)
     {
         $query = "SELECT * FROM " . $this->tableName . " WHERE $key = :value";
@@ -103,7 +137,13 @@ Abstract class Model
         return $stmt->fetch();
     }
 
-    public function getPage($currentPage, $perPage, $whereFilters = null): array
+    /**
+     * @param int $currentPage The number of the page to show
+     * @param int $perPage The amount of results on the page
+     * @param array|null $whereFilters
+     * @return array
+     */
+    public function getPage(int $currentPage, int $perPage, array $whereFilters = null): array
     {
         ($perPage > $this->pageAmountLimit) ? $perPage = $this->pageAmountLimit : '';
         if (is_array($whereFilters)) {
@@ -117,7 +157,7 @@ Abstract class Model
         $queryResult->bindValue(':limit', $perPage, PDO::PARAM_INT);
         $queryResult->bindValue(':offset', (($currentPage - 1) * $perPage), PDO::PARAM_INT);
         if (is_array($whereFilters)) {
-            foreach ($whereFilters as $key => $values) {
+            foreach ($whereFilters as $values) {
                 foreach ($values as $value) {
                     $needle = Util::cleanString($value);
                     $queryResult->bindValue($needle, $value, PDO::PARAM_STR);
@@ -137,7 +177,7 @@ Abstract class Model
 
         $countResult = Database::getConnection()->prepare($count);
         if (is_array($whereFilters)) {
-            foreach ($whereFilters as $key => $values) {
+            foreach ($whereFilters as $values) {
                 foreach ($values as $value) {
                     $needle = Util::cleanString($value);
                     $countResult->bindValue($needle, $value, PDO::PARAM_STR);
@@ -154,6 +194,4 @@ Abstract class Model
         $return['data'] = $queryResult->fetchAll();
         return $return;
     }
-
-
 }
