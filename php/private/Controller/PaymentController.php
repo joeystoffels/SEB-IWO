@@ -3,7 +3,6 @@
 namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
-use Webshop\Core\Util;
 
 /**
  * Controller for Payment
@@ -14,8 +13,18 @@ class PaymentController extends Controller
 {
     private $mollie;
 
-    private function initMollie()
+    /**
+     * PaymentController constructor.
+     */
+    function __construct()
     {
+        // Call parent constructor
+        parent::__construct();
+
+        // Set title and description of the page
+        $this->registry->template->title = "Payment";
+        $this->registry->template->description = "Payment";
+
         $this->mollie = new \Mollie\Api\MollieApiClient();
         $this->mollie->setApiKey(PAYMENT_APIKEY);
     }
@@ -25,81 +34,54 @@ class PaymentController extends Controller
      */
     function index()
     {
-//        $this->registry->template->title = "Nick";
-//        $this->registry->template->description = "Fout";
-//
-//        $this->registry->template->show('about');
+        if (isset($_POST['totalPrice'])) {
 
-        $this->initMollie();
+            try {
+                /*
+                 * Generate a unique order id for this example. It is important to include this unique attribute
+                 * in the redirectUrl (below) so a proper return page can be shown to the customer.
+                 */
+                $orderId = time();
+                /*
+                 * Payment parameters:
+                 *   amount        Amount in EUROs. This example creates a € 10,- payment.
+                 *   description   Description of the payment.
+                 *   redirectUrl   Redirect location. The customer will be redirected there after the payment.
+                 *   webhookUrl    Webhook location, used to report when the payment changes state.
+                 *   metadata      Custom metadata that is stored with the payment.
+                 */
+                $payment = $this->mollie->payments->create([
+                    "amount" => [
+                        "currency" => "EUR",
+                        "value" => $_POST['totalPrice'] // You must send the correct number of decimals, thus we enforce the use of strings
+                    ],
+                    "description" => "Order #{$orderId}",
+                    "redirectUrl" => DOMAIN . "/payment/success/order/{$orderId}",
+                    "webhookUrl" => PAYMENT_WEBHOOK,
+                    "metadata" => [
+                        "order_id" => $orderId,
+                    ],
+                ]);
 
-        var_dump(DOMAIN);
-
-
-        try {
-            /*
-             * Generate a unique order id for this example. It is important to include this unique attribute
-             * in the redirectUrl (below) so a proper return page can be shown to the customer.
-             */
-            $orderId = time();
-            /*
-             * Determine the url parts to these example files.
-             */
-//            $protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
-//            $hostname = $_SERVER['HTTP_HOST'];
-//            $path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
-            /*
-             * Payment parameters:
-             *   amount        Amount in EUROs. This example creates a € 10,- payment.
-             *   description   Description of the payment.
-             *   redirectUrl   Redirect location. The customer will be redirected there after the payment.
-             *   webhookUrl    Webhook location, used to report when the payment changes state.
-             *   metadata      Custom metadata that is stored with the payment.
-             */
-            $payment = $this->mollie->payments->create([
-                "amount" => [
-                    "currency" => "EUR",
-                    "value" => "10.00" // You must send the correct number of decimals, thus we enforce the use of strings
-                ],
-                "description" => "Order #{$orderId}",
-                "redirectUrl" => DOMAIN . "/payment/success/order/{$orderId}",
-                "webhookUrl" => PAYMENT_WEBHOOK,
-                "metadata" => [
-                    "order_id" => $orderId,
-                ],
-            ]);
-
-            var_dump($payment);
-            /*
-             * In this example we store the order with its payment status in a database.
-             */
-//            database_write($orderId, $payment->status);
-            /*
-             * Send the customer off to complete the payment.
-             * This request should always be a GET, thus we enforce 303 http response code
-             */
-            header("Location: " . $payment->getCheckoutUrl(), true, 303);
-        } catch (\Mollie\Api\Exceptions\ApiException $e) {
-            echo "API call failed: " . htmlspecialchars($e->getMessage());
+                /*
+                 * In this example we store the order with its payment status in a database.
+                 */
+                /*
+                 * Send the customer off to complete the payment.
+                 * This request should always be a GET, thus we enforce 303 http response code
+                 */
+                header("Location: " . $payment->getCheckoutUrl(), true, 303);
+            } catch (\Mollie\Api\Exceptions\ApiException $e) {
+                echo "API call failed: " . htmlspecialchars($e->getMessage());
+            }
         }
-        /*
-//         * NOTE: This example uses a text file as a database. Please use a real database like MySQL in production code.
-//         */
-//        function database_write($orderId, $status)
-//        {
-//            $orderId = intval($orderId);
-//            $database = dirname(__FILE__) . "/orders/order-{$orderId}.txt";
-//            file_put_contents($database, $status);
-//        }
     }
 
     function success()
     {
+        unset($_SESSION['cart']);
+        $this->registry->template->show("payment-success");
 
-        $this->registry->template->title = "Nick";
-        $this->registry->template->description = "Fout";
-
-
-        var_dump($this->registry->params);
 
     }
 
@@ -156,7 +138,6 @@ class PaymentController extends Controller
         /*
          * NOTE: This example uses a text file as a database. Please use a real database like MySQL in production code.
          */
-
     }
 
     function database_write($orderId, $status)

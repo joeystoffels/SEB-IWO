@@ -23,105 +23,89 @@ class CartController extends Controller
 
         $this->registry->template->title = "Winkelwagen";
         $this->registry->template->description = "De inhoud van de winkelwagen.";
-
     }
 
     /**
-     * @all controllers must contain an index method
+     * Index and fallback function for the CartController
      */
     function index()
     {
+        // If the cart is empty, show the empty cart page
+        if (empty($_SESSION['cart'])) {
+            $this->registry->template->show('cart-empty');
+            die();
+        }
+
         $cartItemsHtml = '';
         $game = new \Webshop\Model\Game();
 
-        $resultGames = array();
-
+        $resultGames = [];
         $subtotaal = 0.0;
+        $verzendkosten = 1.98;
 
-        if (empty($_SESSION['cart'])) {
-            echo "Session cart is leeg!";
-        } else {
-            foreach ($_SESSION['cart'] as $gameId) {
-                if ($game->getOne("id", $gameId)) {
-                    $resultGames[] = $game->getOne("id", $gameId);
-                }
-            }
-
-            foreach ($resultGames as $game) {
-
-                if (file_exists("images/games/" . $game->imageBackground)) {
-                    $gameBackgroundImage = $game->imageBackground;
-                } else {
-                    $gameBackgroundImage = "pc/General_background.jpg";
-                }
-
-                $subtotaal += $game->price;
-                $cartItemsHtml .= <<< CARTITEMS
-            <article>
-                <div class="product-info-cart-border" style="background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6)), url(/images/games/$gameBackgroundImage) center center no-repeat; background-size: cover;">
-                    <div class="product-info-cart" >
-                        <h1><a href = "/products/game/$game->id" >$game->title</a></h1>
-                        <br><p><strong>Prijs: € $game->price</strong></p><br>
-                        <a class="button remove-from-cart" href = "/cart/remove/$game->id"> Verwijderen </a> 
-                    </div>
-                    <div class="product-thumb-cart">
-                        <a href = "/products/game/$game->id" >
-                            <img alt = "Primary image of the article" class="product-front-img" src = "/images/games/$game->image">
-                        </a>                
-                    </div>
-                </div>
-            </article>
-CARTITEMS;
+        // Load the games from the database
+        foreach ($_SESSION['cart'] as $gameId) {
+            if ($game->getOne("id", $gameId)) {
+                $resultGames[] = $game->getOne("id", $gameId);
             }
         }
 
-        $totalPrice = $subtotaal + 1.98; // Default verzendkosten
+        // Create the html for eacht game
+        foreach ($resultGames as $game) {
 
-        $cartHtml = <<< CART
-        <div class="main-container container">
-            <aside>
-                <h1>Overzicht</h1>
-         
-                <p>Subtotaal: € $subtotaal</p>
-                <br>
-                <p>Verzendkosten: € 1,98</p>
-                <br>
-                <p><strong>Totaal: € $totalPrice</strong></p>
-                <br><br>
-                <a href="#"><p><strong>Afrekenen</strong></p></a>
-            </aside>
-            <main>
-                <h1>Winkelwagen</h1>
-                <br>
-                <section>
-                    $cartItemsHtml
-                </section>
-            </main>
-        </div>
-CART;
+            if (file_exists("images/games/" . $game->imageBackground)) {
+                $gameBackgroundImage = $game->imageBackground;
+            } else {
+                $gameBackgroundImage = "pc/General_background.jpg";
+            }
 
-        $this->registry->template->cart = $cartHtml;
+            $subtotaal += $game->price;
+            $cartItemsHtml .= <<< CARTITEMS
+            <article style="background: url(/images/games/$gameBackgroundImage) center center no-repeat;">
+                <a href="/products/game/$game->id" >
+                    <img alt = "Primary image of the article" class="product-front-img" src = "/images/games/$game->image">
+                </a>  
+                
+                <h1><a href = "/products/game/$game->id" >$game->title</a></h1>
+                <strong>Prijs: € $game->price</strong>
+                <a class="button remove-from-cart" href = "/cart/remove/$game->id">
+                    <span class="lnr lnr-trash"></span>
+                </a>       
+            </article>
+CARTITEMS;
+
+        }
+
+        $totalPrice = $subtotaal + $verzendkosten; // Default verzendkosten
+        $this->registry->template->verzendkosten = $verzendkosten;
+        $this->registry->template->subTotal = $subtotaal;
+        $this->registry->template->totalPrice = $totalPrice;
+        $this->registry->template->cartItemsHtml = $cartItemsHtml;
         $this->registry->template->show('cart');
     }
 
+    /**
+     * Add an item to the shoppingcart
+     */
     function add()
     {
         $gameId = $this->registry->params[0];
-
-        // TODO verify requested ID is within ID range
         if (!is_numeric($gameId) || (!empty($_SESSION['cart']) && in_array($gameId, $_SESSION['cart']))) {
             echo "gameId is niet numeric, geldig of winkelwagen bevat al deze game!";
         } else {
             $_SESSION['cart'][] = $gameId;
         }
-       header("Location: /cart");
+        header("Location: /cart");
     }
 
+    /**
+     * Remove an item from the shoppingcart
+     */
     function remove()
     {
         $gameId = $this->registry->params[0];
 
-        if(isset($gameId, $_SESSION['cart'])) {
+        if (isset($gameId, $_SESSION['cart'])) {
             Util::deleteElement($gameId, $_SESSION['cart']);
         }
         header("Location: /cart");

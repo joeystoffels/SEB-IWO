@@ -1,8 +1,22 @@
 <?php include("Partials/header.phtml") ?>
+<div class="main-container container cart">
+  <main>
+    <h1>Winkelwagen</h1>
+    <br>
+    <section>
+      <?= $cartItemsHtml ?>
+    </section>
+  </main>
+  <aside>
+    <form action="/payment" method="post">
+      <h1>Overzicht</h1>
+      <p>Subtotaal: &euro; <?= $subTotal ?></p>
+      <p>Verzendkosten: &euro; <?= $verzendkosten ?></p>
+      <p><strong>Totaal: &euro; <?= $totalPrice ?></strong></p>
+      <input type="hidden" value="<?= $totalPrice ?>" name="totalPrice">
+      <button type="submit" value="afrekenen" name="Afrekenen"></button>
+    </form>
+  </aside>
 
-
-
-<?=$cart?>
-
-
+</div>
 <?php include("Partials/footer.phtml") ?>
