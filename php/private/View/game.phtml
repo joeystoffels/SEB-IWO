@@ -13,10 +13,10 @@
         <span class="tag">&euro; <?= $game["price"] ?></span>
       </li>
       <li>
-        Voorraad: <?= $game["supply"] ?>
+        <a class="button" href="/cart/add/<?= $game["id"] ?>"><span class="lnr lnr-cart"></span>+</a>
       </li>
       <li>
-        <a class="button" href="/cart/add/<?= $game["id"] ?>"><span class="lnr lnr-cart"></span>+</a>
+        Voorraad: <?= $game["supply"] ?>
       </li>
     </ul>
 
