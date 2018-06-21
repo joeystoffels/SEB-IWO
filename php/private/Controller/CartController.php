@@ -93,7 +93,8 @@ CARTITEMS;
         if (!is_numeric($gameId) || (!empty($_SESSION['cart']) && in_array($gameId, $_SESSION['cart']))) {
             echo "gameId is niet numeric, geldig of winkelwagen bevat al deze game!";
         } else {
-            $_SESSION['cart'][] = $gameId;
+            $gameItem = [$gameId, 0];
+            $_SESSION['cart'][] = $gameItem;
         }
         header("Location: /cart");
     }
@@ -107,6 +108,25 @@ CARTITEMS;
 
         if (isset($gameId, $_SESSION['cart'])) {
             Util::deleteElement($gameId, $_SESSION['cart']);
+        }
+        header("Location: /cart");
+    }
+
+    /**
+     * Update number of items
+     */
+    function updateNumberOfItems($number, $supply)
+    {
+        $gameId = $this->registry->params[0];
+
+        if ($supply < $number) {
+            $supplyRemaining = 0;
+        } else {
+            $supplyRemaining = $supply - $number;
+        }
+
+        if (isset($gameId, $_SESSION['cart'])) {
+            $_SESSION['cart'][$gameId] = $supplyRemaining;
         }
         header("Location: /cart");
     }

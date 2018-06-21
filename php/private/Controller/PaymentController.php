@@ -79,10 +79,9 @@ class PaymentController extends Controller
 
     function success()
     {
+        $this->updateSupply();
         unset($_SESSION['cart']);
         $this->registry->template->show("payment-success");
-
-
     }
 
     function webhook()
@@ -145,5 +144,27 @@ class PaymentController extends Controller
         $orderId = intval($orderId);
         $database = dirname(__FILE__) . "/orders/order-{$orderId}.txt";
         file_put_contents($database, $status);
+    }
+
+    /**
+     * Update the supply of the items in the cart
+     */
+    function updateSupply()
+    {
+        foreach ($_SESSION['cart'] as $game) {
+            $gameId = $game[0];
+            $amount = $game[1];
+
+            // The insert query
+            $query = "UPDATE `games` SET `supply` = :amount WHERE `id` = :gameId";
+            $stmt = Database::getConnection()->prepare($query);
+
+            // Bind param string to user entered information
+            $stmt->bindValue(':supply', $this->supply, PDO::PARAM_INT);
+            $stmt->bindValue(':gameId', $this->gameId, PDO::PARAM_INT);
+
+            // Execute the query
+            $count = $stmt->execute();
+        }
     }
 }
