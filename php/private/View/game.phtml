@@ -6,7 +6,11 @@
 
   <section>
     <img align="right" alt="<?= $game["title"] ?>" src="/images/games/<?= $game["image"] ?>">
-    <?= $game["details"] ?>
+
+      <?= $game["details"] ?>
+    
+    <span class="price">&euro; <?= $game["price"] ?></span>
+    <a class="button" href="/cart/add/<?= $game["id"] ?>"><span class="lnr lnr-cart"></span></a>
 
     <h2>Details:</h2>
     <dl>

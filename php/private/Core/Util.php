@@ -30,11 +30,21 @@ class Util
      */
     static function cleanStringAndTruncate($text, $length)
     {
-        $text = (strlen($text) > 150) ? substr($text, 0, 200) . '...' : $text;
+        $text = (strlen($text) > $length) ? substr($text, 0, $length) . '...' : $text;
         // Remove all headings and text
         $text = preg_replace('#<h([1-6])>(.*?)<\/h[1-6]>#si', '', $text);
         // Strip tags
         return strip_tags($text);
+    }
+
+    static function validateHtml($html)
+    {
+        $dom = new \DOMDocument;
+        $dom->loadHTML($html); // see docs for load, loadXml, loadHtml and loadHtmlFile
+        if ($dom->validate()) {
+            echo "This document is valid!\n";
+        }
+        return $dom->validate();
     }
 
     /**

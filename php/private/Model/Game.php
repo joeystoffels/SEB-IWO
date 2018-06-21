@@ -76,6 +76,11 @@ class Game extends Model
      */
     private $releaseDate;
 
+    /**
+     * @var int Supply amount
+     */
+    private $supply;
+
     public function __construct()
     {
         parent::__construct('games');

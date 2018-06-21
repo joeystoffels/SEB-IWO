@@ -426,6 +426,7 @@ main article .button:hover,  .pagination li:hover {
 }
 
 .cart article .button {
+    border: solid 1px black;
     position: absolute;
     bottom: 1vh;
     right: 1vh;
@@ -480,7 +481,16 @@ main article .button:hover,  .pagination li:hover {
 .game-detail section img {
     margin: 0 0 1em 1em;
     display: block;
+    position: relative;
 }
+.game-detail .price {
+    margin: 1em;
+}
+.game-detail .button {
+    margin: 1em;
+}
+
+
 .game-detail section h2, .game-detail section h3 {
     margin: 0.8em 0;
 }
@@ -537,7 +547,7 @@ footer div h3 {
 footer div img {
     margin: auto auto;
     max-height: 150px;
-    max-width: 230px;
+    max-width: 200px;
 }
 .footer-paginas, .footer-contact{
     display: flex;
