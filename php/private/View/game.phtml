@@ -5,30 +5,29 @@
   <h1><?= $game["title"] ?></h1>
 
   <section>
-    <img align="right" alt="<?= $game["title"] ?>" src="/images/games/<?= $game["image"] ?>">
 
-      <?= $game["details"] ?>
-    
-    <span class="price">&euro; <?= $game["price"] ?></span>
-    <a class="button" href="/cart/add/<?= $game["id"] ?>"><span class="lnr lnr-cart"></span></a>
+    <img alt="<?= $game["title"] ?>" src="/images/games/<?= $game["image"] ?>">
+    <?= $game["details"] ?>
+    <ul class="priceAndSupply">
+      <li>
+        <span class="tag">&euro; <?= $game["price"] ?></span>
+      </li>
+      <li>
+        Voorraad: <?= $game["supply"] ?>
+      </li>
+      <li>
+        <a class="button" href="/cart/add/<?= $game["id"] ?>"><span class="lnr lnr-cart"></span>+</a>
+      </li>
+    </ul>
 
-    <h2>Details:</h2>
-    <dl>
-      <dt>Platform</dt>
-      <dd><?= $game["platform"] ?></dd>
-
-      <dt>Developer</dt>
-      <dd><?= $game["developer"] ?></dd>
-
-      <dt>Publisher</dt>
-      <dd><?= $game["publisher"] ?></dd>
-
-      <dt>Gesproken taal:</dt>
-      <dd><?= $game["languageSpoken"] ?></dd>
-
-      <dt>Geschreven taal:</dt>
-      <dd><?= $game["languageText"] ?></dd>
-    </dl>
+    <h3>Details:</h3>
+    <ul class="details">
+      <li><strong>Platform</strong> <?= $game["platform"] ?></li>
+      <li><strong>Developer</strong> <?= $game["developer"] ?></li>
+      <li><strong>Publisher</strong> <?= $game["publisher"] ?></li>
+      <li><strong>Gesproken</strong> <?= $game["languageSpoken"] ?></li>
+      <li><strong>Geschreven</strong> <?= $game["languageText"] ?></li>
+    </ul>
   </section>
 </div>
 <?php include("Partials/footer.phtml") ?>

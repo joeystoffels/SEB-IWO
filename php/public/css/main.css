@@ -477,17 +477,29 @@ main article .button:hover,  .pagination li:hover {
     border-radius: 10px;
     padding: 2em;
 }
-
 .game-detail section img {
-    margin: 0 0 1em 1em;
-    display: block;
+    float: right;
+    padding: 0 0 1em 1em;
+}
+
+.game-detail .priceAndSupply {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.game-detail .priceAndSupply li {
+    margin: 0.8em 1em;
+}
+
+.game-detail .priceAndSupply .button {
+    font-size: 22px;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 15px 5px 15px;
+    border: 1px solid #000;
     position: relative;
-}
-.game-detail .price {
-    margin: 1em;
-}
-.game-detail .button {
-    margin: 1em;
+    top: 4px;
 }
 
 
@@ -495,28 +507,66 @@ main article .button:hover,  .pagination li:hover {
     margin: 0.8em 0;
 }
 
-.game-detail section dl {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-.game-detail section dt{
-    padding: 0.7em;
-    flex-basis: 30%;
-}
 
-.game-detail section dd {
+.game-detail .details li {
     padding: 0.7em;
-    flex-basis: 70%;
 }
-.game-detail section dt:nth-of-type(odd){
+.game-detail .details li strong {
+    width: 30%;
+    display: inline-block;
+}
+.game-detail .details li:nth-of-type(odd){
     background-color: #f1f1f1;
 }
 
-.game-detail section dd:nth-of-type(odd) {
-    background-color: #f1f1f1;
+.tag {
+    display: inline-block;
+    width: auto;
+    height: 38px;
+    background-color: #f5eb21;
+    -webkit-border-radius: 3px 4px 4px 3px;
+    -moz-border-radius: 3px 4px 4px 3px;
+    border-radius: 3px 4px 4px 3px;
+
+    border-left: 1px solid #979797;
+
+    /* This makes room for the triangle */
+    margin-left: 19px;
+
+    position: relative;
+    color: #000;
+    font-weight: 300;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 22px;
+    line-height: 38px;
+    padding: 0 10px 0 10px;
 }
 
+/* Makes the triangle */
+.tag:before {
+    content: "";
+    position: absolute;
+    display: block;
+    left: -19px;
+    width: 0;
+    height: 0;
+    border-top: 19px solid transparent;
+    border-bottom: 19px solid transparent;
+    border-right: 19px solid #f5eb21;
+}
+
+/* Makes the circle */
+.tag:after {
+    content: "";
+    background-color: white;
+    border-radius: 50%;
+    width: 4px;
+    height: 4px;
+    display: block;
+    position: absolute;
+    left: -9px;
+    top: 17px;
+}
 /* ====================================================================================================
 	08. FOOTER
 ==================================================================================================== */
@@ -533,10 +583,8 @@ footer {
     text-align: center;
 }
 
-
 footer div {
     flex-basis: 100%;
-    /*padding: 3vh 1vh 3vh 1vh;*/
 }
 
 
@@ -553,7 +601,7 @@ footer div img {
     display: flex;
     flex-direction: column;
 }
-.footer-contact dd > *  {
+.footer-contact p > *  {
     display: block;
 }
 .footer-contact em {
@@ -944,7 +992,7 @@ footer div img {
 @media only screen and (min-width: 992px) {
     footer div {
         flex-basis: 25%;
-        padding: 10vh 1vh 10vh 1vh;
+        padding: 6vh 1vh 10vh 1vh;
     }
 
     .container {
