@@ -92,10 +92,10 @@ class GamesController extends Controller
                 <ul>
                     <li class="price">&euro; $game->price</li>
                     <li>
-                        <a class="button add-to-cart" href="/cart/add/$game->id"><span class="lnr lnr-cart" ></span><strong class="hide"></strong></a>
+                        <a class="button add-to-cart" href="/cart/add/$game->id"><span class="lnr lnr-cart" ></span><strong class="hide">Winkelwagen</strong></a>
                     </li>
                     <li>
-                        <a class="button" href="/games/id/$game->id" ><span class="lnr lnr-magnifier" ></span ><strong class="hide"></strong></a>
+                        <a class="button" href="/games/id/$game->id" ><span class="lnr lnr-magnifier" ></span ><strong class="hide">Product detail</strong></a>
                     </li>
                 </ul>
             </article >
