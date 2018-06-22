@@ -160,17 +160,12 @@ class PaymentController extends Controller
             $gameId = $game[0];
             $amount = $game[1];
 
-            $game = new \Webshop\Model\Game();
-            $game = $game->getOne("id", $gameId);
-
-            $newSupply = $game->supply - $amount;
-
             // The insert query
             $query = "UPDATE `games` SET `supply` = `supply` - :amount WHERE `id` = :gameId";
             $stmt = Database::getConnection()->prepare($query);
 
             // Bind param string to user entered information
-            $stmt->bindValue(':amount', $newSupply, \PDO::PARAM_INT);
+            $stmt->bindValue(':amount', $amount, \PDO::PARAM_INT);
             $stmt->bindValue(':gameId', $gameId, \PDO::PARAM_INT);
 
             // Execute the query
