@@ -162,6 +162,9 @@ button:hover {
 .strike {
     text-decoration: line-through;
 }
+.hide {
+    display: none;
+}
 
 /* ====================================================================================================
 	03. HEADER
