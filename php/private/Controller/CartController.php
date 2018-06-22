@@ -145,7 +145,7 @@ CARTITEMS;
 
         $count = 0;
         for ($index = 0; $index < sizeof($_SESSION['cart']); $index++) {
-
+            $count++;
             if ($_SESSION['cart'][$index][0] == $gameId) {
                 unset($_SESSION['cart'][$index]);
             }
