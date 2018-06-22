@@ -116,7 +116,7 @@ CARTITEMS;
         } else {
             $amount = 1;
             (isset($_POST['amount']) ? $amount = intval($_POST['amount']) : '');
-            $gameItem = [intval($gameId), 0];
+            $gameItem = [intval($gameId), $amount];
             $_SESSION['cart'][] = $gameItem;
         }
         header("Location: /cart");
@@ -132,6 +132,12 @@ CARTITEMS;
         if (isset($gameId, $_SESSION['cart'])) {
             Util::deleteElement($gameId, $_SESSION['cart']);
         }
+
+        for ($index = 0; $index < sizeof($_SESSION['cart']); $index++) {
+            if ($_SESSION['cart'][$index][0] == $gameId) {
+                unset($_SESSION['cart'][$index]);
+            }
+        }
         header("Location: /cart");
     }
 
@@ -142,6 +148,9 @@ CARTITEMS;
     {
         $gameId = intval($_POST['gameId']);
         $amount = intval($_POST['amount']);
+        if($amount == 0){
+            $amount = 1;
+        }
 
         $game = new \Webshop\Model\Game();
         $game = $game->getOne("id", $gameId);
@@ -160,7 +169,6 @@ CARTITEMS;
 
         // Set the new amount in the correct game
         for ($index = 0; $index < sizeof($_SESSION['cart']); $index++) {
-
             if ($_SESSION['cart'][$index][0] == $gameId) {
                 $_SESSION['cart'][$index][1] = $amount;
             }
