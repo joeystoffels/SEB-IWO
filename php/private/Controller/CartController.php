@@ -120,13 +120,13 @@ CARTITEMS;
         $gameId = $this->registry->params[0];
 
         if ($supply < $number) {
-            $supplyRemaining = 0;
+            $numberOfItems = $supply;
         } else {
-            $supplyRemaining = $supply - $number;
+            $numberOfItems = $number;
         }
 
         if (isset($gameId, $_SESSION['cart'])) {
-            $_SESSION['cart'][$gameId] = $supplyRemaining;
+            $_SESSION['cart'][$gameId] = $numberOfItems;
         }
         header("Location: /cart");
     }

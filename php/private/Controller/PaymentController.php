@@ -156,7 +156,7 @@ class PaymentController extends Controller
             $amount = $game[1];
 
             // The insert query
-            $query = "UPDATE `games` SET `supply` = :amount WHERE `id` = :gameId";
+            $query = "UPDATE `games` SET `supply` = `supply` - :amount WHERE `id` = :gameId";
             $stmt = Database::getConnection()->prepare($query);
 
             // Bind param string to user entered information
