@@ -11,7 +11,7 @@ use Webshop\Core\Controller;
  * Class AboutUsController
  * @package Webshop\Controller
  */
-class AboutUsController extends Controller
+class AboutusController extends Controller
 {
     /**
      * AboutUsController constructor.
