@@ -75,11 +75,11 @@ class CartController extends Controller
             $subtotaal += $gameTotalPrice;
             $cartItemsHtml .= <<< CARTITEMS
             <article style="background: url(/images/games/$gameBackgroundImage) center center no-repeat;">
-                <a href="/products/game/$game->id" >
+                <a href="/games/id/$game->id" >
                     <img alt = "Primary image of the article" class="product-front-img" src = "/images/games/$game->image">
                 </a>  
                 
-                <h1><a href = "/products/game/$game->id" >$game->title</a></h1>
+                <h1><a href = "/games/id/$game->id" >$game->title</a></h1>
                 <strong>$amount x &euro; $game->price = &euro; $gameTotalPrice</strong>
                 <form method="post" action="/cart/updateNumberOfItems">
                 <input type="hidden" name="gameId" value="$game->id">
