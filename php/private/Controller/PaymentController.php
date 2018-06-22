@@ -3,6 +3,7 @@
 namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
+use Webshop\Core\Database;
 use Webshop\Core\Registry;
 
 /**
