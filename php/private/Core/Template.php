@@ -2,6 +2,8 @@
 
 namespace Webshop\Core;
 
+use Webshop\Model\Platform;
+
 /**
  * Parent class for all Templates
  * In this class all variables will be added to be used with the template
@@ -44,6 +46,16 @@ class Template
 
         // Add the number of cart items in the template
         $this->vars['cartItems'] = Util::getNrCartItems();
+
+
+        // Add plaforms for header dropdown
+        $platform = new \Webshop\Model\Platform();
+        $platforms = $platform->getAll();
+        $platformsHtml = '';
+        foreach ($platforms as $platform) {
+            $platformsHtml .= "<li><a href='/?Platform[$platform->name]=$platform->value'>$platform->value</a></li>";
+        }
+        $this->vars['platforms'] =  $platformsHtml;
 
         // Load variables
         foreach ($this->vars as $key => $value) {

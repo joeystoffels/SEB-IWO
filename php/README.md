@@ -1,4 +1,4 @@
-Beste Pakscha,   
+Beste Paksha,   
 
 Voor u heeft u de code van de webshop opgeleverd door:
 - Nick Hartjes

@@ -162,6 +162,7 @@ button:hover {
 .strike {
     text-decoration: line-through;
 }
+
 .hide {
     display: none;
 }
@@ -380,7 +381,7 @@ main article .button, .pagination li {
     font-weight: bold;
 }
 
-main article .button:hover,  .pagination li:hover {
+main article .button:hover, .pagination li:hover {
     background-color: #000;
     border-color: #000;
     color: #fff;
@@ -391,7 +392,7 @@ main article .button:hover,  .pagination li:hover {
     margin: 1em auto;
 }
 
-.pagination li a:hover{
+.pagination li a:hover {
     color: #fff;
 }
 
@@ -411,7 +412,7 @@ main article .button:hover,  .pagination li:hover {
 	07. CART
 ==================================================================================================== */
 .cart article {
-    background: linear-gradient(rgba(255,255,255,.6), rgba(255,255,255,.6));
+    background: linear-gradient(rgba(255, 255, 255, .6), rgba(255, 255, 255, .6));
     background-size: cover;
     position: relative;
     border: 1px solid black;
@@ -419,6 +420,7 @@ main article .button:hover,  .pagination li:hover {
     height: 13em;
     margin-bottom: 1vh;
 }
+
 .cart article img {
     max-height: 100%;
     position: absolute;
@@ -426,6 +428,7 @@ main article .button:hover,  .pagination li:hover {
     left: 1vh;
     padding: 10px 0;
 }
+
 .cart .inputError {
     color: #ff0000;
     font-size: 1.5em;
@@ -437,6 +440,7 @@ main article .button:hover,  .pagination li:hover {
     bottom: 1vh;
     right: 1vh;
 }
+
 .cart article select {
     right: 4vh;
     height: 38px;
@@ -444,26 +448,29 @@ main article .button:hover,  .pagination li:hover {
     padding: 0 10px;
 }
 
-.cart article strong, .cart article h1 {
+.cart article strong, .cart article h2 {
     position: absolute;
     top: 2vh;
     color: #fff;
     text-shadow: 2px 2px #000;
 }
 
-.cart article h1 a {
+.cart article h2 a {
     color: #fff;
 }
+
 .cart article strong {
     top: 1vh;
     right: 1vh;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 0.3em;
 }
-.cart article h1 {
+
+.cart article h2 {
     left: 9vh;
-      font-size: 2em;
+    font-size: 2em;
 }
+
 .cart aside {
     padding-left: 2em;
 }
@@ -471,6 +478,7 @@ main article .button:hover,  .pagination li:hover {
 .cart aside p {
     margin: 0.5em 0;
 }
+
 .cart aside span {
     float: right;
 }
@@ -478,6 +486,7 @@ main article .button:hover,  .pagination li:hover {
 .cart aside button {
     margin: 0;
 }
+
 /* ====================================================================================================
 	08. DETAILS
 ==================================================================================================== */
@@ -487,6 +496,7 @@ main article .button:hover,  .pagination li:hover {
     width: 100%;
     z-index: 0;
 }
+
 .game-detail {
     position: relative;
     z-index: 1;
@@ -498,13 +508,15 @@ main article .button:hover,  .pagination li:hover {
     margin: 1em 0;
     text-shadow: 2px 2px #000;
 }
+
 .game-detail section {
     width: 100%;
     margin-top: 11em;
-    background-color: rgba(255,255,255, 0.95);
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: 10px;
     padding: 2em;
 }
+
 .game-detail section img {
     float: right;
     padding: 0 0 1em 1em;
@@ -525,15 +537,16 @@ main article .button:hover,  .pagination li:hover {
     margin: 0.8em 0;
 }
 
-
 .game-detail .details li {
     padding: 0.7em;
 }
+
 .game-detail .details li strong {
     width: 30%;
     display: inline-block;
 }
-.game-detail .details li:nth-of-type(odd){
+
+.game-detail .details li:nth-of-type(odd) {
     background-color: #f1f1f1;
 }
 
@@ -585,6 +598,7 @@ main article .button:hover,  .pagination li:hover {
     left: -9px;
     top: 17px;
 }
+
 /* ====================================================================================================
 	08. FOOTER
 ==================================================================================================== */
@@ -605,7 +619,6 @@ footer div {
     flex-basis: 100%;
 }
 
-
 footer div h3 {
     margin-bottom: 1.3em;
 }
@@ -615,13 +628,16 @@ footer div img {
     max-height: 150px;
     max-width: 200px;
 }
-.footer-paginas, .footer-contact{
+
+.footer-paginas, .footer-contact {
     display: flex;
     flex-direction: column;
 }
-.footer-contact p > *  {
+
+.footer-contact p > * {
     display: block;
 }
+
 .footer-contact em {
     margin-top: 0.3em;
 }
@@ -645,7 +661,7 @@ footer div img {
 }
 
 /* ====================================================================================================
-	09. SLIDER
+	09. SLIDER & DROPDOWN
 ==================================================================================================== */
 .slider {
     display: none;
@@ -655,6 +671,7 @@ footer div img {
 .dropdown {
     position: relative;
     display: inline-block;
+    /*width: 100%;*/
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -662,38 +679,30 @@ footer div img {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    left: 0;
+    margin-top: 0.4vh;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
     color: black;
-    padding: 12px 16px;
-    width: 100%;
+    padding: 5px;
+    font-size: medium;
+    /*width: 100%;*/
     text-decoration: none;
     display: block;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a:hover {
-    background-color: darkgrey;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-    background-color: #ddd;
+.dropdown-content li:nth-child(even) {
+    background-color: #DDDDDD;
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
 }
 
 /* ====================================================================================================
@@ -702,6 +711,7 @@ footer div img {
 .formulieren {
     min-height: 500px
 }
+
 .formulieren input, .formulieren label {
     width: 100%;
 }
@@ -758,7 +768,7 @@ footer div img {
 }
 
 .formulieren.logout {
-   flex-direction: column;
+    flex-direction: column;
 }
 
 .formulieren.logout p {
@@ -922,7 +932,7 @@ footer div img {
 
     nav ul li {
         border: none;
-        padding: 1vh 1.5vh 1vh 1.5vh;
+        padding: 0.5vh 1.5vh;
     }
 
     nav ul li:last-child {
@@ -1042,9 +1052,11 @@ footer div img {
         padding: 0 10px 0 10px;
         flex-basis: 35%;
     }
+
     .pagination-section {
         margin-left: 25%;
     }
+
     .formulieren form {
         flex-basis: 50%;
     }
