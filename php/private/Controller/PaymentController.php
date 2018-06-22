@@ -170,8 +170,8 @@ class PaymentController extends Controller
             $stmt = Database::getConnection()->prepare($query);
 
             // Bind param string to user entered information
-            $stmt->bindValue(':amount', $newSupply, PDO::PARAM_INT);
-            $stmt->bindValue(':gameId', $gameId, PDO::PARAM_INT);
+            $stmt->bindValue(':amount', $newSupply, \PDO::PARAM_INT);
+            $stmt->bindValue(':gameId', $gameId, \PDO::PARAM_INT);
 
             // Execute the query
             $count = $stmt->execute();
