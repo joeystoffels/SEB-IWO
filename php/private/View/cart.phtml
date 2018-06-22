@@ -10,9 +10,9 @@
   </main>
   <aside>
     <form action="/payment" method="post">
-      <h1>Overzicht</h1>
+      <h2>Overzicht</h2>
       <p>Subtotaal: <span>&euro; <?= number_format($subTotal, 2, ',', '') ?></span></p>
-      <p>Verzendkosten:  <span>&euro; <?= number_format($verzendkosten, 2, ',', '') ?></p>
+      <p>Verzendkosten:  <span>&euro; <?= number_format($verzendkosten, 2, ',', '') ?></span></p>
       <p><strong>Totaal:  <span>&euro; <?= number_format($totalPrice, 2, ',', '') ?></span></strong></p>
       <input type="hidden" value="<?= $totalPrice ?>" name="totalPrice">
       <button type="submit" value="afrekenen" name="Afrekenen">Afrekenen</button>

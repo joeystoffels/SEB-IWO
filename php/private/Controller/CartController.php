@@ -75,11 +75,10 @@ class CartController extends Controller
             $subtotaal += $gameTotalPrice;
             $cartItemsHtml .= <<< CARTITEMS
             <article style="background: url(/images/games/$gameBackgroundImage) center center no-repeat;">
+                <h2><a href = "/games/id/$game->id" >$game->title</a></h2>
                 <a href="/games/id/$game->id" >
                     <img alt = "Primary image of the article" class="product-front-img" src = "/images/games/$game->image">
                 </a>  
-                
-                <h1><a href = "/games/id/$game->id" >$game->title</a></h1>
                 <strong>$amount x &euro; $game->price = &euro; $gameTotalPrice</strong>
                 <form method="post" action="/cart/updateNumberOfItems">
                 <input type="hidden" name="gameId" value="$game->id">
@@ -87,7 +86,7 @@ class CartController extends Controller
                     $options
                   </select>
                   </form>
-                <a class="button remove-from-cart" href = "/cart/remove/$game->id">
+                <a class="button remove-from-cart" href="/cart/remove/$game->id">
                     <span class="lnr lnr-trash"></span>
                 </a>       
             </article>
@@ -133,11 +132,17 @@ CARTITEMS;
             Util::deleteElement($gameId, $_SESSION['cart']);
         }
 
+        $count = 0;
         for ($index = 0; $index < sizeof($_SESSION['cart']); $index++) {
+
             if ($_SESSION['cart'][$index][0] == $gameId) {
                 unset($_SESSION['cart'][$index]);
             }
         }
+        if($count == 0){
+            unset($_SESSION['cart']);
+        }
+
         header("Location: /cart");
     }
 

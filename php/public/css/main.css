@@ -342,7 +342,7 @@ main article figure img:hover {
 main article ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin: 0 1.5em;
 }
@@ -724,7 +724,7 @@ footer div img {
 .aboutus-stats {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
     text-align: center;
 }
@@ -744,7 +744,7 @@ footer div img {
 
 }
 
-.aboutus-stats .lnr h5 {
+.aboutus-stats .lnr strong {
     margin-top: 25px;
     display: block;
     font-size: 0.4em;
@@ -757,7 +757,7 @@ footer div img {
 .aboutus main ul li {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-wrap: wrap;
     text-align: left;
 }

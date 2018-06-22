@@ -30,8 +30,7 @@
       <legend>Registreren</legend>
 
       <label for="registerEmailadres">Emailadres</label>
-      <input id="registerEmailadres" name="register[emailadres]" type="email" placeholder="Vul hier uw emailadres in"
-             required autofocus
+      <input id="registerEmailadres" name="register[emailadres]" type="email" placeholder="Vul hier uw emailadres in" required
         <?= ($registerSend) ? 'value="' . $_SESSION['registerForm']['emailadres'] . '"' : ''; ?>>
         <?= ($registerSend && array_key_exists('emailadres',$_SESSION["registerError"])) ? "<p class='inputError'>$_SESSION[registerError][email]</p>" : ''; ?>
 
@@ -57,16 +56,15 @@
         <?= ($registerSend) ? 'value="' . $_SESSION['registerForm']['lastName'] . '"' : ''; ?>>
 
       <label for="registerDayOfBirth">Geboortedatum</label>
-      <input id="registerDayOfBirth" name="register[dayOfBirth]" type="date" placeholder="Vul hier uw geboortedatum in"
-             required
+      <input id="registerDayOfBirth" name="register[dayOfBirth]" type="date" required
         <?= ($registerSend) ? 'value="' . $_SESSION['registerForm']['dayOfBirth'] . '"' : ''; ?>>
 
 
       <label for="registerSex">Geslacht</label>
       <select id="registerSex"  name="register[sex]">
-        <?= ($registerSend) ? 'value="' . $_SESSION['registerForm']['sex'] . '"' : ''; ?>>
+        <?= ($registerSend) ? 'value="' . $_SESSION['registerForm']['sex'] . '"' : ''; ?>
         <option value="M">Man</option>
-        <option value="F"/>Vrouw</option>
+        <option value="F">Vrouw</option>
         <option value="N" selected>Neutral</option>
       </select>
 
