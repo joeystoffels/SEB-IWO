@@ -103,6 +103,19 @@ GAME;
 
         }
 
+
+        $platforms = $categories['Platform'];
+        $platformsHtml = '';
+
+        foreach ($platforms as $platform) {
+
+            $platformsHtml .= <<< PLATFORM
+            <ul><a href="/?Platform[Nintendo+3DS]=nintendo-3ds">$platform->value</a></ul>
+PLATFORM;
+
+        }
+
+        $this->registry->template->platforms = $platformsHtml;
         $this->registry->template->games = $gamesHtml;
         $this->registry->template->show('games');
     }
