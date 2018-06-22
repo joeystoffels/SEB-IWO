@@ -3,6 +3,7 @@
 namespace Webshop\Controller;
 
 use Webshop\Core\Controller;
+use Webshop\Core\Registry;
 
 /**
  * Controller for Payment
@@ -34,7 +35,10 @@ class PaymentController extends Controller
      */
     function index()
     {
-        if (isset($_POST['totalPrice'])) {
+        if(!Registry::Instance()->userAccount->isLogedIn()){
+            $_SESSION['addToCartError'] = "U moet ingelogged zijn om de bestelling af te kunnen ronden <br> U kunt <a href='/account'>HIER</a> inloggen of registreren";
+            header("Location: /cart");
+        } elseif (isset($_POST['totalPrice'])) {
 
             try {
                 /*

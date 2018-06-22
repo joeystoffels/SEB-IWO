@@ -198,6 +198,9 @@ class AccountController extends Controller
         unset($_SESSION[$this->loginError]);
         unset($_SESSION[$this->loginForm]);
 
+        // TODO REMOVE
+        session_destroy();
+
         // Show the logout page
         $this->registry->template->show('logout');
     }

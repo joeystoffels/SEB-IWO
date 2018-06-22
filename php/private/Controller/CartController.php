@@ -13,6 +13,8 @@ use Webshop\Core\Util;
  */
 class CartController extends Controller
 {
+    private $amountOfOption = 30;
+
     /**
      * CartController constructor.
      */
@@ -44,13 +46,15 @@ class CartController extends Controller
         $verzendkosten = 1.98;
 
         // Load the games from the database
-        foreach ($_SESSION['cart'] as $gameId) {
+        foreach ($_SESSION['cart'] as $gameFromSession) {
+            $gameId = $gameFromSession[0];
             if ($game->getOne("id", $gameId)) {
                 $resultGames[] = $game->getOne("id", $gameId);
             }
         }
 
         // Create the html for eacht game
+        $count = 0;
         foreach ($resultGames as $game) {
 
             if (file_exists("images/games/" . $game->imageBackground)) {
@@ -59,7 +63,16 @@ class CartController extends Controller
                 $gameBackgroundImage = "pc/General_background.jpg";
             }
 
-            $subtotaal += $game->price;
+            $options = '';
+            $amount = $_SESSION['cart'][$count][1];
+            for ($index = 1; $index < $this->amountOfOption; $index++) {
+                $selected = '';
+                ($index == $amount) ? $selected = 'selected' : '';
+                $options .= "<option $selected>$index</option>";
+            }
+
+            $gameTotalPrice = $game->price * $amount;
+            $subtotaal += $gameTotalPrice;
             $cartItemsHtml .= <<< CARTITEMS
             <article style="background: url(/images/games/$gameBackgroundImage) center center no-repeat;">
                 <a href="/products/game/$game->id" >
@@ -67,13 +80,20 @@ class CartController extends Controller
                 </a>  
                 
                 <h1><a href = "/products/game/$game->id" >$game->title</a></h1>
-                <strong>Prijs: € $game->price</strong>
+                <strong>$amount x &euro; $game->price = &euro; $gameTotalPrice</strong>
+                <form method="post" action="/cart/updateNumberOfItems">
+                <input type="hidden" name="gameId" value="$game->id">
+                <select name="amount" onchange="this.form.submit()">
+                    $options
+                  </select>
+                  </form>
                 <a class="button remove-from-cart" href = "/cart/remove/$game->id">
                     <span class="lnr lnr-trash"></span>
                 </a>       
             </article>
 CARTITEMS;
 
+            $count++;
         }
 
         $totalPrice = $subtotaal + $verzendkosten; // Default verzendkosten
@@ -82,6 +102,7 @@ CARTITEMS;
         $this->registry->template->totalPrice = $totalPrice;
         $this->registry->template->cartItemsHtml = $cartItemsHtml;
         $this->registry->template->show('cart');
+        unset($_SESSION['addToCartError']);
     }
 
     /**
@@ -93,7 +114,9 @@ CARTITEMS;
         if (!is_numeric($gameId) || (!empty($_SESSION['cart']) && in_array($gameId, $_SESSION['cart']))) {
             echo "gameId is niet numeric, geldig of winkelwagen bevat al deze game!";
         } else {
-            $gameItem = [$gameId, 0];
+            $amount = 1;
+            (isset($_POST['amount']) ? $amount = intval($_POST['amount']) : '');
+            $gameItem = [intval($gameId), 0];
             $_SESSION['cart'][] = $gameItem;
         }
         header("Location: /cart");
@@ -115,18 +138,32 @@ CARTITEMS;
     /**
      * Update number of items
      */
-    function updateNumberOfItems($number, $supply)
+    function updateNumberOfItems()
     {
-        $gameId = $this->registry->params[0];
+        $gameId = intval($_POST['gameId']);
+        $amount = intval($_POST['amount']);
 
-        if ($supply < $number) {
-            $numberOfItems = $supply;
-        } else {
-            $numberOfItems = $number;
+        $game = new \Webshop\Model\Game();
+        $game = $game->getOne("id", $gameId);
+        if (!empty($gameFromDb)) {
+            $_SESSION['addToCartError'] = "Kon de game niet updaten";
+            header("Location: /cart");
+        }
+        $supply = $game->supply;
+
+        // Throw error if the requested amount is higher then the supply
+        if ($supply < $amount) {
+            $_SESSION['addToCartError'] = "We hebben maar " . $supply. " games in voorraad van ". $game->title;
+            $amount = $supply;
         }
 
-        if (isset($gameId, $_SESSION['cart'])) {
-            $_SESSION['cart'][$gameId] = $numberOfItems;
+
+        // Set the new amount in the correct game
+        for ($index = 0; $index < sizeof($_SESSION['cart']); $index++) {
+
+            if ($_SESSION['cart'][$index][0] == $gameId) {
+                $_SESSION['cart'][$index][1] = $amount;
+            }
         }
         header("Location: /cart");
     }

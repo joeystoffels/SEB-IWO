@@ -2,6 +2,7 @@
 <div class="main-container container cart">
   <main>
     <h1>Winkelwagen</h1>
+    <?= (isset($_SESSION['addToCartError'])) ? "<p class='inputError'>".$_SESSION['addToCartError']."</p>" : ''; ?>
     <br>
     <section>
       <?= $cartItemsHtml ?>
@@ -10,11 +11,11 @@
   <aside>
     <form action="/payment" method="post">
       <h1>Overzicht</h1>
-      <p>Subtotaal: &euro; <?= $subTotal ?></p>
-      <p>Verzendkosten: &euro; <?= $verzendkosten ?></p>
-      <p><strong>Totaal: &euro; <?= $totalPrice ?></strong></p>
+      <p>Subtotaal: <span>&euro; <?= number_format($subTotal, 2, ',', '') ?></span></p>
+      <p>Verzendkosten:  <span>&euro; <?= number_format($verzendkosten, 2, ',', '') ?></p>
+      <p><strong>Totaal:  <span>&euro; <?= number_format($totalPrice, 2, ',', '') ?></span></strong></p>
       <input type="hidden" value="<?= $totalPrice ?>" name="totalPrice">
-      <button type="submit" value="afrekenen" name="Afrekenen"></button>
+      <button type="submit" value="afrekenen" name="Afrekenen">Afrekenen</button>
     </form>
   </aside>
 

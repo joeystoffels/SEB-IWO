@@ -148,7 +148,7 @@ button {
     display: inline-block;
     height: 38px;
     font-size: 15px;
-    padding: 10px;
+    /*padding: 10px;*/
     transition: all 0.3s ease 0s;
 }
 
@@ -417,19 +417,28 @@ main article .button:hover,  .pagination li:hover {
     margin-bottom: 1vh;
 }
 .cart article img {
-    max-height: 90%;
-    border: 1px solid black;
+    max-height: 100%;
     position: absolute;
     top: 0;
     left: 1vh;
-    margin: 1vh 0;
+    padding: 10px 0;
+}
+.cart .inputError {
+    color: #ff0000;
+    font-size: 1.5em;
 }
 
-.cart article .button {
+.cart article .button, .cart article select {
     border: solid 1px black;
     position: absolute;
     bottom: 1vh;
     right: 1vh;
+}
+.cart article select {
+    right: 4vh;
+    height: 38px;
+    font-size: 15px;
+    padding: 0 10px;
 }
 
 .cart article strong, .cart article h1 {
@@ -443,13 +452,29 @@ main article .button:hover,  .pagination li:hover {
     color: #fff;
 }
 .cart article strong {
+    top: 1vh;
     right: 1vh;
+    background-color: rgba(0,0,0,0.5);
+    padding: 0.3em;
 }
 .cart article h1 {
-    left: 20vh;
+    left: 9vh;
       font-size: 2em;
 }
+.cart aside {
+    padding-left: 2em;
+}
 
+.cart aside p {
+    margin: 0.5em 0;
+}
+.cart aside span {
+    float: right;
+}
+
+.cart aside button {
+    margin: 0;
+}
 /* ====================================================================================================
 	08. DETAILS
 ==================================================================================================== */
@@ -486,22 +511,12 @@ main article .button:hover,  .pagination li:hover {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: 1vh;
 }
 
-.game-detail .priceAndSupply li {
-    margin: 0.8em 1em;
+.game-detail .priceAndSupply > * {
+    margin: 0 1em;
 }
-
-.game-detail .priceAndSupply .button {
-    font-size: 22px;
-    background-color: #000;
-    color: #fff;
-    padding: 10px 15px 5px 15px;
-    border: 1px solid #000;
-    position: relative;
-    top: 7px;
-}
-
 
 .game-detail section h2, .game-detail section h3 {
     margin: 0.8em 0;
