@@ -109,12 +109,23 @@ CARTITEMS;
      */
     function add()
     {
-        $gameId = $this->registry->params[0];
+        $gameId = intval($this->registry->params[0]);
+        $game = new \Webshop\Model\Game();
+        $game = $game->getOne("id", $gameId);
+
         if (!is_numeric($gameId) || (!empty($_SESSION['cart']) && in_array($gameId, $_SESSION['cart']))) {
             echo "gameId is niet numeric, geldig of winkelwagen bevat al deze game!";
         } else {
             $amount = 1;
             (isset($_POST['amount']) ? $amount = intval($_POST['amount']) : '');
+
+            $supply = $game->supply;
+            // Throw error if the requested amount is higher then the supply
+            if ($supply < $amount) {
+                $_SESSION['addToCartError'] = "We hebben maar " . $supply. " games in voorraad van ". $game->title;
+                $amount = $supply;
+            }
+
             $gameItem = [intval($gameId), $amount];
             $_SESSION['cart'][] = $gameItem;
         }
